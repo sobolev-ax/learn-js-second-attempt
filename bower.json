@@ -1,0 +1,19 @@
+{
+  "name": "frontend-gulp",
+  "description": "Простая и быстрая сборка frontend проекта с помощь gulp",
+  "main": "index.js",
+  "authors": [
+    "sobolev_ax"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sobolev-ax/frontend-gulp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
