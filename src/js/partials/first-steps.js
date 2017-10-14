@@ -1,4 +1,15 @@
 
+
+
+
+/* 
+var age = 12;
+if ( !(age >= 14 && age <= 90) ) {
+
+}
+
+ */
+
 /* 
 var message, login;
 

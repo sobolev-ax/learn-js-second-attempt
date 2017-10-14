@@ -1,5 +1,16 @@
 
 
+
+
+/* 
+var age = 12;
+if ( !(age >= 14 && age <= 90) ) {
+
+}
+
+ */
+
+/* 
 var message, login;
 
 message = 
@@ -8,7 +19,7 @@ message =
 (login == '')         ? 'Нет логина' : 
 '';
 
-
+ */
 
 /* 
 result = (a + b < 4) ? 'Мало' : 'Много';
