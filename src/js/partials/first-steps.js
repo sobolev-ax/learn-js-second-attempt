@@ -2,6 +2,73 @@
 
 
 
+
+/* 
+outer: for (var i = 2; i <= 10; i++) {
+  for (var j = 2; j < i; j++) {
+    if ( !(i % j) ) continue outer;
+  }
+  alert (i);
+}
+
+ */
+
+
+/* 
+var i = 0;
+while ( i < 100 ) {
+  i = +prompt("Введите число", "");
+  if (!i || i == "") break;
+}
+
+ */
+/* 
+var i = 0;
+while ( i < 3 ) {
+  alert( "номер " + i + "!" );
+  i++;
+}
+
+ */
+
+/* 
+for(var i = 2; i <= 10; i++) {
+  if (!(i % 2)) {
+    alert(i);
+  }
+}
+
+ */
+/* 
+"" + 1 + 0 = "10" // (1)
+"" - 1 + 0 = -1 // (2)
+true + false = 1
+6 / "3" = 2
+"2" * "3" = 6
+4 + 5 + "px" = "9px"
+"$" + 4 + 5
+ = "$45"
+"4" - 2
+ = 2
+"4px" - 2
+ = NaN
+7 / 0
+ = Infinity
+" -9\n" + 5 = " -9\n5"
+" -9\n" - 5 = -14
+5 && 2
+ = 2
+2 && 5
+ = 5
+5 || 0
+ = 5
+0 || 5 = 5
+null + 1 = 1 // (3)
+undefined + 1 = NaN // (4)
+null == "\n0\n" = false // (5)
++null == +"\n0\n" = true // (6)
+
+ */
 /* 
 var age = 12;
 if ( !(age >= 14 && age <= 90) ) {
