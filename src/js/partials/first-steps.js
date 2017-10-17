@@ -1,7 +1,95 @@
 
+function pow(a,n) {
+  var pow = a;
+  for (var i = 1; i < n; i++) {
+    pow = pow * a;
+  }
+  return pow;
+}
+
+var a = +prompt("a","");
+var n = +prompt("n","");
+
+alert ( pow(a,n) )
+
+/* 
+function min(a,b) {
+  return (a > b) ? b : a;
+}
+
+ */
+
+/* 
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Родители разрешили?');
+  }
+}
+function checkAge(age) {
+  return (age > 18) ? true : confirm('Родители разрешили?') ;
+}
+function checkAge(age) {
+  return (age > 18) || confirm('Родители разрешили?') ;
+}
+
+ */
+/* 
+var a = +prompt('a?', '');
+
+if (a == 0) {
+  alert( 0 );
+}
+if (a == 1) {
+  alert( 1 );
+}
+
+if (a == 2 || a == 3) {
+  alert( '2,3' );
+}
+
+switch (a) {
+  case 0:
+    alert( 0 );
+    break;
+  case 1:
+    alert( 1 );
+    break;
+  case 2:
+  case 3:
+    alert( '2,3' );
+    break;
+}
+
+ */
 
 
+/* 
+switch (browser) {
+  case 'IE':
+    alert( 'О, да у вас IE!' );
+    break;
 
+  case 'Chrome':
+  case 'Firefox':
+  case 'Safari':
+  case 'Opera':
+    alert( 'Да, и эти браузеры мы поддерживаем' );
+    break;
+
+  default:
+    alert( 'Мы надеемся, что и в вашем браузере все ок!' );
+}
+if ( browser === "IE" ) {
+  alert( 'О, да у вас IE!' );
+} else if ( browser === "Chrome" || browser === "Firefox" || browser === "Safari" || browser === "Opera" ) {
+  alert( 'Да, и эти браузеры мы поддерживаем' );
+} else {
+  alert( 'Мы надеемся, что и в вашем браузере все ок!' );
+}
+
+ */
 
 /* 
 outer: for (var i = 2; i <= 10; i++) {
