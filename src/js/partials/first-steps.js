@@ -1,8 +1,58 @@
 
+
+/* 
+(function g() { return 1; });
+
+alert(g);
+
+ */
+
+//Если функция задана как Function Expression, ей можно дать имя.
+//Оно будет доступно только внутри функции (кроме IE8-).
+//Это имя предназначено для надёжного рекурсивного вызова функции, даже если она записана в другую переменную.
+
+
+/* 
+var f = function sayHi(name) {
+  console.log( sayHi ); // изнутри функции - видно (выведет код функции)
+};
+
+//console.log( sayHi ); // снаружи - не видно (ошибка: undefined variable 'sayHi')
+
+f();
+
+ */
+/* 
+var results = [0,1];
+
 function fib(n) {
-  if (n === 1 || n === 2 ) return 1;
-  var prev = fib(n-1);
-  return prev + fib(n-2);
+  if (n === 0) return results[0];
+
+  if (n === 1) return results[1];
+
+  if (!results[n]) {
+    results[n] = fib(n - 2) + fib(n - 1);
+  }
+
+  return results[n];
+}
+
+function fib(n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+
+  var fib_1 = 0, 
+      fib_2 = 1,
+      fib;
+
+  for (var i = 0; i < n; i++) {
+    fib = fib_1 + fib_2;
+
+    fib_2 = fib_1;
+    fib_1 = fib;
+  }
+
+  return fib;
 }
 
 console.log( fib(1) ); // 1
@@ -14,7 +64,7 @@ console.log( fib(6) ); // 8
 console.log( fib(7) ); // 13
 console.log( fib(77)); // 5527939700884757
 
-
+ */
 
 /* 
 function factorial(n) {
