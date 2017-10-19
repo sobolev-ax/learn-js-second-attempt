@@ -1,4 +1,81 @@
 
+function fib(n) {
+  if (n === 1 || n === 2 ) return 1;
+  var prev = fib(n-1);
+  return prev + fib(n-2);
+}
+
+console.log( fib(1) ); // 1
+console.log( fib(2) ); // 1
+console.log( fib(3) ); // 2
+console.log( fib(4) ); // 3
+console.log( fib(5) ); // 5
+console.log( fib(6) ); // 8
+console.log( fib(7) ); // 13
+console.log( fib(77)); // 5527939700884757
+
+
+
+/* 
+function factorial(n) {
+  if ( n === 1 ) return n;
+  return n * factorial( n - 1 );
+}
+
+console.log ( factorial(1) ); // = 1
+console.log ( factorial(2) ); // = 2
+console.log ( factorial(3) ); // = 6
+console.log ( factorial(4) ); // = 24
+console.log ( factorial(5) ); // = 120
+ */
+
+
+/* 
+function sumTo(n) {
+  for (var i = 1; 1 < n; n--) {
+    i += n;
+  }
+  return i;
+}
+function sumTo(n) {
+  if ( n > 1 ) {
+    return n + sumTo(n-1)
+  }
+  return n;
+}
+function sumTo(n) {
+  return ( 1 + n ) * n / 2;
+}
+console.log( sumTo(1) ); // = 1
+console.log( sumTo(2) ); // = 3
+console.log( sumTo(3) ); // = 6
+console.log( sumTo(4) ); // = 10
+console.log( sumTo(100) ); // = 5050
+console.log( sumTo(100000) ); // = 5000050000
+
+ */
+
+
+// Рекурсия - когда функция вызывает сама себя.
+// Базис рекурсии - значение, на котором рекурсия заканчивается.
+// Глубина рекурсии - общее количество вложенных вызовов (10 000). Глубина рекурсии равна максимальному числу контекстов, одновременно хранимых в стеке.
+// Контекст выполнения – это служебная информация, которая соответствует текущему запуску функции. Она включает в себя локальные переменные функции и конкретное место в коде, на котором находится интерпретатор.
+
+
+/* 
+// Функциональное выражение, которое не записывается в переменную, называют анонимной функцией.
+
+// Function Declaration – функция, объявленная в основном потоке кода.
+// Function Expression – объявление функции в контексте какого-либо выражения, например присваивания.
+
+var sum = new Function('a,b', ' return a+b; ');
+
+var result = sum(1, 2);
+alert( result ); // 3
+
+ */
+
+/* 
 function pow(a,n) {
   var pow = a;
   for (var i = 1; i < n; i++) {
@@ -11,6 +88,8 @@ var a = +prompt("a","");
 var n = +prompt("n","");
 
 alert ( pow(a,n) )
+
+ */
 
 /* 
 function min(a,b) {
