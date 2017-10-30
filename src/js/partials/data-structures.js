@@ -1,7 +1,89 @@
 
 
+var menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
+
+console.log( menu );
+
+multiplyNumeric(menu);
+
+console.log( menu );
+
+multiplyNumeric(menu);
+
+console.log( menu );
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n)
+};
+function multiplyNumeric(obj) {
+  for (var key in obj) {
+    if ( isNumeric( obj[key] ) ) {
+      obj[key] *= 2;
+    };
+  };
+};
 
 
+
+/*
+
+var salaries = {
+  "Вася": 100,
+  "Петя": 300,
+  "Даша": 250
+};
+
+console.log( sumOfValues(salaries) );
+console.log( sumOfValuesMax(salaries) );
+
+function sumOfValues(obj) {
+  var sum = 0;
+  for (var key in obj) {
+    sum += obj[key];
+  }
+  return sum;
+}
+
+function sumOfValuesMax(obj) {
+  var sum = 0;
+  var name = "";
+  for (var key in obj) {
+    if ( obj[key] > sum ) {
+      sum = obj[key];
+      name = key;
+    };
+  };
+  return sum ? name : "нет сотрудников";
+};
+
+*/
+
+
+/*
+
+function isEmpty(obj) {
+  var properties = 0;
+
+  for (var key in obj) {
+    properties++;
+  }
+
+  return properties ? false : true;
+}
+
+var schedule = {};
+
+alert( isEmpty(schedule) ); // true
+
+schedule["8:30"] = "подъём";
+
+alert( isEmpty(schedule) ); // false
+
+*/
 
 /*
 
