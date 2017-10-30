@@ -1,9 +1,40 @@
 
+
+
+
+
+/*
+
+var user = {};
+user["name"] = "Вася";
+user["surname"] = "Петров";
+user["name"] = "Сергей";
+delete user["name"];
+
+*/
+
+// Квадртаные скобки позволяют использовать в качестве имени свойства лубую строку.
+// person['любимый стиль музыки'] = 'Классика';
+
+/*
+
+var obj = {};
+obj.test; // добавили свойство со значением undefined
+
+// проверим наличие свойств test и заведомо отсутствующего blabla
+alert( obj.test === undefined ); // true
+alert( obj.blabla === undefined ); // true
+
+*/
+
+/*
+
 function extractCurrencyValue(str) {
   return +str.slice(1);
 }
 console.log( extractCurrencyValue("$120") );
 
+*/
 
 
 /*
