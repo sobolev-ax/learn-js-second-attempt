@@ -491,6 +491,132 @@ addScript('3.js'); // но, гарантированно, в порядке 1 ->
 */
 
 
+/*
+
+var arr = [5, 3, 8, 1];
+
+var filtered = filterRange(arr, 1, 4);
+
+console.log( filtered );
+
+function filterRange(arr, a, b) {
+  var result = [];
+
+  for (var j = 0, i = 0; i < arr.length; i++) {
+
+    if ( arr[i] >= a && arr[i] <= b) {
+
+      result.push( arr[i] );
+
+    };
+
+  };
+
+  return result;
+};
+
+*/
+
+/*
+
+arr = ["test", "2", 2, 1.5, false];
+
+console.log( find(arr, "test") ); // 0
+console.log( find(arr, 2) ); // 1
+console.log( find(arr, 1.5) ); // 2
+
+console.log( find(arr, 0) ); // -1
+
+function find(arr, arg) {
+  for (var i = 0; i < arr.length; i++) {
+    if ( arr[i] === arg) return i;
+  };
+  return -1;
+};
+
+*/
+
+/*
+
+var numbers = [];
+
+while (true) {
+  var n = prompt("Число", "");
+
+  if (!n || n === "") {
+    break;
+  };
+
+  if ( isNumeric(n) ) {
+    numbers.push(+n);
+  };
+
+};
+
+var sum = 0;
+
+for (var i = 0; i < numbers.length; i++) {
+  sum += numbers[i];
+};
+
+console.log(sum)
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+*/
+
+/*
+
+var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+
+var rand = Math.floor(Math.random() * arr.length);
+
+console.log( arr[rand] );
+
+*/
+
+/*
+
+var styles = ["Джаз", "Блюз"];
+
+console.log(styles);
+
+styles[styles.length] = "Рок-н-Ролл";
+
+console.log(styles);
+
+styles[styles.length - 2] = "Классика";
+
+console.log( styles.shift() );
+console.log(styles);
+
+styles.unshift("Регги", "Рэп");
+
+console.log(styles);
+
+*/
+
+/*
+
+var goods = [1,2,3,4,5,6,7,8,9,10,11];
+
+console.log( goods[goods.length -1] );
+
+goods.push("Компьютер");
+
+goods[goods.length] = ("Компьютер");
+
+console.log( goods );
+
+*/
+
+// Массив – это объект, где в качестве ключей выбраны цифры, с дополнительными методами и свойством length.
+
+
+/*
+
 var menu = {
   width: 200,
   height: 300,
@@ -518,6 +644,7 @@ function multiplyNumeric(obj) {
   };
 };
 
+*/
 
 
 /*
