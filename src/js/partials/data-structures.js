@@ -1,4 +1,38 @@
 
+
+console.log( sum() ); //= 0
+console.log( sum(1) ); //= 1
+console.log( sum(1, 2) ); //= 3
+console.log( sum(1, 2, 3) ); //= 6
+console.log( sum(1, 2, 3, 4) ); //= 10
+
+
+function sum() {
+  var sum = 0;
+
+  for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  };
+
+  return sum;
+};
+
+/*
+
+function f(x) {
+  if (arguments.length) return 1;
+
+  return 0;
+}
+
+console.log( f(undefined) ); // 1
+console.log( f() ); // 0
+
+*/
+
+
+/*
+
 var arr = [ 1, 2, 3, 4, 5 ];
 
 console.log( getSums( arr ) ); // [ 1, 1+2, 1+2+3, 1+2+3+4, 1+2+3+4+5 ] = [ 1, 3, 6, 10, 15 ]
@@ -18,6 +52,7 @@ function getSums(arr) {
   return arrRes;
 };
 
+*/
 /*
 
 var arr = ["Есть", "жизнь", "на", "Марсе"];
