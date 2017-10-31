@@ -1,6 +1,34 @@
 
+var arr = [ 1, 2, 3, 4, 5 ];
 
+console.log( getSums( arr ) ); // [ 1, 1+2, 1+2+3, 1+2+3+4, 1+2+3+4+5 ] = [ 1, 3, 6, 10, 15 ]
 
+function getSums(arr) {
+  var arrRes = [];
+
+  arr.reduce(function (value, current) {
+
+    value = value + current;
+
+    arrRes.push( value );
+
+    return value;
+  }, 0);
+
+  return arrRes;
+};
+
+/*
+
+var arr = ["Есть", "жизнь", "на", "Марсе"];
+
+var arrLength = arr.map(function (item, i, arr) {
+  return item.length;
+});
+
+console.log( arrLength ); // 4,5,2,5
+
+*/
 
 /*
 
