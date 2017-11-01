@@ -1,2 +1,3 @@
-//= partials/first-steps.js
+//= partials/functions-closures.js
 //= partials/data-structures.js
+//= partials/first-steps.js
