@@ -490,6 +490,205 @@ addScript('3.js'); // но, гарантированно, в порядке 1 ->
 
 */
 
+/*
+
+function formatDateString(date) {
+  var arrDate  = [
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds()
+  ];
+
+  arrDate[1] += 1;
+
+  for(var i = 0; i < arrDate.length; i++) {
+
+    arrDate[i] += "";
+
+    if (arrDate[i].length === 1) {
+      arrDate[i] = "0" + arrDate[i];
+    };
+
+    if (arrDate[i].length === 4) {
+      arrDate[i] = arrDate[i].slice(2);
+    };
+
+  };
+
+  return arrDate[2] + "." + arrDate[1] + "." + arrDate[0] + " "
+    + arrDate[3] + ":" + arrDate[4];
+};
+
+function formatDate(date) {
+  var dateNow    = new Date(),
+      difference = dateNow - date,
+      result;
+
+  if (difference < 1000) {
+
+    result = "только что";
+
+  } else if(difference < 1000 * 60) {
+
+    result = difference / 1000 + " сек. назад";
+
+  } else if (difference < 1000 * 60 * 60) {
+
+    result = difference / (1000 * 60) + " мин. назад";
+
+  } else {
+
+    result = formatDateString(date);
+
+  }
+
+  return result;
+
+};
+
+console.log( formatDate(new Date(new Date - 1)) ); // "только что"
+
+console.log( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+
+console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+
+console.log( formatDate(new Date(new Date - 86400 * 1000)) ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
+
+*/
+
+
+/*
+var d = new Date(2014, 0, 30); // 30 января 2014
+
+console.log( formatDate(d) ); // '30.01.14'
+
+function formatDate(date) {
+  var arrDate  = [
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate() ];
+
+  arrDate[1] += 1;
+
+  for(var i = 0; i < arrDate.length; i++) {
+
+    arrDate[i] += "";
+
+    if (arrDate[i].length === 1) {
+      arrDate[i] = "0" + arrDate[i];
+    };
+
+    if (arrDate[i].length === 4) {
+      arrDate[i] = arrDate[i].slice(2);
+    };
+
+  };
+
+  return arrDate[2] + "." + arrDate[1] + "." + arrDate[0];
+};
+*/
+
+
+/*console.log(
+  getSecondsToTomorrow()
+);
+
+function getSecondsToTomorrow() {
+  var today = new Date(),
+      tomorrow = new Date(
+        today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+  return parseInt( (tomorrow - today) / 1000 );
+};*/
+
+/*
+
+console.log( getSecondsToday() );
+
+function getSecondsToday() {
+  var dateEnd  = new Date(),
+      dateStart = new Date(),
+      milliseconds;
+
+  dateStart.setHours(0,0,0,0);
+
+  milliseconds = dateEnd - dateStart;
+
+  return parseInt( milliseconds / 1000 );
+};
+
+*/
+
+/*
+console.log(
+  getLastDayOfMonth(2012, 1)
+); // = 29
+
+function getLastDayOfMonth(year, month) {
+  var monthPrev = month !== 11 ? month + 1 : 0,
+      date = new Date(year, monthPrev, 0);
+
+  return date.getDate();
+}
+*/
+/*
+
+var date = new Date(2015, 0, 2);
+
+console.log( getDateAgo(date, 1) ); // 1, (1 января 2015)
+console.log( getDateAgo(date, 2) ); // 31, (31 декабря 2014)
+console.log( getDateAgo(date, 365) ); // 2, (2 января 2014)
+
+function getDateAgo(date, days) {
+  var dateNew = new Date( date );
+
+  dateNew.setDate( dateNew.getDate() - days );
+
+  return dateNew.getDate();
+};
+
+*/
+/*
+
+var date = new Date(2012, 0, 3);  // 3 янв 2012
+alert( getLocalDay(date) );       // вторник, выведет 2
+
+function getLocalDay(date) {
+  return date.getDay() ? date.getDay() : 7;
+};
+
+*/
+/*
+
+var date = new Date(2012,0,3);  // 3 января 2012
+alert( getWeekDay(date) );      // Должно вывести 'вт'
+
+function getWeekDay(date) {
+  var days = {
+    0: "вс",
+    1: "пн",
+    2: "вт",
+    3: "ср",
+    4: "чт",
+    5: "пт",
+    6: "сб"
+  };
+
+  return days[date.getDay()];
+
+};
+
+*/
+/*
+
+console.log( new Date(2012, 01, 20, 03, 12, 00, 00) );
+
+*/
+
+/*
 
 console.log( sum() ); //= 0
 console.log( sum(1) ); //= 1
@@ -508,6 +707,7 @@ function sum() {
   return sum;
 };
 
+*/
 /*
 
 function f(x) {
