@@ -14,7 +14,9 @@ var gulp = require('gulp'),
   browserSync = require("browser-sync"),
   jade = require('gulp-jade'),
   gutil = require('gulp-util'),
+  upmodul = require("gulp-update-modul"),
   reload = browserSync.reload;
+ 
 
 // Так же создадим js объект в который пропишем все нужные нам пути,
 // чтобы при необходимости легко в одном месте их редактировать:
@@ -155,4 +157,8 @@ gulp.task('build', [
   'fonts:build',
   'image:build'
 ]);
+gulp.task('update-modul', function () {
+    gulp.src('package.json')
+    .pipe(upmodul('latest', 'false')); //update all modules latest version. 
+});
 gulp.task('default', ['build', 'webserver', 'watch']);
