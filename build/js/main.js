@@ -1,5 +1,45 @@
+console.log("hello")
+/*
+var a = 5;
 
+function f() {
+  console.log('внутри функции a = ' + a); // что выведет: 5 или undefined? - 5
+  a = 777; // а так что поменяется, внешняя или внутренняя a?
 
+  var obj = {
+    a: 10
+  }
+
+  with(obj) {
+    var a = 7; // как изменится вывод, если убрать 'var'?
+  }
+
+  console.log('obj.a после with = ' + obj.a); // что выведет: 10 или 7?
+  console.log('внутри функции после with, a  = ' + a); // что выведет: 777 или 7?
+}
+
+f();
+
+console.log('после f() внешняя а  = ' + a); // что выведет: 5, 777 или 7?
+*/
+
+/*
+
+function f() {
+  var value = Math.random();
+
+  return function() { return value; };
+}
+
+// 3 функции, каждая ссылается на свой объект переменных,
+// каждый со своим значением value
+var arr = [f(), f(), f()];
+
+console.log( arr[0]() );
+console.log( arr[1]() );
+console.log( arr[2]() );
+
+*/
 
 /*
 (function () {
