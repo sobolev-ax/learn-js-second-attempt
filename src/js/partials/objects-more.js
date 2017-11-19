@@ -1,6 +1,33 @@
 
+console.log( sum(1)(2) )// == 3; // 1 + 2
+console.log( sum(1)(2)(3) ) // == 6; // 1 + 2 + 3
+console.log( sum(5)(-1)(2) ) //== 6
+console.log( sum(6)(-1)(-2)(-3) )// == 0
+console.log( sum(0)(1)(2)(3)(4)(5) )//== 15
+
+function sum(a) {
+  var result = 0;
+  
+  return function plus(b) {
+    if (b != undefined) return plus()
+  };
+};
+
+/* 
+console.log( new Date(0) - 0 ); // число
+console.log( new Array(1)[0] + "" ); // ""
+console.log( ({})[0] ); // undefined
+console.log( [1] + 1 ); // 11
+console.log( [1,2] + [3,4] ); // 1,2,3,4
+console.log( [] + null + 1 ); // NaN
+console.log( [ [0] ] [0][0] ); // 0 
+console.log( ({} + {}) ); //
+ */
 
 
+/* 
+console.log( + {} );
+ */
 /* 
 var ladder = {
   step: 0,
