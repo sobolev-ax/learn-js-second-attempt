@@ -1,4 +1,48 @@
 
+function Accumulator(a) {
+  
+  this.value = a;
+
+  this.read = function() {
+    var num = +prompt("num?","");
+    this.value += num;
+  }
+}
+
+var accumulator = new Accumulator(1); // начальное значение 1
+accumulator.read(); // прибавит ввод prompt к текущему значению
+accumulator.read(); // прибавит ввод prompt к текущему значению
+alert( accumulator.value ); // выведет текущее значение
+
+
+
+/* 
+// Функция - конструктор
+function Calculator() {
+  this.a = 0;
+  this.b = 0;
+
+  this.read = function() {
+    this.a = +prompt("a?","");
+    this.b = +prompt("b?","");
+  }
+  this.sum = function() {
+    return this.a + this.b;
+  }
+  this.mul = function() {
+    return this.a * this.b;
+  }
+};
+
+var calculator = new Calculator();
+calculator.read();
+
+console.log( "Сумма=" + calculator.sum() );
+console.log( "Произведение=" + calculator.mul() );
+
+ */
+
+/* 
 console.log( sum(1)(2) )// == 3; // 1 + 2
 console.log( sum(1)(2)(3) ) // == 6; // 1 + 2 + 3
 console.log( sum(5)(-1)(2) ) //== 6
@@ -6,13 +50,20 @@ console.log( sum(6)(-1)(-2)(-3) )// == 0
 console.log( sum(0)(1)(2)(3)(4)(5) )//== 15
 
 function sum(a) {
-  var result = 0;
-  
-  return function plus(b) {
-    if (b != undefined) return plus()
-  };
-};
+  var currentSum = a;
 
+  function f(b) {
+    currentSum += b;
+    return f;
+  };
+
+  f.toString = function() {
+    return currentSum;
+  }
+
+  return f;
+};
+ */
 /* 
 console.log( new Date(0) - 0 ); // число
 console.log( new Array(1)[0] + "" ); // ""
