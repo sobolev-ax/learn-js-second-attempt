@@ -1,5 +1,77 @@
 
 
+
+
+
+/*
+function Article() {
+  this.created = new Date();
+  // ... ваш код ...
+
+  Article.created = this.created;
+
+  if ( Article.count !== undefined) {
+    Article.count++;
+  } else {
+    Article.count = 1;
+  }
+
+
+
+  Article.showStats = function() {
+   console.log("Всего: " + Article.count + ", Последняя: " + Article.created);
+  };
+};
+
+new Article();
+new Article();
+
+Article.showStats(); // Всего: 2, Последняя: (дата)
+
+new Article();
+
+Article.showStats(); // Всего: 3, Последняя: (дата)
+*/
+
+
+
+/*
+function User(fullName) {
+  this.fullName = fullName;
+
+  Object.defineProperty(this, "lastName", {
+    get: function() {
+      return this.fullName.split(" ")[1];
+    },
+    set: function(value) {
+      this.fullName = this.firstName + " " + value;
+    }
+  });
+
+  Object.defineProperty(this, "firstName", {
+    get: function() {
+      return this.fullName.split(" ")[0]
+    },
+    set: function(value) {
+      this.fullName =  value + " " + this.lastName;
+    }
+  });
+}
+
+var vasya = new User("Василий Попкин");
+
+
+
+// чтение firstName/lastName
+console.log( vasya.firstName ); // Василий
+console.log( vasya.lastName ); // Попкин
+
+// запись в lastName
+vasya.lastName = 'Сидоров';
+
+console.log( vasya.fullName ); // Василий Сидоров
+*/
+
 /*
 function Calculator() {
 
