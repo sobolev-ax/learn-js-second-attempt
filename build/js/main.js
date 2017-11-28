@@ -1,6 +1,199 @@
 
+function work(a, b) {
+  alert( a + b ); // work - произвольная функция
+}
+
+function makeLogging(f, log) {
+  function wrapper() {
+
+  }
+
+  return wrapper;
+}
+
+var log = [];
+work = makeLogging(work, log);
+
+work(1, 2); // 3
+work(4, 5); // 9
+
+for (var i = 0; i < log.length; i++) {
+  var args = log[i]; // массив из аргументов i-го вызова
+  console.log( 'Лог:' + args.join() ); // "Лог:1,2", "Лог:4,5"
+}
 
 
+/* 
+function work(a) {
+  // work - произвольная функция, один аргумент
+}
+
+function makeLogging(f, log) {
+  function wrapper(a) {
+    log.push(a);
+    return f.call(this, a);
+  }
+
+  return wrapper;
+}
+
+var log = [];
+work = makeLogging(work, log);
+
+work(1); // 1, добавлено в log
+work(5); // 5, добавлено в log
+
+for (var i = 0; i < log.length; i++) {
+  console.log( 'Лог:' + log[i] ); // "Лог:1", затем "Лог:5"
+}
+*/
+
+
+/*
+"use strict";
+
+function ask(question, answer, ok, fail) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
+  else fail();
+}
+
+var user = {
+  login: 'Василий',
+  password: '12345',
+
+  // метод для вызова из ask
+  loginDone: function(result) {
+    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
+  },
+
+  checkPassword: function() {
+    ask(
+      "Ваш пароль?",
+      this.password,
+      this.loginDone.bind(this, true),
+      this.loginDone.bind(this, false)
+    );
+  }
+};
+
+var vasya = user;
+user = null;
+vasya.checkPassword();
+*/
+
+
+/*
+"use strict";
+
+function ask(question, answer, ok, fail) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
+  else fail();
+}
+
+var user = {
+  login: 'Василий',
+  password: '12345',
+
+  loginOk: function() {
+    alert( this.login + ' вошёл в сайт' );
+  },
+
+  loginFail: function() {
+    alert( this.login + ': ошибка входа' );
+  },
+
+  checkPassword: function() {
+    ask("Ваш пароль?", this.password, this.loginOk.bind(this), this.loginFail.bind(this));
+  }
+};
+
+user.checkPassword();
+*/
+
+/*
+function ask(question, answer, ok, fail) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
+  else fail();
+}
+
+ ask("Выпустить птичку?", "да", fly, die);
+
+ function fly() {
+ alert( 'улетела :)' );
+ }
+
+ function die() {
+ alert( 'птичку жалко :(' );
+ }
+*/
+
+
+/*
+function mul(a, b) {
+  return a * b;
+};
+
+// double умножает только на два
+var double = mul.bind(null, 2); // контекст фиксируем null, он не используется
+var triple = mul.bind(null, 3);
+
+console.log( double(3) ); // = mul(2, 3) = 6
+console.log( double(4) ); // = mul(2, 4) = 8
+console.log( double(5) ); // = mul(2, 5) = 10
+
+console.log( triple(3) ); // = mul(3, 3) = 9
+console.log( triple(4) ); // = mul(3, 4) = 12
+console.log( triple(5) ); // = mul(3, 5) = 15
+*/
+
+/*
+// Методы bind и call/apply близки по синтаксису, но есть важнейшее отличие.
+//
+//   Методы call/apply вызывают функцию с заданным контекстом и аргументами.
+//
+//   А bind не вызывает функцию. Он только возвращает «обёртку»,
+// которую мы можем вызвать позже, и которая передаст вызов в исходную функцию, с привязанным контекстом.
+
+function applyAll() {
+  return arguments[0].apply(null, [].slice.call(arguments, 1) );
+
+}
+
+function sum() { // суммирует аргументы: sum(1,2,3) = 6
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
+  });
+}
+
+function mul() { // перемножает аргументы: mul(2,3,4) = 24
+  return [].reduce.call(arguments, function(a, b) {
+    return a * b;
+  });
+}
+
+// Применить Math.max к аргументам 2, -2, 3
+console.log( applyAll(Math.max, 2, -2, 3) ); // 3
+
+// Применить Math.min к аргументам 2, -2, 3
+console.log( applyAll(Math.min, 2, -2, 3) ); // -2
+
+console.log( applyAll(sum, 1, 2, 3) ); // -> sum(1, 2, 3) = 6
+console.log( applyAll(mul, 2, 3, 4) ); // -> mul(2, 3, 4) = 24
+*/
+
+
+/*
+function sumArgs() {
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
+  });
+}
+
+console.log( sumArgs(1, 2, 3) );
+*/
 
 
 /*
