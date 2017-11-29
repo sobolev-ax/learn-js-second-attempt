@@ -1,4 +1,87 @@
 
+
+
+/*
+
+// chaining
+
+var ladder = {
+  step: 0,
+  up: function() { // вверх по лестнице
+    this.step++;
+    return this;
+  },
+  down: function() { // вниз по лестнице
+    this.step--;
+    return this;
+  },
+  showStep: function() { // вывести текущую ступеньку
+    alert( this.step );
+    return this;
+  }
+};
+
+ladder.up().up().down().up().down().showStep(); // 1
+ */
+/* 
+var calculator = {
+
+  read: function() {
+    this.a = +prompt("Число a:", "");
+    this.b = +prompt("Число b:", "");
+  },
+
+  sum: function() {
+    return this.a + this.b;
+  },
+
+  mul: function() {
+    return this.a * this.b;
+  }
+
+}
+
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+ */
+
+
+/* 
+var name = "";
+
+var user = {
+  name: "Василий",
+
+  export: function() {
+    return this;
+  }
+
+};
+
+alert( user.export().name );
+ */
+/* 
+var user = {
+  firstName: "Василий",
+
+  export: this
+};
+
+alert( user.export.firstName );
+ */
+
+/* 
+var obj = {
+  go: function() {
+    alert(this)
+  }
+};
+
+(obj.go)() 
+ */
+/* 
 function work(a, b) {
   alert( a + b ); // work - произвольная функция
 }
@@ -21,7 +104,7 @@ for (var i = 0; i < log.length; i++) {
   var args = log[i]; // массив из аргументов i-го вызова
   console.log( 'Лог:' + args.join() ); // "Лог:1,2", "Лог:4,5"
 }
-
+ */
 
 /* 
 function work(a) {
