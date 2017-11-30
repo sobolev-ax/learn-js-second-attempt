@@ -1,4 +1,133 @@
 
+
+
+
+/* 
+var calc = new Calculator();
+
+console.log( calc.calculate("3 + 7") ); // 10
+
+var powerCalc = new Calculator;
+powerCalc.addMethod("*", function(a, b) {
+  return a * b;
+});
+powerCalc.addMethod("/", function(a, b) {
+  return a / b;
+});
+powerCalc.addMethod("**", function(a, b) {
+  return Math.pow(a, b);
+});
+
+var result = powerCalc.calculate("2 ** 3");
+console.log( result ); // 8
+
+function Calculator() {
+
+  var operationsFunc = {
+    "+": function(a, b) {
+      return a + b;
+    },
+    "-": function(a, b) {
+      return a - b;
+    }
+  };
+
+  this.calculate = function(stringValue) {
+    
+    var partsArr = stringValue.split(" "),
+        op = partsArr[1],
+        a = +partsArr[0],
+        b = +partsArr[2];
+
+    if (!methods[op] || isNaN(a) || isNaN(b)) {
+      return NaN;
+    }
+
+    return operationsFunc[op](a, b);
+
+  };
+
+  this.addMethod = function(name, func) {
+    operationsFunc[name] = func;
+  }
+}
+ */
+
+/* 
+function Accumulator(startingValue) {12
+
+  this.value = +startingValue;
+
+  this.read = function() {
+    this.value += +prompt("number", "0")
+  }
+}
+
+var accumulator = new Accumulator(1); // начальное значение 1
+accumulator.read(); // прибавит ввод prompt к текущему значению
+accumulator.read(); // прибавит ввод prompt к текущему значению
+alert( accumulator.value ); // выведет текущее значение
+ */
+/*
+function Calculator() {
+  this.read = function() {
+    this.a = +prompt("number one: ", "0");
+    this.b = +prompt("number two: ", "0");
+  }
+  this.sum = function() {
+    return this.a + this.b;
+  }
+  this.mul = function() {
+    return this.a * this.b;
+  }
+}
+
+var calculator = new Calculator();
+calculator.read();
+
+console.log( "Сумма=" + calculator.sum() );
+console.log( "Произведение=" + calculator.mul() );
+ */
+
+/*
+var obg = {}
+
+function A() {
+  return obg;
+}
+function B() {
+  return obg;
+}
+
+var a = new A;
+var b = new B;
+
+alert( a == b ); // true
+ */
+
+/* 
+function User(firstName, lastName) {
+  // вспомогательная переменная
+  var phrase = "Привет";
+
+  //  вспомогательная вложенная функция
+  function getFullName() {
+      console.log( firstName + " " + lastName );
+      return firstName + " " + lastName;
+    }
+
+  this.sayHi = function() {
+    alert( phrase + ", " + getFullName() ); // использование
+  };
+}
+
+var vasya = new User("Вася", "Петров");
+console.log(vasya);
+vasya.sayHi(); // Привет, Вася Петров
+//vasya.getFullName(); // не будет работать
+*/
+
+/*
 console.log( sum(1)(2) );//== 3; // 1 + 2
 console.log( sum(1)(2)(3) );//== 6; // 1 + 2 + 3
 console.log( sum(5)(-1)(2) );//== 6
@@ -28,8 +157,7 @@ function sum(a) {
   return f;
 
 }
-
-
+ */
 
 /* 
 console.log( {}[0] );
