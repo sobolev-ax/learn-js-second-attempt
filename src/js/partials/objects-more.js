@@ -2,6 +2,176 @@
 
 
 
+
+
+/* 
+function Article() {
+  
+  this.created = new Date();
+
+  Article.count++;
+  Article.date = this.created;
+  
+  Article.showStats = function() {
+    alert("Всего: " + this.count + ", Последняя: " + this.date);
+  }
+
+}
+
+Article.count = 0;
+
+new Article();
+new Article();
+
+Article.showStats(); // Всего: 2, Последняя: (дата)
+
+new Article();
+
+Article.showStats(); // Всего: 3, Последняя: (дата)
+ */
+
+/*
+function User() {
+
+  this.sayHi = function() {
+
+    console.log( this.name );
+
+  };
+
+};
+
+User.createAnonymous = function() {
+  
+  var user = new User;
+  
+  user.name = 'anonymous';
+
+  return user;
+
+};
+
+User.createFromData = function(userData) {
+
+  var user = new User();
+
+  user.name = userData.name;
+  user.age = userData.age;
+
+  return user;
+
+}
+
+// Использование
+
+var guest = User.createAnonymous();
+guest.sayHi(); // Аноним
+
+var knownUser = User.createFromData({
+  name: 'Вася',
+  age: 25
+});
+knownUser.sayHi(); // Вася
+ */
+
+
+/* 
+console.log(Article)
+
+Article.count = 0;
+
+Article.showCount = function() {
+  console.log( this.count );
+}
+
+new Article();
+new Article();
+
+Article.showCount();
+
+console.log(Article)
+
+
+function Article() {
+  
+    Article.count++;
+  
+}
+ */
+
+/* 
+function User(fullName) {
+
+  this.fullName = fullName;
+
+  function getFirstName(fullName) {
+    return fullName.split(" ")[0];
+  }
+
+  function getLastName(fullName) {
+    return fullName.split(" ")[1];
+  }
+
+  Object.defineProperty(this, "firstName", {
+
+    get: function () {
+      return getFirstName(this.fullName);
+    },
+
+    set: function (value) {
+      this.fullName = value + " " + this.fullName.split(" ")[1];
+    }
+
+  });
+
+  Object.defineProperty(this, "lastName", {
+
+    get: function () {
+      return getLastName(this.fullName);
+    },
+
+    set: function (value) {
+      this.fullName = this.fullName.split(" ")[0] + " " + value;
+    }
+
+  });
+
+}
+
+var vasya = new User("Василий Попкин");
+
+// чтение firstName/lastName
+console.log( vasya.firstName ); // Василий
+console.log( vasya.lastName ); // Попкин
+
+// запись в lastName
+vasya.lastName = 'Сидоров';
+
+console.log( vasya.fullName ); // Василий Сидоров
+ */
+/* 
+var user = {
+  firstName: "Вася",
+  surname: "Петров",
+
+  get fullName() {
+    return this.firstName + ' ' + this.surname;
+  },
+
+  set fullName(value) {
+    var split = value.split(' ');
+    this.firstName = split[0];
+    this.surname = split[1];
+  }
+};
+
+alert( user.fullName ); // Вася Петров (из геттера)
+
+user.fullName = "Петя Иванов";
+alert( user.firstName ); // Петя  (поставил сеттер)
+alert( user.surname ); // Иванов (поставил сеттер)
+ */
+
 /* 
 var calc = new Calculator();
 
