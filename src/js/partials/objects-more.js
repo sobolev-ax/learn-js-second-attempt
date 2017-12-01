@@ -1,6 +1,101 @@
+/* 
+ask("Выпустить птичку?", "да", fly, die);
 
+function fly() {
+  alert( 'улетела :)' );
+}
 
+function die() {
+  alert( 'птичку жалко :(' );
+}
 
+function ask(question, answer, ok, fail) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
+  else fail();
+}
+ */
+
+/* 
+function bind(func, context) {
+  return function() { // (*)
+    return func.apply(context, arguments);
+  };
+}
+function f() {
+  alert( this );
+}
+
+var g = bind(f, "Context");
+g(); // Context
+ */
+/* 
+var user = {
+  firstName: "Вася",
+  sayHi: function() {
+    alert( this.firstName );
+  }
+};
+
+setTimeout(function() {
+  user.sayHi(); // Вася
+}, 1000);
+ */
+
+/* 
+var user = {
+  firstName: "Вася",
+  sayHi: function() {
+    alert( this.firstName );
+  }
+};
+
+//user.sayHi();
+
+setTimeout(user.sayHi, 1000); // undefined (не Вася!)
+ */
+/* 
+// Применить Math.max к аргументам 2, -2, 3
+console.log( applyAll(Math.max, 2, -2, 3) ); // 3
+
+// Применить Math.min к аргументам 2, -2, 3
+console.log( applyAll(Math.min, 2, -2, 3) ); // -2
+
+console.log( applyAll(sum, 1, 2, 3) ); // -> sum(1, 2, 3) = 6
+console.log( applyAll(mul, 2, 3, 4) ); // -> mul(2, 3, 4) = 24
+
+function applyAll() {
+
+  return arguments[0].apply(null, [].slice.call(arguments, 1) );
+
+};
+
+function sum() { // суммирует аргументы: sum(1,2,3) = 6
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
+  });
+}
+
+function mul() { // перемножает аргументы: mul(2,3,4) = 24
+  return [].reduce.call(arguments, function(a, b) {
+    return a * b;
+  });
+}
+ */
+
+/* 
+function sumArgs() {
+  
+  arguments.reduce = [].reduce;
+
+  return arguments.reduce(function(a, b) {
+    return a + b;
+  });
+
+}
+
+console.log( sumArgs(1, 2, 3) ); // 6, аргументы переданы через запятую, без массива
+ */
 
 /* 
 function Article() {
