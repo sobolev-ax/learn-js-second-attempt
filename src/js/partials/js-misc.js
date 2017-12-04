@@ -1,46 +1,69 @@
 
+/* 
+var leader = {
+    name: "Василий Иванович"
+  };
+  
+  var soldier = {
+    name: "Петька"
+  };
+  
+  // эти объекты ссылаются друг на друга!
+  leader.soldier = soldier;
+  soldier.leader = leader;
+  
+  var team = [leader, soldier];
 
-function formatDate(date) { 
-    var type = {}.toString.call(
-            date
-        ).slice(8, 9).toLowerCase(),
-        operations = {
-            s: function () {
+  
+  console.log( team[0] )
+   */
 
-                var arr = date.split("-").reverse();
+/* 
+var leader = {
+    name: "Василий Иванович",
+    age: 35
+};
 
-                arr[2] = arr[2].slice(2);
+var js =  JSON.stringify( leader);
 
-                return arr.join(".");
+console.log( js );
 
-            },
-            n: function() {
+js = JSON.parse(js);
 
-                var objDate = new Date(date);
+console.log( js );
+ */
 
-                console.log( date )
+/* 
+var str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}';
 
-                /* return objDate.getDate() + "." + 
-                objDate.getMonth() + 1 + 
-                "." + objDate.getFullYear() */
+var event = JSON.parse(str, function(key, value){
+    
+    if (key == 'date') return new Date(value);
 
-            },
-            a: function() {
-                
-            },
-            d: function() {
-                
-            },
-            o: function() {
-                return "formatDate error!"
-            }
-        }
+    return value;
 
-    //console.log(type)
+});
 
-    return operations[type]();
+alert( event.date.getDate() )
+ */
+/* 
+ function formatDate(date) {
 
- }
+    if (typeof date == 'number') {
+      // перевести секунды в миллисекунды и преобразовать к Date
+      date = new Date(date * 1000);
+    } else if (typeof date == 'string') {
+      // строка в стандартном формате автоматически будет разобрана в дату
+      date = new Date(date); 
+    } else if (Array.isArray(date)) { 
+      date = new Date(date[0], date[1], date[2]);
+    }
+    // преобразования для поддержки полиморфизма завершены, 
+    // теперь мы работаем с датой (форматируем её)
+  
+    return date.toLocaleString("ru", {day: '2-digit', month: '2-digit', year: '2-digit'});
+  
+  }
 
 
 console.log( formatDate('2011-10-02') ); // 02.10.11
@@ -48,7 +71,7 @@ console.log( formatDate(1234567890) ); // 14.02.09
 console.log( formatDate([2014, 0, 1]) ); // 01.01.14
 console.log( formatDate(new Date(2014, 0, 1)) ); // 01.01.14
 console.log( formatDate({}) ); // formatDate error!
-
+ */
 
 /* 
 function sayHi(who) {
