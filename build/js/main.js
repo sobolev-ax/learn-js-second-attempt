@@ -1,4 +1,37 @@
 
+
+
+
+
+/* 
+var f1000 = delay(f, 1000);
+var f1500 = delay(f, 1500);
+
+f1000("тест"); // выведет "тест" через 1000 миллисекунд
+f1500("тест2"); // выведет "тест2" через 1500 миллисекунд
+
+
+function f(x) {
+  console.log( x );
+}
+
+function delay(f, time){
+
+  return function() {
+    var savedThis = this;
+    var savedArgs = arguments;
+
+    setTimeout(function() {
+    
+      f.apply(savedThis, savedArgs);
+    
+    }, time);
+
+  }
+  
+};
+ */
+
 /* 
 printNumbersInterval();
 
@@ -76,7 +109,7 @@ var leader = {
     name: "Петька"
   };
   
-  // эти объекты ссылаются друг на друга!
+  // эти объекты с��ылаются друг на друга!
   leader.soldier = soldier;
   soldier.leader = leader;
   
