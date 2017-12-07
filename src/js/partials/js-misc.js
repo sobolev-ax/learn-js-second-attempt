@@ -2,6 +2,98 @@
 
 
 
+/* 
+function throttle(func, ms) {
+  
+    var isThrottled = false,
+      savedArgs,
+      savedThis;
+  
+    function wrapper() {
+  
+      if (isThrottled) { // (2)
+        savedArgs = arguments;
+        savedThis = this;
+        return;
+      }
+  
+      func.apply(this, arguments); // (1)
+  
+      isThrottled = true;
+  
+      setTimeout(function() {
+        isThrottled = false; // (3)
+        if (savedArgs) {
+          wrapper.apply(savedThis, savedArgs);
+          savedArgs = savedThis = null;
+        }
+      }, ms);
+    }
+  
+    return wrapper;
+}
+ */
+
+/* 
+var fn = debounce(f, 1000);
+
+fn(1); // вызов отложен на 1000 мс
+fn(2); // предыдущий отложенный вызов игнорируется, текущий (2) откладывается на 1000 мс
+
+// через 1 секунду будет выполнен вызов f(1)
+
+setTimeout( function() { fn(3) }, 1100); // через 1100 мс отложим вызов еще на 1000 мс
+setTimeout( function() { fn(4) }, 1200); // игнорируем вызов (3)
+
+// через 2200 мс от начала выполнения будет выполнен вызов f(4)
+
+
+function f() {
+  console.log("f()");
+ }
+
+function debounce(f, ms){
+
+  var notRun = false,
+      timerId;
+
+  return function() {
+
+    var savedThis = this,
+        savedArguments = arguments;
+
+    if ( notRun ) {
+
+      stack = true;
+      
+        timerId = setTimeout(function(){
+          
+            f.apply(savedThis, arguments);
+            console.log(ms)
+            stack = false;
+    
+        }, ms);
+
+    } else {
+
+      stack = true;
+
+      clearTimeout(timerId);
+      
+      timerId = setTimeout(function(){
+        
+          f.apply(savedThis, savedArguments);
+          console.log(ms)
+          stack = false;
+  
+      }, ms);
+
+    }
+
+  }
+
+}
+ */
 
 /* 
 var f1000 = delay(f, 1000);
