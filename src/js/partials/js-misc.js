@@ -1,6 +1,42 @@
 
 
+try {
+  
+    console.log('Начало блока try');  // (1) <--
+  
+    lalala; // ошибка, переменная не определена!
+  
+    console.log('Конец блока try');  // (2)
+  
+  } catch(e) {
+  
+    console.log('name: ' + e.name + "\n message: " + e.message + "\n stack: " + e.stack); // (3) <--
+  
+  }
+  
+  console.log("Потом код продолжит выполнение...");
 
+
+
+
+
+
+/* 
+//Eval-калькулятор
+
+function calculator() {
+  var ev, result;
+
+  ev = prompt("Выражение: ", "");
+  result = eval(ev);
+
+  console.log(result);
+  return result;
+}
+
+calculator();
+
+ */
 
 /* 
 function throttle(func, ms) {
