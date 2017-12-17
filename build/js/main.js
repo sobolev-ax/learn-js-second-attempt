@@ -1,5 +1,39 @@
 
 
+
+
+/* 
+
+try {
+  var data = '{ "name": "Вася", "age": 30 }';
+
+                                                                  try {
+                                                                    // ...
+                                                                    try {
+                                                                      // ...
+                                                                      blabla(); // ошибка!
+                                                                    } catch (e) {
+                                                                      // ...
+                                                                      alert(e.name)
+                                                                      if (e.name != 'SyntaxError') {
+                                                                        throw e; // пробрасываем
+                                                                      }
+                                                                    }
+                                                                    blabla(); // ошибка!
+                                                                  } catch (e) {
+                                                                    // ...
+                                                                    alert(e.name)
+                                                                    if (e.name != 'SyntaxError') {
+                                                                      throw e; // пробрасываем
+                                                                    }
+                                                                  }
+} catch (e) {
+  alert( "Поймал во внешнем catch: " + e ); // ловим
+}
+ */
+
+
+/* 
 try {
   
     console.log('Начало блока try');  // (1) <--
@@ -15,7 +49,7 @@ try {
   }
   
   console.log("Потом код продолжит выполнение...");
-
+ */
 
 
 
