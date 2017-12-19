@@ -1,5 +1,278 @@
+/* 
+Function.prototype.defer = function(ms){
+  var f = this;
+  return function(a, b) {
+    var arg = arguments;
+    setTimeout(function(){
+      f.apply(this, arg)
+    }, ms)
+  }
+};
+
+function f(a, b) {
+  alert( a + b );
+}
+
+f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+
+ */
 
 
+/* 
+Function.prototype.defer = function(ms) {
+  setTimeout(this, ms)
+}
+
+Object.defineProperty(Function.prototype, "defer", {
+  enumerable: false
+});
+
+
+function f() {
+  alert( "привет" );
+}
+
+f.defer(1000); // выведет "привет" через 1 секунду
+
+ */
+
+
+
+/* 
+if (!Object.create) {
+
+  Object.create = function(proto) {
+    function F() {}
+    F.prototype = proto;
+    return new F;
+  };
+
+}
+ */
+
+
+/* 
+Object.prototype.each = function(f) {
+
+  for (var prop in this) {
+    var value = this[prop];
+    f.call(value, prop, value);
+  }
+
+};
+
+// поправить объявление свойства, установив флаг enumerable: false
+Object.defineProperty(Object.prototype, 'each', {
+  enumerable: false
+});
+
+// Теперь все будет в порядке
+var obj = {
+  name: 'Вася',
+  age: 25
+};
+
+obj.each(function(prop, val) {
+  alert( prop ); // name -> age
+});
+ */
+
+
+/* 
+String.prototype.repeat = function(times) {
+  // this - значение примитива
+  return new Array(times + 1).join(this);
+};
+
+alert( "ля".repeat(3) ); // ляляля
+ */
+/* 
+function Rabbit(name) {
+  this.name = name;
+}
+Rabbit.prototype.sayHi = function() {
+  alert( this.name );
+};
+
+var rabbit = new Rabbit("Rabbit");
+
+rabbit.sayHi();         //
+Rabbit.prototype.sayHi();         //
+Object.getPrototypeOf(rabbit).sayHi();          //
+rabbit.__proto__.sayHi();         //
+ */
+/* 
+function Menu(options) {
+  var arg = Object.create(null)
+  options.width = options.width || 300; // по умолчанию ширина 300
+}
+ */
+
+
+/* 
+//Начнём с этого кода. Что он выведет?
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+
+alert( rabbit.eats );
+//Добавили строку (выделена), что будет теперь?
+
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+
+Rabbit.prototype = {};
+
+alert( rabbit.eats );
+//А если код будет такой? (заменена одна строка):
+
+function Rabbit(name) {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+
+Rabbit.prototype.eats = false;
+
+alert( rabbit.eats );
+//А такой? (заменена одна строка)
+
+function Rabbit(name) {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+
+delete rabbit.eats; // (*)
+
+alert( rabbit.eats );
+//И последний вариант:
+
+function Rabbit(name) {}
+Rabbit.prototype = {
+  eats: true
+};
+
+var rabbit = new Rabbit();
+
+delete Rabbit.prototype.eats; // (*)
+
+alert( rabbit.eats );
+ */
+
+
+/* 
+function inherit(proto) {
+  function F() {}
+  F.prototype = proto;
+  var object = new F;
+  return object;
+}
+
+if (!Object.create) Object.create = inherit;
+// es5-shim
+ */
+
+/* 
+function Rabbit(name) {
+  this.name = name;
+  alert( name );
+}
+
+var rabbit = new Rabbit("Кроль");
+
+var rabbit2 = new rabbit.constructor("Крольчиха");
+ */
+
+/* 
+function Rabbit() {}
+
+Rabbit.prototype = {
+  constructor: Rabbit
+};
+ */
+
+/* 
+var head = {
+  glasses: 1
+};
+
+var table = {
+  pen: 3,
+  __proto__: head
+};
+
+var bed = {
+  sheet: 1,
+  pillow: 2,
+  __proto__: table
+};
+
+var pockets = {
+  money: 2000,
+  __proto__: bed
+};
+
+console.log(pockets.pen == 3);
+console.log(bed.glasses == 1);
+console.log(table.money == undefined);
+ */
+
+
+
+
+/* 
+var animal = {
+  eat: function() {
+    this.full = true;
+  }
+};
+
+var rabbit = {
+  __proto__: animal
+};
+
+rabbit.eat();
+
+
+
+for (var key in rabbit) {
+  if ( !rabbit.hasOwnProperty(key) ) continue;
+  console.log( key + " : " + rabbit[key] );
+}
+ */
+/* 
+obj.hasOwnProperty("toString") ? obj.toString : undefined;
+ */
+
+/* 
+var parent = {
+  surname: "sobolev"
+}
+
+var obj = {
+  name: "sasha",
+  old: 26
+}
+
+obj.__proto__ = parent;
+
+for (var key in obj) {
+  if ( !obj.hasOwnProperty(key) ) continue;
+  console.log( key + " : " + obj[key] );
+}
+ */
+
+/* 
 function Machine(power) {
   this._power = power;
   this._enabled = false;
@@ -95,7 +368,7 @@ var fridge = new Fridge(500);
 fridge.enable();
 fridge.addFood("кус-кус");
 fridge.disable(); // ошибка, в холодильнике есть еда
-
+ */
 
 
 /* 
