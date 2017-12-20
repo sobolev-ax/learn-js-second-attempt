@@ -1,3 +1,68 @@
+
+/* 
+function Hamster() {
+  this.food = []; // пустой "живот"
+}
+
+Hamster.prototype.found = function(something) {
+  this.food.push(something);
+};
+
+// Создаём двух хомяков и кормим первого
+var speedy = new Hamster();
+var lazy = new Hamster();
+
+speedy.found("яблоко");
+speedy.found("орех");
+
+alert( speedy.food.length ); // 2
+alert( lazy.food.length ); // 2 (!??)
+ */
+
+
+
+/* 
+function CoffeeMachine(power) {
+  this._waterAmount = 0;
+  this._WATER_HEAT_CAPACITY = 4200;
+}
+
+CoffeeMachine.prototype.run = function() {
+  setTimeout(function() {
+    alert( 'Кофе готов!' );
+  }, this._getTimeToBoil()); //
+};
+
+CoffeeMachine.prototype.setWaterAmount = function(amount) {
+  this._waterAmount = amount;
+};
+
+CoffeeMachine.prototype._getTimeToBoil = function() {
+  return this._waterAmount * this._WATER_HEAT_CAPACITY * 80 / this.power;
+}
+
+
+var coffeeMachine = new CoffeeMachine(10000);
+coffeeMachine.setWaterAmount(50);
+coffeeMachine.run();
+ */
+
+/* 
+function Animal(name) {
+  this._name = name; // защищённое свойство
+  this.isLive = true // открытое свойство
+}
+
+Animal.prototype.sayHi = function() {
+  alert( this._name ); // методы и свойства записываем в prototype
+}
+
+var animal = new Animal("Зверь");
+animal.sayHi(); // Зверь
+ */
+
+
+
 /* 
 Function.prototype.defer = function(ms){
   var f = this;
