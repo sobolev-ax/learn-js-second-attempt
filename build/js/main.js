@@ -1,4 +1,188 @@
 
+
+
+
+/* function Clock(options) {
+  this._template = options.template;
+}
+
+Clock.prototype._render = function render() {
+  var date = new Date();
+
+  var hours = date.getHours();
+  if (hours < 10) hours = '0' + hours;
+
+  var min = date.getMinutes();
+  if (min < 10) min = '0' + min;
+
+  var sec = date.getSeconds();
+  if (sec < 10) sec = '0' + sec;
+
+  var output = this._template.replace('h', hours).replace('m', min).replace('s', sec);
+
+  console.log(output);
+};
+
+Clock.prototype.stop = function() {
+  clearInterval(this._timer);
+};
+
+Clock.prototype.start = function() {
+  this._render();
+  var self = this;
+  this._timer = setInterval(function() {
+    self._render();
+  }, 1000);
+};
+
+function extend(Child, Parent) {
+  Child.prototype = inherit(Parent.prototype);
+  Child.prototype.constructor = Child;
+  Child.parent = Parent.prototype;
+}
+
+function inherit(proto) {
+  function F() {}
+  F.prototype = proto;
+  return new F;
+}
+
+function ClockInterval(options) {
+  Clock.apply(this, arguments);
+
+  this._interval = options.interval ? options.interval: 1000;
+}
+
+extend(ClockInterval, Clock)
+
+ClockInterval.prototype.start = function() {
+  this._render();
+  var self = this;
+  this._timer = setInterval(function() {
+    self._render();
+  }, this._interval);
+};
+
+
+
+var clock = new Clock({
+  template: 'h:m:s'
+});
+clock.start();
+
+var clockInterval = new ClockInterval({
+  template: 'h:m:s',
+  interval: 500
+});
+clockInterval.start();
+ */
+
+/* 
+function Clock(options) {
+
+  this._template = options.template;
+
+}
+
+Clock.prototype._render = function() {
+  var date = new Date();
+
+    var hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    var min = date.getMinutes();
+    if (min < 10) min = '0' + min;
+
+    var sec = date.getSeconds();
+    if (sec < 10) sec = '0' + sec;
+
+    var output = this._template.replace('h', hours).replace('m', min).replace('s', sec);
+
+    console.clear();
+    console.log(output);
+}
+
+Clock.prototype.stop = function() {
+  clearInterval(this.timer);
+};
+
+Clock.prototype.start = function() {
+  var render = this._render.bind(this);
+  render();
+  this.timer = setInterval(render, 1000);
+}
+
+var clock = new Clock({
+  template: 'h:m:s'
+});
+clock.start();
+ */
+
+
+
+
+
+
+/* 
+function Animal(name) {
+  this.name = name;
+
+  this.walk = function() {
+    alert( "ходит " + this.name );
+  };
+
+}
+
+function Rabbit(name) {
+  Animal.apply(this, arguments);
+}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+Rabbit.prototype.walk = function() {
+  alert( "прыгает " + this.name );
+};
+
+var rabbit = new Rabbit("Кроль");
+rabbit.walk();
+ */
+
+/* 
+// 1. Конструктор Animal
+function Animal(name) {
+  this.name = name;
+  this.speed = 0;
+}
+
+// 1.1. Методы -- в прототип
+
+Animal.prototype.stop = function() {
+  this.speed = 0;
+  alert( this.name + ' стоит' );
+}
+
+Animal.prototype.run = function(speed) {
+  this.speed += speed;
+  alert( this.name + ' бежит, скорость ' + this.speed );
+};
+
+// 2. Конструктор Rabbit
+function Rabbit(name) {
+  this.name = name;
+  this.speed = 0;
+}
+
+// 2.1. Наследование
+Rabbit.prototype = Object.create(Animal.prototype);
+console.dir(Rabbit.prototype);
+Rabbit.prototype.constructor = Rabbit;
+
+// 2.2. Методы Rabbit
+Rabbit.prototype.jump = function() {
+  this.speed++;
+  alert( this.name + ' прыгает, скорость ' + this.speed );
+}
+ */
+
 /* 
 function Hamster() {
   this.food = []; // пустой "живот"
