@@ -2,6 +2,221 @@
 
 
 
+
+/* 
+function FormatError(message) {
+  this.name = "FormatError";
+
+  this.message = message;
+
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    this.stack = (new Error()).stack;
+  }
+
+}
+
+FormatError.prototype = Object.create(SyntaxError.prototype);
+FormatError.prototype.constructor = FormatError;
+
+// Использование
+
+var err = new FormatError("ошибка форматирования");
+
+alert( err.message ); // ошибка форматирования
+alert( err.name ); // FormatError
+alert( err.stack ); // стек на момент генерации ошибки
+
+alert( err instanceof SyntaxError ); // true
+ */
+
+
+/* 
+// Объявление
+function PropertyError(property) {
+  this.name = "PropertyError";
+
+  this.property = property;
+  this.message = "Ошибка в свойстве " + property;
+
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor); // (*)
+  } else {
+    this.stack = (new Error()).stack;
+  }
+
+}
+
+PropertyError.prototype = Object.create(Error.prototype);
+PropertyError.prototype.constructor = PropertyError;
+
+// Генерация ошибки
+function readUser(data) {
+
+  var user = JSON.parse(data);
+
+  if (!user.age) {
+    throw new PropertyError("age");
+  }
+
+  if (!user.name) {
+    throw new PropertyError("name");
+  }
+
+  return user;
+}
+
+// Запуск и try..catch
+
+try {
+  var user = readUser('{ "age": 25 }');
+} catch (err) {
+  if (err instanceof PropertyError) {
+    if (err.property == 'name') {
+      // если в данном месте кода возможны анонимы, то всё нормально
+      alert( "Здравствуйте, Аноним!" );
+    } else {
+      alert( err.message ); // Ошибка в свойстве ...
+    }
+  } else if (err instanceof SyntaxError) {
+    alert( "Ошибка в синтаксисе данных: " + err.message );
+  } else {
+    throw err; // неизвестная ошибка, не знаю что с ней делать
+  }
+}
+
+ */
+
+/* 
+function f() {
+  alert( new Error().stack );
+}
+
+f(); 
+ */
+/* 
+function Animal() {}
+
+function Rabbit() {}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+var rabbit = new Rabbit();
+
+alert( rabbit.__proto__ == Rabbit.prototype );
+alert( rabbit.__proto__.__proto__ == Animal.prototype );
+alert( rabbit.__proto__.__proto__.__proto__ == Object.prototype );
+
+ */
+
+
+/* 
+function A() {}
+
+function B() {}
+
+A.prototype = B.prototype = {};
+
+var a = new A();
+
+alert( a.__proto__ == B.prototype ); // true
+
+ */
+
+// Не друзья: instanceof и фреймы
+
+/* 
+function Animal() {}
+
+function Rabbit() {}
+Rabbit.prototype = Object.create(Animal.prototype);
+
+var rabbit = new Rabbit();
+
+alert( rabbit.constructor == Rabbit ); // что выведет?
+ */
+/* 
+function Menu(state) {
+  this._state = state || Menu.STATE_CLOSED;
+};
+
+Menu.STATE_OPEN = 1;
+Menu.STATE_CLOSED = 0;
+
+Menu.prototype.open = function() {
+  this._state = Menu.STATE_OPEN;
+};
+
+Menu.prototype.close = function() {
+  this._state = Menu.STATE_CLOSED;
+};
+
+Menu.prototype._stateAsString = function() {
+  switch (this._state) {
+    case Menu.STATE_OPEN:
+      return 'открыто';
+
+    case Menu.STATE_CLOSED:
+      return 'закрыто';
+  }
+};
+
+Menu.prototype.showState = function() {
+  console.log(this._stateAsString());
+};
+
+
+function AnimatingMenu(state) {
+  Menu.apply(this, arguments);
+}
+
+AnimatingMenu.STATE_ANIMATING = 2;
+
+AnimatingMenu.prototype = Object.create(Menu.prototype);
+AnimatingMenu.prototype.constructor = AnimatingMenu;
+
+AnimatingMenu.prototype.open = function() {
+  this._state = this.STATE_ANIMATING;
+
+  var self = this;
+
+  this._timerId = setTimeout(function(){
+    Menu.prototype.open.call(self);
+  }, 1000);
+};
+
+AnimatingMenu.prototype.close = function() {
+  clearTimeout(this._timerId);
+  Menu.prototype.close.apply(this);
+};
+
+AnimatingMenu.prototype._stateAsString = function() {
+  switch (this._state) {
+    case this.STATE_ANIMATING:
+      return 'анимация';
+
+    default:
+      return Menu.prototype._stateAsString.call(this);
+  }
+};
+
+// использование..
+
+var menu = new AnimatingMenu();
+
+menu.showState(); // закрыто
+
+menu.open();
+menu.showState(); // анимация
+
+setTimeout(function() {
+  menu.showState(); // открыто
+
+  menu.close();
+  menu.showState(); // закрыто (закрытие без анимации)
+}, 1000);
+ */
+
 /* function Clock(options) {
   this._template = options.template;
 }
