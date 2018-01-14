@@ -1,11 +1,7 @@
 
-var eventMixin = {
 
-  /**
-   * Подписка на событие
-   * Использование:
-   *  menu.on('select', function(item) { ... }
-   */
+/* 
+var eventMixin = {
   on: function(eventName, handler) {
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
@@ -14,10 +10,7 @@ var eventMixin = {
     this._eventHandlers[eventName].push(handler);
   },
 
-  /**
-   * Прекращение подписки
-   *  menu.off('select',  handler)
-   */
+
   off: function(eventName, handler) {
     var handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
@@ -28,11 +21,8 @@ var eventMixin = {
     }
   },
 
-  /**
-   * Генерация события с передачей данных
-   *  this.trigger('select', item);
-   */
-  trigger: function(eventName /*, ... */) {
+
+  trigger: function(eventName ) {
 
     if (!this._eventHandlers || !this._eventHandlers[eventName]) {
       return; // обработчиков для события нет
@@ -49,7 +39,7 @@ var eventMixin = {
 
 // Класс Menu с примесью eventMixin
 function Menu() {
-  // ...
+ 
 }
 
 for(var key in eventMixin) {
@@ -71,7 +61,7 @@ menu.on("select", function(value) {
 
 // Запускаем выбор (событие select вызовет обработчики)
 menu.choose("123");
-
+ */
 /* 
 // примесь
 var sayHiMixin = {
@@ -122,7 +112,6 @@ alert( err.stack ); // стек на момент генерации ошибк�
 
 alert( err instanceof SyntaxError ); // true
  */
-
 
 /* 
 // Объявление
@@ -200,7 +189,6 @@ alert( rabbit.__proto__.__proto__ == Animal.prototype );
 alert( rabbit.__proto__.__proto__.__proto__ == Object.prototype );
 
  */
-
 
 /* 
 function A() {}
@@ -425,11 +413,6 @@ var clock = new Clock({
 clock.start();
  */
 
-
-
-
-
-
 /* 
 function Animal(name) {
   this.name = name;
@@ -510,8 +493,6 @@ alert( speedy.food.length ); // 2
 alert( lazy.food.length ); // 2 (!??)
  */
 
-
-
 /* 
 function CoffeeMachine(power) {
   this._waterAmount = 0;
@@ -552,8 +533,6 @@ var animal = new Animal("Зверь");
 animal.sayHi(); // Зверь
  */
 
-
-
 /* 
 Function.prototype.defer = function(ms){
   var f = this;
@@ -573,7 +552,6 @@ f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
 
  */
 
-
 /* 
 Function.prototype.defer = function(ms) {
   setTimeout(this, ms)
@@ -592,8 +570,6 @@ f.defer(1000); // выведет "привет" через 1 секунду
 
  */
 
-
-
 /* 
 if (!Object.create) {
 
@@ -605,7 +581,6 @@ if (!Object.create) {
 
 }
  */
-
 
 /* 
 Object.prototype.each = function(f) {
@@ -632,7 +607,6 @@ obj.each(function(prop, val) {
   alert( prop ); // name -> age
 });
  */
-
 
 /* 
 String.prototype.repeat = function(times) {
@@ -663,7 +637,6 @@ function Menu(options) {
   options.width = options.width || 300; // по умолчанию ширина 300
 }
  */
-
 
 /* 
 //Начнём с этого кода. Что он выведет?
@@ -725,7 +698,6 @@ delete Rabbit.prototype.eats; // (*)
 alert( rabbit.eats );
  */
 
-
 /* 
 function inherit(proto) {
   function F() {}
@@ -782,9 +754,6 @@ console.log(pockets.pen == 3);
 console.log(bed.glasses == 1);
 console.log(table.money == undefined);
  */
-
-
-
 
 /* 
 var animal = {
@@ -925,7 +894,6 @@ fridge.enable();
 fridge.addFood("кус-кус");
 fridge.disable(); // ошибка, в холодильнике есть еда
  */
-
 
 /* 
 function Machine(power) {
@@ -1166,7 +1134,6 @@ coffeeMachine.run();
 coffeeMachine.disable(); // остановит работу, ничего не выведет
  */
 
-
 /* 
  function Machine(power) {
   this._enabled = false;
@@ -1233,7 +1200,6 @@ function CoffeeMachine(power) {
 var coffeeMachine = new CoffeeMachine(10000);
  */
 
-
 /* 
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -1289,7 +1255,6 @@ coffeeMachine.setOnReady(function() {
 });
 
  */
-
 
 /* 
 function CoffeeMachine(power, capacity) {
@@ -1400,7 +1365,6 @@ coffeeMachine.setOnReady(function() {
 coffeeMachine.run();
  */
 
-
 /*
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
@@ -1442,7 +1406,6 @@ coffeeMachine.addWater(100);
 coffeeMachine.addWater(300); // Нельзя залить больше, чем 400
 coffeeMachine.run();
  */
-
 
 /* 
 function CoffeeMachine(power, capacity) {
@@ -1572,7 +1535,6 @@ try {
 }
  */
 
-
 /* 
 function CoffeeMachine(power) {
   this.waterAmount = 0;
@@ -1701,7 +1663,6 @@ try {
 }
  */
 
-
 /* 
 try {
   
@@ -1719,10 +1680,6 @@ try {
   
   console.log("Потом код продолжит выполнение...");
  */
-
-
-
-
 
 /* 
 //Eval-калькулятор
@@ -1910,7 +1867,6 @@ function printNumbersInterval(){
 };
  */
 
-
 /* 
 // setTimeout - внутренняя ссылка исчезнет после исполнения функции
 // минимальная задержка 4s
@@ -2042,10 +1998,6 @@ console.log( typeof [] ); // 'object'
 console.log( typeof new Date ); // 'object'
  */
 
-
-
-
-
 /* 
 "use strict";
 
@@ -2174,7 +2126,6 @@ var secondF = function() {
   return firsttF.call( { name: "Петя" } );
 }
  */
-
 
 /* 
 ask("Выпустить птичку?", "да", fly, die);
@@ -2344,7 +2295,6 @@ var knownUser = User.createFromData({
 });
 knownUser.sayHi(); // Вася
  */
-
 
 /* 
 console.log(Article)
@@ -2605,7 +2555,6 @@ console.log( {}[0] );
 console.log( {} + {} );
  */
 
-
 /*
 
 // chaining
@@ -2651,7 +2600,6 @@ alert( calculator.sum() );
 alert( calculator.mul() );
 
  */
-
 
 /* 
 var name = "";
@@ -2736,7 +2684,6 @@ for (var i = 0; i < log.length; i++) {
 }
 */
 
-
 /*
 "use strict";
 
@@ -2769,7 +2716,6 @@ var vasya = user;
 user = null;
 vasya.checkPassword();
 */
-
 
 /*
 "use strict";
@@ -2817,7 +2763,6 @@ function ask(question, answer, ok, fail) {
  alert( 'птичку жалко :(' );
  }
 */
-
 
 /*
 function mul(a, b) {
@@ -2872,7 +2817,6 @@ console.log( applyAll(sum, 1, 2, 3) ); // -> sum(1, 2, 3) = 6
 console.log( applyAll(mul, 2, 3, 4) ); // -> mul(2, 3, 4) = 24
 */
 
-
 /*
 function sumArgs() {
   return [].reduce.call(arguments, function(a, b) {
@@ -2882,7 +2826,6 @@ function sumArgs() {
 
 console.log( sumArgs(1, 2, 3) );
 */
-
 
 /*
 function Article() {
@@ -2913,8 +2856,6 @@ new Article();
 
 Article.showStats(); // Всего: 3, Последняя: (дата)
 */
-
-
 
 /*
 function User(fullName) {
@@ -3000,7 +2941,6 @@ var result = calc.calculate("2 ** 3");
 console.log( result ); // 8
 */
 
-
 /*
 function Accumulator(a) {
   
@@ -3017,8 +2957,6 @@ accumulator.read(); // прибавит ввод prompt к текущему зн
 accumulator.read(); // прибавит ввод prompt к текущему значению
 alert( accumulator.value ); // выведет текущее значение
 */
-
-
 
 /* 
 // Функция - конструктор
@@ -3079,7 +3017,6 @@ console.log( [ [0] ] [0][0] ); // 0
 console.log( ({} + {}) ); //
  */
 
-
 /* 
 console.log( + {} );
  */
@@ -3103,7 +3040,6 @@ var ladder = {
 ladder.up().up().down().up().up().up().down().showStep(); // 3
 
  */
-
 
 /* 
 var calculator = {
@@ -3194,7 +3130,6 @@ console.log( arr[2]() );
 })();
 */
 
-
 /*
 // function makeArmy() {
 //
@@ -3252,8 +3187,6 @@ army[8](); // стрелок выводит 10...
 // .. все стрелки выводят 10 вместо 0,1,2...9
 
 */
-
-
 
 /*
 function filter(arr, func) {
@@ -3340,7 +3273,6 @@ function byField(field) {
 }
 */
 
-
 /*
 function makeBuffer() {
   var string = "";
@@ -3389,7 +3321,6 @@ buffer3.clear();
 console.log( buffer3() ); // ""
 */
 
-
 /*
 function sum(a) {
   return function (b) {
@@ -3436,7 +3367,6 @@ function test() {
 
 test()
 */
-
 
 /*
 function makeCounter() {
@@ -3517,7 +3447,6 @@ alert( a == b ); // true (значение закешировано)
 b = f(2);
 alert( a == b ); // false, другой аргумент => другое значение
  */
-
 
 /*
 function work(a, b) {
@@ -3640,7 +3569,6 @@ console.log( formatDate(new Date(new Date - 86400 * 1000)) ); // вчерашн�
 
 */
 
-
 /*
 var d = new Date(2014, 0, 30); // 30 января 2014
 
@@ -3671,7 +3599,6 @@ function formatDate(date) {
   return arrDate[2] + "." + arrDate[1] + "." + arrDate[0];
 };
 */
-
 
 /*console.log(
   getSecondsToTomorrow()
@@ -3801,7 +3728,6 @@ console.log( f(undefined) ); // 1
 console.log( f() ); // 0
 
 */
-
 
 /*
 
@@ -3969,8 +3895,6 @@ function printReverseListRecursion(list) {
 
 */
 
-
-
 /*
 
 var vasya = { name: "Вася", age: 23 };
@@ -3988,8 +3912,6 @@ console.log(people);
 
 */
 
-
-
 /*
 
 var arr = [1, 2, 3, 4, 5];
@@ -4003,7 +3925,6 @@ arr.sort(function (a, b) {
 console.log( arr ); // элементы в случайном порядке, например [3,5,1,2,4]
 
 */
-
 
 /*
 
@@ -4078,7 +3999,6 @@ function removeClass(obj, name) {
 };
 
 */
-
 
 /*
 
@@ -4184,7 +4104,6 @@ function getMaxSubSum(arr) {
 
 */
 
-
 /*
 
 var count = 100,
@@ -4252,10 +4171,6 @@ console.log(masPr);
 console.log(sum);
 
 */
-
-
-
-
 
 /*
 
@@ -4412,7 +4327,6 @@ function multiplyNumeric(obj) {
 
 */
 
-
 /*
 
 var salaries = {
@@ -4445,7 +4359,6 @@ function sumOfValuesMax(obj) {
 };
 
 */
-
 
 /*
 
@@ -4501,7 +4414,6 @@ function extractCurrencyValue(str) {
 console.log( extractCurrencyValue("$120") );
 
 */
-
 
 /*
 
@@ -4577,7 +4489,6 @@ function getRandom (min, max) {
 
 */
 
-
 /*
 
 setTimeout( function () {
@@ -4629,8 +4540,6 @@ function fibBinet(n) {
 
 */
 
-
-
 /*
 console.log( getDecimal(12.345) ); // 0.345
 console.log( getDecimal(1.2) ); // 0.2
@@ -4659,8 +4568,6 @@ function isNumeric(n) {
 }
 
 */
-
-
 
 /*
 function pow (x, n) {
@@ -4771,7 +4678,6 @@ console.log ( factorial(4) ); // = 24
 console.log ( factorial(5) ); // = 120
  */
 
-
 /* 
 function sumTo(n) {
   for (var i = 1; 1 < n; n--) {
@@ -4796,7 +4702,6 @@ console.log( sumTo(100) ); // = 5050
 console.log( sumTo(100000) ); // = 5000050000
 
  */
-
 
 // Рекурсия - когда функция вызывает сама себя.
 // Базис рекурсии - значение, на котором рекурсия заканчивается.
@@ -4885,7 +4790,6 @@ switch (a) {
 
  */
 
-
 /* 
 switch (browser) {
   case 'IE':
@@ -4921,7 +4825,6 @@ outer: for (var i = 2; i <= 10; i++) {
 }
 
  */
-
 
 /* 
 var i = 0;
@@ -5027,7 +4930,6 @@ if (userName === null || userName === "" ) {
 
  */
 
-
 /* 
 var comparision = +prompt("Введите число", 0);
 
@@ -5041,7 +4943,6 @@ if (comparision === 0) {
 
  */
 
-
 /* 
 var javaScriptName = prompt("Каково «официальное» название JavaScript?","");
 if ( javaScriptName === "ECMAScript" ) {
@@ -5051,7 +4952,6 @@ if ( javaScriptName === "ECMAScript" ) {
 }
 
  */
-
 
 /* 
 
@@ -5104,8 +5004,6 @@ alert( admin & check ); // не 0, значит есть доступ к про�
 
 */
 
-
-
 /*
 
 var access = parseInt("11000", 2);
@@ -5115,15 +5013,12 @@ alert( access2 );
 
 */
 
-
 /*
 
 var ourPlanetName = "Земля";
 var userName = "Петя";
 
 */
-
-
 
 /*
 
@@ -5150,3 +5045,4 @@ addScript('2.js'); // выполнятся, как только загрузят
 addScript('3.js'); // но, гарантированно, в порядке 1 -> 2 -> 3
 
 */
+"use strict";

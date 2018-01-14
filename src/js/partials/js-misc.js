@@ -1,11 +1,8 @@
 
-var eventMixin = {
 
-  /**
-   * Подписка на событие
-   * Использование:
-   *  menu.on('select', function(item) { ... }
-   */
+
+/* 
+var eventMixin = {
   on: function(eventName, handler) {
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
@@ -14,10 +11,7 @@ var eventMixin = {
     this._eventHandlers[eventName].push(handler);
   },
 
-  /**
-   * Прекращение подписки
-   *  menu.off('select',  handler)
-   */
+
   off: function(eventName, handler) {
     var handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
@@ -28,11 +22,8 @@ var eventMixin = {
     }
   },
 
-  /**
-   * Генерация события с передачей данных
-   *  this.trigger('select', item);
-   */
-  trigger: function(eventName /*, ... */) {
+
+  trigger: function(eventName ) {
 
     if (!this._eventHandlers || !this._eventHandlers[eventName]) {
       return; // обработчиков для события нет
@@ -49,7 +40,7 @@ var eventMixin = {
 
 // Класс Menu с примесью eventMixin
 function Menu() {
-  // ...
+ 
 }
 
 for(var key in eventMixin) {
@@ -71,7 +62,7 @@ menu.on("select", function(value) {
 
 // Запускаем выбор (событие select вызовет обработчики)
 menu.choose("123");
-
+ */
 /* 
 // примесь
 var sayHiMixin = {

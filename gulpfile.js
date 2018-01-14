@@ -15,6 +15,7 @@ var gulp = require('gulp'),
   jade = require('gulp-jade'),
   gutil = require('gulp-util'),
   upmodul = require("gulp-update-modul"),
+  babel = require('gulp-babel'),
   reload = browserSync.reload;
  
 
@@ -91,9 +92,14 @@ gulp.task('js:build', function () {
     .pipe(gulp.dest(path.build.js)); //Выплюнем готовый файл в build
   gulp.src(path.src.js) //Найдем наш main файл
     .pipe(rigger()) //Прогоним через rigger
+    .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
     .pipe(reload({stream: true})); //И перезагрузим сервер
 });
+
+
 gulp.task('style:build', function () {
   gulp.src(path.src.style) //Выберем наш main.scss
     .pipe(sourcemaps.init()) //То же самое что и с js
@@ -127,6 +133,7 @@ gulp.task('fonts:build', function() {
   gulp.src(path.src.fonts)
     .pipe(gulp.dest(path.build.fonts))
 });
+
 
 gulp.task('watch', function(){
   watch(path.watch.jade, function(event, cb) {
