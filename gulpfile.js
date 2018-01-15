@@ -1,3 +1,5 @@
+'use sctrict';
+
 const gulp = require('gulp');
 const watch = require('gulp-watch');
 const prefixer = require('gulp-autoprefixer');
@@ -16,7 +18,7 @@ const upmodul = require('gulp-update-modul');
 const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
 
-const reload = () => browserSync.reload;
+const restart = browserSync.reload;
 
 // Так же создадим js объект в который пропишем все нужные нам пути,
 // чтобы при необходимости легко в одном месте их редактировать:
@@ -74,14 +76,14 @@ gulp.task('webserver', () => {
   gulp.src(path.src.html) //Выберем файлы по нужному пути
     .pipe(rigger()) //Прогоним через rigger
     .pipe(gulp.dest(path.build.html)) //Выплюнем их в папку build
-    .pipe(reload({stream: true})); //И перезагрузим наш сервер для обновлений
+    .pipe(restart({stream: true})); //И перезагрузим наш сервер для обновлений
 }); */
 
 gulp.task('jade:build', () => {
   gulp.src(path.src.jade)
     .pipe(jade({ pretty: true }).on('error', gutil.log).on('error', gutil.beep))
     .pipe(gulp.dest(path.build.jade))
-    .pipe(reload({ stream: true })); /* И перезагрузим наш сервер для обновлений */
+    .pipe(restart({ stream: true })); /* И перезагрузим наш сервер для обновлений */
 });
 
 
@@ -99,7 +101,7 @@ gulp.task('js:build', () => {
       presets: ['env'],
     }).on('error', gutil.log))
     .pipe(gulp.dest(path.build.js)) /* Выплюнем готовый файл в build */
-    .pipe(reload({ stream: true })); /* И перезагрузим сервер */
+    .pipe(restart({ stream: true })); /* И перезагрузим сервер */
 });
 
 
@@ -111,23 +113,17 @@ gulp.task('style:build', () => {
     .pipe(cssmin()) /* Сожмем */
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.build.css)) /* И в build */
-    .pipe(reload({ stream: true }));
+    .pipe(restart({ stream: true }));
 });
 gulp.task('image:build', () => {
   gulp.src(path.src.img) /* Выберем наши картинки */
-    // .pipe(imagemin({ //Сожмем их
-    //   progressive: true,
-    //   svgoPlugins: [{removeViewBox: false}],
-    //   use: [pngquant()],
-    //   interlaced: true
-    // }))
     .pipe(gulp.dest(path.build.img)) /* И бросим в build */
-    .pipe(reload({ stream: true }));
+    .pipe(restart({ stream: true }));
 });
 gulp.task('json:build', () => {
   gulp.src(path.src.json)
     .pipe(gulp.dest(path.build.json))
-    .pipe(reload({ stream: true }));
+    .pipe(restart({ stream: true }));
 });
 gulp.task('clean', (cb) => {
   rimraf(path.clean, cb);

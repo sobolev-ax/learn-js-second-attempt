@@ -1,4 +1,6 @@
+'use strict';
 
+alert('Hello');
 
 /* 
 var eventMixin = {
@@ -5045,4 +5047,3 @@ addScript('2.js'); // выполнятся, как только загрузят
 addScript('3.js'); // но, гарантированно, в порядке 1 -> 2 -> 3
 
 */
-"use strict";
