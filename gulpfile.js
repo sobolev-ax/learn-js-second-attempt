@@ -16,6 +16,7 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   upmodul = require("gulp-update-modul"),
   babel = require('gulp-babel'),
+  eslint = require('gulp-eslint'),
   reload = browserSync.reload;
  
 
@@ -90,11 +91,12 @@ gulp.task('js:build', function () {
     .pipe(uglify()) //Сожмем наш js
     .pipe(sourcemaps.write()) //Пропишем карты
     .pipe(gulp.dest(path.build.js)); //Выплюнем готовый файл в build
-  gulp.src(path.src.js) //Найдем наш main файл
+  gulp.src([path.src.js,'!node_modules/**']) //Найдем наш main файл
     .pipe(rigger()) //Прогоним через rigger
+    .pipe(eslint().on('error', gutil.log))
     .pipe(babel({
         presets: ['env']
-    }))
+    }).on('error', gutil.log))
     .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
     .pipe(reload({stream: true})); //И перезагрузим сервер
 });
