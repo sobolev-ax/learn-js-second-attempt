@@ -4,10 +4,14 @@ module.exports = {
         "worker": true,
         "jquery": true,
         "prototypejs": true,
-        "alert": true
+        "alert": true,
+        "$": true,
+        "document": true,
     },
     "rules": {
         "no-alert": 0,
+        "no-plusplus": 1,
+        "prefer-const": 1
     },
     "extends": "airbnb-base",
 };
