@@ -1,7 +1,33 @@
-'use strict';
 
-alert('S\u0307\u0323'); // Ṩ
 
+/* const name = 'Вася';
+const surname = 'Петров';
+const user = {
+  name,
+  surname,
+  get fullName() {
+    return `${name} ${surname}`;
+  },
+};
+
+alert(user.fullName); // Вася Петров
+ */
+/* let user = { name: "Вася", isAdmin: false };
+
+// clone = пустой объект + все свойства user
+let clone = Object.assign({}, user);
+ */
+/* let name = 'Вася';
+let isAdmin = true;
+
+let user = {
+  name,
+  isAdmin,
+};
+alert(JSON.stringify(user)); // {"name": "Вася", "isAdmin": true}
+ */
+/* alert('S\u0307\u0323'); // Ṩ
+ */
 /* let group = {
   title: "Наш курс",
   students: ["Вася", "Петя", "Даша"],
@@ -5110,3 +5136,4 @@ addScript('2.js'); // выполнятся, как только загрузят
 addScript('3.js'); // но, гарантированно, в порядке 1 -> 2 -> 3
 
 */
+"use strict";
