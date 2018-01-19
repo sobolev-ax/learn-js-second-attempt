@@ -9,7 +9,7 @@ module.exports = {
         "document": true,
     },
     "rules": {
-        "no-alert": 0,
+        "no-alert": 1,
         "no-plusplus": 1,
         "prefer-const": 1
     },
