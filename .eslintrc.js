@@ -13,6 +13,7 @@ module.exports = {
         "no-console": 0,
         "no-plusplus": 0,
         "no-unused-vars": 1,
+        "no-undef": 1,
         "prefer-const": 1,
         "no-restricted-syntax": 0,
     },

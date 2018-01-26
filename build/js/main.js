@@ -1,4 +1,54 @@
 
+
+/* function httpGet(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onload = () => {
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        const error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
+    };
+    xhr.onerror = () => {
+      reject(new Error('Network Error'));
+    };
+    xhr.send();
+  });
+}
+ */
+// Промисификация – это когда берут асинхронный функционал
+// и делают для него обёртку, возвращающую промис.
+
+/* // Создаётся объект promise
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // переведёт промис в состояние fulfilled с результатом "result"
+    console.log('Here text of function');
+    resolve('result');
+  }, 1000);
+  setTimeout(() => {
+    reject(new Error('время вышло!'));
+  }, 1000);
+});
+
+// promise.then навешивает обработчики на успешный результат или ошибку
+promise
+  .then(
+    (result) => {
+      // первая функция-обработчик - запустится при вызове resolve
+      alert(`Fulfilled:  ${result}`); // result - аргумент resolve
+    },
+    (error) => {
+      // вторая функция - запустится при вызове reject
+      alert(`Fulfilled:  ${error}`); // error - аргумент reject
+    },
+  );
+ */
+
 /* let activeUsers = [
   { name: 'Вася' },
   { name: 'Петя' },
