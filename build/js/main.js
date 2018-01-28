@@ -1,5 +1,15 @@
 
 
+/* function delay(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(time);
+    }, time);
+  });
+}
+
+delay(1000).then(() => alert('Hello!'));
+ */
 /* function httpGet(url) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
