@@ -1,3 +1,26 @@
+'use strict';
+
+var table1 = document.getElementById('table1');
+for (var i = 0; i < table1.rows.length; i++) {
+  table1.rows[i].cells[i].style.backgroundColor = 'red';
+}
+
+// document.documentElement.firstElementChild
+// document.body.firstElementChild.nextElementSibling
+// document.body.firstElementChild.nextElementSibling.lastElementChild
+
+/* for (let i = 0; i < document.body.children.length; i++) {
+  console.log(document.body.children[i]);
+} */
+
+/* for (let i = 0; i < document.body.childNodes.length; i++) {
+  console.log(document.body.childNodes[i]);
+} */
+
+// Объектная модель браузера (BOM)
+// BOM – это объекты для работы с чем угодно, кроме документа.
+console.log(window.navigator.userAgent); // содержит информацию о браузере
+console.log(window.navigator.platform); // содержит информацию о платформе
 
 
 /* function delay(time) {
@@ -1354,7 +1377,7 @@ var dietItems = fridge.filterFood(function(item) {
 });
 
 dietItems.forEach(function(item) {
-  console.log( item.title ); // сок, зелень
+  console.log( item.title ); // сок, ��елень
   fridge.removeFood(item);
 });
 console.log("-------------------------")
@@ -5400,4 +5423,3 @@ addScript('2.js'); // выполнятся, как только загрузят
 addScript('3.js'); // но, гарантированно, в порядке 1 -> 2 -> 3
 
 */
-"use strict";
