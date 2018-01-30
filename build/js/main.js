@@ -1377,7 +1377,7 @@ var dietItems = fridge.filterFood(function(item) {
 });
 
 dietItems.forEach(function(item) {
-  console.log( item.title ); // сок, ��елень
+  console.log( item.title ); // сок, зелень
   fridge.removeFood(item);
 });
 console.log("-------------------------")
