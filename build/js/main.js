@@ -1,7 +1,15 @@
 'use strict';
 
 console.log('\n---------------------------------------------Задача 3\n');
+console.dir(document);
 
+/* console.log выводит элемент в виде,
+ * удобном для исследования HTML-структуры.
+ * console.dir выводит элемент в виде JavaScript-объекта,
+ * удобно для анализа его свойств.
+ */
+// console.log(document.body);
+// console.dir(document.body);
 /* querySelectorAll собирает найденные элементы в «псевдомассив»
 Этот перебор происходит очень быстро */
 
