@@ -1,7 +1,65 @@
 'use strict';
 
 console.log('\n---------------------------------------------Задача 3\n');
-console.dir(document);
+
+/* function factorial(n) {
+  var result = 1;
+
+  for (var i = 2; i <= n; i++) {
+    result = result * i;
+  }
+  return result;
+}
+
+var n = 5;
+var k = 3;
+
+var answer = factorial(n)*factorial(n)/(factorial(k)*factorial(n-k)*factorial(n-k));
+
+console.log(answer); */
+
+/* function getNewCode(code, length) {
+  if (code >= 97 && code <= 122) {
+    if (code + length > 122) {
+      length = length - (122 - code);
+      code = 96 + length;
+    } else {
+      code = code + length;
+    }
+  }
+  if (code >= 65 && code <= 90) {
+    if (code + length > 90) {
+      length = length - (90 - code);
+      code = 64 + length;
+    } else {
+      code = code + length;
+    }
+  }
+  return String.fromCharCode(code);
+}
+var str = 'Mbgdhyy Ybgmxva Lvahhe!';
+var mass = String.prototype.split.call(str, ' ');
+var maxLength;
+
+for (var i = 0; i < mass.length; i++) {
+  if (i === 0) {
+    maxLength = mass[i].length;
+  } else if (maxLength < mass[i].length) {
+    maxLength = mass[i].length;
+  }
+}
+
+for (var i = 0; i < mass.length; i++) {
+  var wordMass = String.prototype.split.call(mass[i], '');
+
+  for (var j = 0; j < wordMass.length; j++) {
+    var code = wordMass[j].charCodeAt(0);
+    wordMass[j] = getNewCode(code, maxLength);
+  }
+  mass[i] = wordMass.join('');
+}
+
+console.log(mass.join(' ')); */
 
 /* console.log выводит элемент в виде,
  * удобном для исследования HTML-структуры.
