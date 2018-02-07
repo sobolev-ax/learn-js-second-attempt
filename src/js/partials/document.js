@@ -1,11 +1,31 @@
 console.log('\n---------------------------------------------Задача 3\n');
 
 (() => {
+  if (document.documentElement.textContent === undefined) {
+    Object.defineProperty(HTMLElement.prototype, 'textContent', {
+      get: () => this.innerText,
+      set: (value) => {
+        this.innerText = value;
+      },
+    });
+  }
+})();
+
+(() => {
   /*
-   * Полифилл для matches
+   * Полифилл для closest
    */
   if (Element.prototype.closest === undefined) {
-    Element.prototype.closest = () => {};
+    Element.prototype.closest = (selector) => {
+      let elem = this;
+      do {
+        if (elem.matches(selector)) {
+          return elem;
+        }
+        elem = elem.parentElement;
+      } while (elem);
+      return null;
+    };
   }
 })();
 

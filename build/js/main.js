@@ -3,11 +3,33 @@
 console.log('\n---------------------------------------------Задача 3\n');
 
 (function () {
+  if (document.documentElement.textContent === undefined) {
+    Object.defineProperty(HTMLElement.prototype, 'textContent', {
+      get: function get() {
+        return undefined.innerText;
+      },
+      set: function set(value) {
+        undefined.innerText = value;
+      }
+    });
+  }
+})();
+
+(function () {
   /*
-   * Полифилл для matches
+   * Полифилл для closest
    */
   if (Element.prototype.closest === undefined) {
-    Element.prototype.closest = function () {};
+    Element.prototype.closest = function (selector) {
+      var elem = undefined;
+      do {
+        if (elem.matches(selector)) {
+          return elem;
+        }
+        elem = elem.parentElement;
+      } while (elem);
+      return null;
+    };
   }
 })();
 
