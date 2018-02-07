@@ -2,6 +2,24 @@
 
 console.log('\n---------------------------------------------Задача 3\n');
 
+(function () {
+  /*
+   * Полифилл для matches
+   */
+  if (Element.prototype.closest === undefined) {
+    Element.prototype.closest = function () {};
+  }
+})();
+
+(function () {
+  /*
+   * Полифилл для matches
+   */
+  if (Element.prototype.matches === undefined) {
+    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector;
+  }
+})();
+
 /* function factorial(n) {
   var result = 1;
 

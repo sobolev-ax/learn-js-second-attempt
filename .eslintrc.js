@@ -7,6 +7,7 @@ module.exports = {
         "alert": true,
         "$": true,
         "document": true,
+        "Element": true,
     },
     "rules": {
         "no-alert": 0,
