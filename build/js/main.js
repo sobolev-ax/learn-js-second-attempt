@@ -1,6 +1,20 @@
 'use strict';
 
+console.log('\n---------------------------------------------Задача 4\n');
+
 console.log('\n---------------------------------------------Задача 3\n');
+var list = document.getElementsByTagName('a');
+var listLength = list.length;
+for (var i = 0; i < listLength; i++) {
+  var href = list[i].getAttribute('href');
+  if (href && href.indexOf('://') !== -1 && href.indexOf('http://internal.com') === -1) {
+    list[i].classList.add('external');
+  }
+}
+
+var elem = document.getElementById('widget');
+var elemDataWidgetName = elem.dataset.widgetName;
+console.log(elemDataWidgetName);
 
 (function () {
   if (document.documentElement.textContent === undefined) {
@@ -128,8 +142,8 @@ Array.prototype.forEach.call(li1, function (li) {
 
 console.log('\n---------------------------------------------Задача 1\n');
 var table1 = document.getElementById('table1');
-for (var i = 0; i < table1.rows.length; i++) {
-  table1.rows[i].cells[i].style.backgroundColor = 'red';
+for (var _i = 0; _i < table1.rows.length; _i++) {
+  table1.rows[_i].cells[_i].style.backgroundColor = 'red';
 }
 
 // document.documentElement.firstElementChild

@@ -1,4 +1,20 @@
+console.log('\n---------------------------------------------Задача 4\n');
+
 console.log('\n---------------------------------------------Задача 3\n');
+const list = document.getElementsByTagName('a');
+const listLength = list.length;
+for (let i = 0; i < listLength; i++) {
+  const href = list[i].getAttribute('href');
+  if (href &&
+     href.indexOf('://') !== -1 &&
+     href.indexOf('http://internal.com') === -1) {
+    list[i].classList.add('external');
+  }
+}
+
+const elem = document.getElementById('widget');
+const elemDataWidgetName = elem.dataset.widgetName;
+console.log(elemDataWidgetName);
 
 (() => {
   if (document.documentElement.textContent === undefined) {
