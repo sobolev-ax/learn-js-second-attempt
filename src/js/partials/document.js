@@ -1,10 +1,50 @@
 console.log('\n---------------------------------------------Задача 4\n');
 
+Element.prototype.remove = function remove() {
+  if (this.parentElement) {
+    return this.parentElement.removeChild(this);
+  }
+  return null;
+};
+
+function removeChildren(elem) {
+  console.log(elem.children);
+  const count = elem.children.length;
+  while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+}
+const table4 = document.getElementById('table4');
+const ol4 = document.getElementById('ol4');
+removeChildren(table4); // очищает таблицу
+removeChildren(ol4); // очищает список
+
 const elem4 = document.getElementById('elem4');
 const text4 = '<h3>Привет!</h3>';
 
-elem4.appendChild(document.createTextNode(text4));
 elem4.innerHTML = text4;
+elem4.appendChild(document.createTextNode(text4));
+
+console.log(elem4.remove());
+
+
+const element4 = document.createElement('div');
+element4.innerHTML = '<b>Новый элемент</b>';
+function insertAfter(elem, refElem) {
+  const element = elem.cloneNode(true);
+  const next = refElem.nextSibling;
+  const parent = refElem.parentElement;
+  if (next) {
+    parent.insertBefore(element, next);
+  } else {
+    parent.appendChild(element);
+  }
+}
+const div4 = document.getElementById('div4');
+// вставить elem после первого элемента
+insertAfter(element4, div4.firstChild); // <--- должно работать
+// вставить elem за последним элементом
+insertAfter(element4, div4.lastChild); // <--- должно работать
 
 /*
 *Методы для создания узлов:
