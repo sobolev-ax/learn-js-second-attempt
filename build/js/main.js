@@ -2,6 +2,44 @@
 
 console.log('\n---------------------------------------------Задача 4\n');
 
+var elem4 = document.getElementById('elem4');
+var text4 = '<h3>Привет!</h3>';
+
+elem4.appendChild(document.createTextNode(text4));
+elem4.innerHTML = text4;
+
+/*
+*Методы для создания узлов:
+
+document.createElement(tag) – создает элемент
+
+document.createTextNode(value) – создает текстовый узел
+elem.cloneNode(deep) – клонирует элемент,
+
+если deep == true, то со всеми потомками, если false – без потомков.
+
+*Вставка и удаление узлов:
+
+parent.appendChild(elem)
+
+parent.insertBefore(elem, nextSibling)
+
+parent.removeChild(elem)
+
+parent.replaceChild(newElem, elem)
+
+*/
+
+// код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
+(function () {
+  var el = document.documentElement;
+  if (!el.compareDocumentPosition && el.sourceIndex !== undefined) {
+    Element.prototype.compareDocumentPosition = function (other) {
+      return (undefined !== other && undefined.contains(other) && 16) + (undefined !== other && other.contains(undefined) && 8) + (undefined.sourceIndex >= 0 && other.sourceIndex >= 0 ? (undefined.sourceIndex < other.sourceIndex && 4) + (undefined.sourceIndex > other.sourceIndex && 2) : 1) + 0;
+    };
+  }
+})();
+
 console.log('\n---------------------------------------------Задача 3\n');
 var list = document.getElementsByTagName('a');
 var listLength = list.length;
@@ -12,8 +50,8 @@ for (var i = 0; i < listLength; i++) {
   }
 }
 
-var elem = document.getElementById('widget');
-var elemDataWidgetName = elem.dataset.widgetName;
+var elem1 = document.getElementById('widget');
+var elemDataWidgetName = elem1.dataset.widgetName;
 console.log(elemDataWidgetName);
 
 (function () {
