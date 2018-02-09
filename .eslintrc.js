@@ -9,6 +9,7 @@ module.exports = {
         "document": true,
         "Element": true,
         "HTMLElement": true,
+        "prompt": true,
     },
     "rules": {
         "no-alert": 0,

@@ -1,247 +1,326 @@
 'use strict';
 
-console.log('\n---------------------------------------------Задача 4\n');
-
-Element.prototype.remove = function remove() {
-  if (this.parentElement) {
-    return this.parentElement.removeChild(this);
-  }
-  return null;
-};
-
-function removeChildren(elem) {
-  console.log(elem.children);
-  var count = elem.children.length;
-  while (elem.firstChild) {
-    elem.firstChild.remove();
-  }
-}
-var table4 = document.getElementById('table4');
-var ol4 = document.getElementById('ol4');
-removeChildren(table4); // очищает таблицу
-removeChildren(ol4); // очищает список
-
-var elem4 = document.getElementById('elem4');
-var text4 = '<h3>Привет!</h3>';
-
-elem4.innerHTML = text4;
-elem4.appendChild(document.createTextNode(text4));
-
-console.log(elem4.remove());
-
-var element4 = document.createElement('div');
-element4.innerHTML = '<b>Новый элемент</b>';
-function insertAfter(elem, refElem) {
-  var element = elem.cloneNode(true);
-  var next = refElem.nextSibling;
-  var parent = refElem.parentElement;
-  if (next) {
-    parent.insertBefore(element, next);
-  } else {
-    parent.appendChild(element);
-  }
-}
-var div4 = document.getElementById('div4');
-// вставить elem после первого элемента
-insertAfter(element4, div4.firstChild); // <--- должно работать
-// вставить elem за последним элементом
-insertAfter(element4, div4.lastChild); // <--- должно работать
-
-/*
-*Методы для создания узлов:
-
-document.createElement(tag) – создает элемент
-
-document.createTextNode(value) – создает текстовый узел
-elem.cloneNode(deep) – клонирует элемент,
-
-если deep == true, то со всеми потомками, если false – без потомков.
-
-*Вставка и удаление узлов:
-
-parent.appendChild(elem)
-
-parent.insertBefore(elem, nextSibling)
-
-parent.removeChild(elem)
-
-parent.replaceChild(newElem, elem)
-
-*/
-
-// код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
 (function () {
-  var el = document.documentElement;
-  if (!el.compareDocumentPosition && el.sourceIndex !== undefined) {
-    Element.prototype.compareDocumentPosition = function (other) {
-      return (undefined !== other && undefined.contains(other) && 16) + (undefined !== other && other.contains(undefined) && 8) + (undefined.sourceIndex >= 0 && other.sourceIndex >= 0 ? (undefined.sourceIndex < other.sourceIndex && 4) + (undefined.sourceIndex > other.sourceIndex && 2) : 1) + 0;
-    };
+  console.log('\n---------------------------------------------Задача 4\n');
+  Element.prototype.remove = function remove() {
+    if (this.parentElement) {
+      return this.parentElement.removeChild(this);
+    }
+    return null;
+  };
+
+  function removeChildren(elem) {
+    console.log(elem.children);
+    // const count = elem.children.length;
+    while (elem.firstChild) {
+      elem.firstChild.remove();
+    }
   }
-})();
+  var table4 = document.getElementById('table4');
+  var ol4 = document.getElementById('ol4');
+  removeChildren(table4); // очищает таблицу
+  removeChildren(ol4); // очищает список
 
-console.log('\n---------------------------------------------Задача 3\n');
-var list = document.getElementsByTagName('a');
-var listLength = list.length;
-for (var i = 0; i < listLength; i++) {
-  var href = list[i].getAttribute('href');
-  if (href && href.indexOf('://') !== -1 && href.indexOf('http://internal.com') === -1) {
-    list[i].classList.add('external');
+  var elem4 = document.getElementById('elem4');
+  var text4 = '<h3>Привет!</h3>';
+
+  elem4.innerHTML = text4;
+  elem4.appendChild(document.createTextNode(text4));
+
+  console.log(elem4.remove());
+
+  var element4 = document.createElement('div');
+  element4.innerHTML = '<b>Новый элемент</b>';
+  function insertAfter(elem, refElem) {
+    var element = elem.cloneNode(true);
+    var next = refElem.nextSibling;
+    var parent = refElem.parentElement;
+    if (next) {
+      parent.insertBefore(element, next);
+    } else {
+      parent.appendChild(element);
+    }
   }
-}
+  var div4 = document.getElementById('div4');
+  // вставить elem после первого элемента
+  insertAfter(element4, div4.firstChild); // <--- должно работать
+  // вставить elem за последним элементом
+  insertAfter(element4, div4.lastChild); // <--- должно работать
 
-var elem1 = document.getElementById('widget');
-var elemDataWidgetName = elem1.dataset.widgetName;
-console.log(elemDataWidgetName);
-
-(function () {
-  if (document.documentElement.textContent === undefined) {
-    Object.defineProperty(HTMLElement.prototype, 'textContent', {
-      get: function get() {
-        return undefined.innerText;
-      },
-      set: function set(value) {
-        undefined.innerText = value;
-      }
-    });
-  }
-})();
-
-(function () {
   /*
-   * Полифилл для closest
-   */
-  if (Element.prototype.closest === undefined) {
-    Element.prototype.closest = function (selector) {
-      var elem = undefined;
-      do {
-        if (elem.matches(selector)) {
-          return elem;
+  *Методы для создания узлов:
+    document.createElement(tag) – создает элемент
+    document.createTextNode(value) – создает текстовый узел
+  elem.cloneNode(deep) – клонирует элемент,
+    если deep == true, то со всеми потомками, если false – без потомков.
+    *Вставка и удаление узлов:
+    parent.appendChild(elem)
+    parent.insertBefore(elem, nextSibling)
+    parent.removeChild(elem)
+    parent.replaceChild(newElem, elem)
+    */
+
+  // код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
+  (function () {
+    var el = document.documentElement;
+    if (!el.compareDocumentPosition && el.sourceIndex !== undefined) {
+      Element.prototype.compareDocumentPosition = function (other) {
+        return (undefined !== other && undefined.contains(other) && 16) + (undefined !== other && other.contains(undefined) && 8) + (undefined.sourceIndex >= 0 && other.sourceIndex >= 0 ? (undefined.sourceIndex < other.sourceIndex && 4) + (undefined.sourceIndex > other.sourceIndex && 2) : 1) + 0;
+      };
+    }
+  })();
+
+  console.log('\n---------------------------------------------Задача 3\n');
+  var list = document.getElementsByTagName('a');
+  var listLength = list.length;
+  for (var i = 0; i < listLength; i++) {
+    var href = list[i].getAttribute('href');
+    if (href && href.indexOf('://') !== -1 && href.indexOf('http://internal.com') === -1) {
+      list[i].classList.add('external');
+    }
+  }
+
+  var elem1 = document.getElementById('widget');
+  var elemDataWidgetName = elem1.dataset.widgetName;
+  console.log(elemDataWidgetName);
+
+  (function () {
+    if (document.documentElement.textContent === undefined) {
+      Object.defineProperty(HTMLElement.prototype, 'textContent', {
+        get: function get() {
+          return undefined.innerText;
+        },
+        set: function set(value) {
+          undefined.innerText = value;
         }
-        elem = elem.parentElement;
-      } while (elem);
-      return null;
-    };
-  }
-})();
+      });
+    }
+  })();
 
+  (function () {
+    /*
+    * Полифилл для closest
+    */
+    if (Element.prototype.closest === undefined) {
+      Element.prototype.closest = function (selector) {
+        var elem = undefined;
+        do {
+          if (elem.matches(selector)) {
+            return elem;
+          }
+          elem = elem.parentElement;
+        } while (elem);
+        return null;
+      };
+    }
+  })();
+
+  (function () {
+    /*
+    * Полифилл для matches
+    */
+    if (Element.prototype.matches === undefined) {
+      Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector;
+    }
+  })();
+
+  /* function factorial(n) {
+    var result = 1;
+      for (var i = 2; i <= n; i++) {
+      result = result * i;
+    }
+    return result;
+  }
+    var n = 5;
+  var k = 3;
+    var answer = factorial(n)*factorial(n)/(factorial(k)*factorial(n-k)*factorial(n-k));
+    console.log(answer); */
+
+  /* function getNewCode(code, length) {
+    if (code >= 97 && code <= 122) {
+      if (code + length > 122) {
+        length = length - (122 - code);
+        code = 96 + length;
+      } else {
+        code = code + length;
+      }
+    }
+    if (code >= 65 && code <= 90) {
+      if (code + length > 90) {
+        length = length - (90 - code);
+        code = 64 + length;
+      } else {
+        code = code + length;
+      }
+    }
+    return String.fromCharCode(code);
+  }
+  var str = 'Mbgdhyy Ybgmxva Lvahhe!';
+  var mass = String.prototype.split.call(str, ' ');
+  var maxLength;
+    for (var i = 0; i < mass.length; i++) {
+    if (i === 0) {
+      maxLength = mass[i].length;
+    } else if (maxLength < mass[i].length) {
+      maxLength = mass[i].length;
+    }
+  }
+    for (var i = 0; i < mass.length; i++) {
+    var wordMass = String.prototype.split.call(mass[i], '');
+      for (var j = 0; j < wordMass.length; j++) {
+      var code = wordMass[j].charCodeAt(0);
+      wordMass[j] = getNewCode(code, maxLength);
+    }
+    mass[i] = wordMass.join('');
+  }
+    console.log(mass.join(' ')); */
+
+  /* console.log выводит элемент в виде,
+  * удобном для исследования HTML-структуры.
+  * console.dir выводит элемент в виде JavaScript-объекта,
+  * удобно для анализа его свойств.
+  */
+  // console.log(document.body);
+  // console.dir(document.body);
+  /* querySelectorAll собирает найденные элементы в «псевдомассив»
+  Этот перебор происходит очень быстро */
+
+  /* Результаты поиска getElementsBy* – живые!
+  Возвращает специальный объект, имеющий тип NodeList или HTMLCollection.
+  Он похож на массив, так как имеет нумерованные элементы и длину,
+  но внутри это не готовая коллекция, а «живой поисковой запрос»
+  При изменении документа – изменяется и результат запроса. */
+
+  console.log('\n---------------------------------------------Задача 2\n');
+  var li1 = document.querySelectorAll('#ul1 li');
+
+  Array.prototype.forEach.call(li1, function (li) {
+    var text = li.childNodes[0].data.trim();
+    var count = li.getElementsByTagName('li').length;
+    console.log(text + ': ' + count);
+  });
+
+  console.log('\n---------------------------------------------Задача 1\n');
+  var table1 = document.getElementById('table1');
+  for (var _i = 0; _i < table1.rows.length; _i++) {
+    table1.rows[_i].cells[_i].style.backgroundColor = 'red';
+  }
+
+  // document.documentElement.firstElementChild
+  // document.body.firstElementChild.nextElementSibling
+  // document.body.firstElementChild.nextElementSibling.lastElementChild
+
+  /* for (let i = 0; i < document.body.children.length; i++) {
+    console.log(document.body.children[i]);
+  } */
+
+  /* for (let i = 0; i < document.body.childNodes.length; i++) {
+    console.log(document.body.childNodes[i]);
+  } */
+
+  console.log('\n---------------------------------------------Задача 0\n');
+  // Объектная модель браузера (BOM)
+  // BOM – это объекты для работы с чем угодно, кроме документа.
+  console.log('\n');
+  console.log(window.navigator.userAgent); // содержит информацию о браузере
+  console.log(window.navigator.platform); // содержит информацию о платформе
+
+  console.log('\n---------------------------------------------Задача 5\n');
+  var ul5 = document.getElementById('ul5');
+  var li5 = void 0;
+  var text = void 0;
+  var flag = true;
+  ul5.addEventListener('click', function () {
+    if (!li5) {
+      li5 = document.createElement('li');
+    }
+    while (flag) {
+      text = prompt('Введите текст:', '');
+      if (!text) {
+        break;
+      }
+      var li = li5.cloneNode(false);
+      li.innerText = text;
+      ul5.appendChild(li);
+    }
+  });
+})();
+console.log('\n---------------------------------------------Задача 6\n');
 (function () {
-  /*
-   * Полифилл для matches
-   */
-  if (Element.prototype.matches === undefined) {
-    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector;
+  function isEmptyObject(obj) {
+    for (var i in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function createTree(container, data) {
+    var ul = document.createElement('ul');
+    var li = document.createElement('li');
+    for (var key in data) {
+      if ({}.hasOwnProperty.call(data, key)) {
+        var liClone = li.cloneNode(false);
+        liClone.innerText = key;
+        if (isEmptyObject(data[key]) === false) {
+          createTree(liClone, data[key]);
+        }
+        ul.appendChild(liClone);
+      }
+    }
+    if (ul.firstElementChild) {
+      container.appendChild(ul);
+    }
+  }
+  var data6 = {
+    Рыбы: {
+      Форель: {},
+      Щука: {}
+    },
+    Деревья: {
+      Хвойные: {
+        Лиственница: {},
+        Ель: {}
+      },
+      Цветковые: {
+        Берёза: {},
+        Тополь: {}
+      }
+    }
+  };
+  var container6 = document.getElementById('container6');
+  createTree(container6, data6);
+})();
+
+console.log('\n---------------------------------------------Задача 7\n');
+(function () {
+  var container = document.getElementById('container7');
+  var li = container.getElementsByTagName('li');
+
+  for (var i = 0; i < li.length; i++) {
+    var text = li[i].firstChild.textContent;
+    var lengthInner = li[i].querySelectorAll('li').length;
+    if (lengthInner) {
+      li[i].firstChild.textContent = text + ' [' + lengthInner + ']';
+    }
   }
 })();
 
-/* function factorial(n) {
-  var result = 1;
+console.log('\n---------------------------------------------Задача 8\n');
+(function () {
+  function createCalendar(id, year, month) {
+    var elem = document.getElementById(id);
+    var monthCorrect = month - 1; // 1 january, 2 december
+    var monthNext = monthCorrect + 1;
+    var dayOfWeek = new Date(year, monthCorrect).getDay();
+    var lastDay = new Date(year, monthNext, 0).getDate();
 
-  for (var i = 2; i <= n; i++) {
-    result = result * i;
+    console.log(dayOfWeek);
+    console.log(lastDay);
   }
-  return result;
-}
 
-var n = 5;
-var k = 3;
-
-var answer = factorial(n)*factorial(n)/(factorial(k)*factorial(n-k)*factorial(n-k));
-
-console.log(answer); */
-
-/* function getNewCode(code, length) {
-  if (code >= 97 && code <= 122) {
-    if (code + length > 122) {
-      length = length - (122 - code);
-      code = 96 + length;
-    } else {
-      code = code + length;
-    }
-  }
-  if (code >= 65 && code <= 90) {
-    if (code + length > 90) {
-      length = length - (90 - code);
-      code = 64 + length;
-    } else {
-      code = code + length;
-    }
-  }
-  return String.fromCharCode(code);
-}
-var str = 'Mbgdhyy Ybgmxva Lvahhe!';
-var mass = String.prototype.split.call(str, ' ');
-var maxLength;
-
-for (var i = 0; i < mass.length; i++) {
-  if (i === 0) {
-    maxLength = mass[i].length;
-  } else if (maxLength < mass[i].length) {
-    maxLength = mass[i].length;
-  }
-}
-
-for (var i = 0; i < mass.length; i++) {
-  var wordMass = String.prototype.split.call(mass[i], '');
-
-  for (var j = 0; j < wordMass.length; j++) {
-    var code = wordMass[j].charCodeAt(0);
-    wordMass[j] = getNewCode(code, maxLength);
-  }
-  mass[i] = wordMass.join('');
-}
-
-console.log(mass.join(' ')); */
-
-/* console.log выводит элемент в виде,
- * удобном для исследования HTML-структуры.
- * console.dir выводит элемент в виде JavaScript-объекта,
- * удобно для анализа его свойств.
- */
-// console.log(document.body);
-// console.dir(document.body);
-/* querySelectorAll собирает найденные элементы в «псевдомассив»
-Этот перебор происходит очень быстро */
-
-/* Результаты поиска getElementsBy* – живые!
-Возвращает специальный объект, имеющий тип NodeList или HTMLCollection.
-Он похож на массив, так как имеет нумерованные элементы и длину,
-но внутри это не готовая коллекция, а «живой поисковой запрос»
-При изменении документа – изменяется и результат запроса. */
-
-console.log('\n---------------------------------------------Задача 2\n');
-var li1 = document.querySelectorAll('#ul1 li');
-
-Array.prototype.forEach.call(li1, function (li) {
-  var text = li.childNodes[0].data.trim();
-  var count = li.getElementsByTagName('li').length;
-  console.log(text + ': ' + count);
-});
-
-console.log('\n---------------------------------------------Задача 1\n');
-var table1 = document.getElementById('table1');
-for (var _i = 0; _i < table1.rows.length; _i++) {
-  table1.rows[_i].cells[_i].style.backgroundColor = 'red';
-}
-
-// document.documentElement.firstElementChild
-// document.body.firstElementChild.nextElementSibling
-// document.body.firstElementChild.nextElementSibling.lastElementChild
-
-/* for (let i = 0; i < document.body.children.length; i++) {
-  console.log(document.body.children[i]);
-} */
-
-/* for (let i = 0; i < document.body.childNodes.length; i++) {
-  console.log(document.body.childNodes[i]);
-} */
-
-console.log('\n---------------------------------------------Задача 0\n');
-// Объектная модель браузера (BOM)
-// BOM – это объекты для работы с чем угодно, кроме документа.
-console.log('\n');
-console.log(window.navigator.userAgent); // содержит информацию о браузере
-console.log(window.navigator.platform); // содержит информацию о платформе
-
+  createCalendar('calendar', 2018, 2);
+})();
 
 /* function delay(time) {
   return new Promise((resolve, reject) => {
