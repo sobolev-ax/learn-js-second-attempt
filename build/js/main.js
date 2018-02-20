@@ -411,13 +411,33 @@ console.log('\n---------------------------------------------Задача 9\n');
     spanMinutes.innerText = date.getMinutes();
     spanSecond.innerText = ' : ' + date.getSeconds();
 
-    container.innerHTML = '';
+    container.innerText = '';
 
     container.appendChild(spanHours);
     container.appendChild(spanMinutes);
     container.appendChild(spanSecond);
     setTimeout(time, 1000);
   });
+})();
+
+console.log('\n---------------------------------------------Задача 10\n');
+(function () {
+  var html = '<li>3</li><li>4</li><li>5</li>';
+  var elem = document.querySelector('#container10');
+
+  elem.insertAdjacentHTML('beforeEnd', html);
+})();
+
+console.log('\n---------------------------------------------Задача 11\n');
+(function () {
+  var sort = document.querySelectorAll('[data-sort-table]');
+  var sortLength = sort.length;
+
+  if (sortLength === 0) {
+    return;
+  } // exit from function;
+
+  console.log(sort);
 })();
 
 /* function delay(time) {

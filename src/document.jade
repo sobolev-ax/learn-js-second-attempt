@@ -1,4 +1,6 @@
 include template/header
+style.
+    body {padding: 15px;}
 .index-wrapper
     ul
         li
@@ -26,6 +28,49 @@ include template/header
         li Координаты в окне
         li Координаты в документе
         li Итого
+    h7 Задача 11
+    p Сортировка таблицы по щелчку на заголовке;
+    table#container11
+        tbody
+            tr
+                th(data-sort-table="string") Имя
+                th(data-sort-table="string") Фамилия
+                th(data-sort-table="string") Отчество
+                th(data-sort-table="number") Возраст
+            tr
+                td Вася
+                td Петров
+                td Александрович
+                td 10
+            tr
+                td Петя
+                td Иванов
+                td Петрович
+                td 15
+            tr
+                td Владимир
+                td Ленин
+                td Ильич
+                td 9
+            tr
+                td Александр
+                td Соболев
+                td Константинович
+                td 26
+            tr
+                td Сергей
+                td Соболев
+                td Константинович
+                td 36
+            tr
+                td Александр
+                td Денисов
+                td Вадимович
+                td 25
+    h7 Задача 10
+    ul#container10
+        li 1
+        li 2
     h7 Задача 9
     #container9
         p Часики
