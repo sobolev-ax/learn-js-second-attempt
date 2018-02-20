@@ -337,15 +337,112 @@ console.log('\n---------------------------------------------Задача 8\n');
 (() => {
   function createCalendar(id, year, month) {
     const elem = document.getElementById(id);
+    if (elem === null) {
+      return; // exit from function
+    }
     const monthCorrect = month - 1; // 1 january, 2 december
     const monthNext = monthCorrect + 1;
-    const dayOfWeek = new Date(year, monthCorrect).getDay();
+    const date = new Date(year, monthCorrect);
     const lastDay = new Date(year, monthNext, 0).getDate();
+    const countOfCell = 7;
 
+    const table = document.createElement('table');
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    const tbody = document.createElement('tbody');
+    const thead = document.createElement('thead');
 
-    console.log(dayOfWeek);
-    console.log(lastDay);
+    let trClone;
+
+    for (let i = 0; i < countOfCell; i++) {
+      const tdClone = td.cloneNode(false);
+      tr.appendChild(tdClone);
+    }
+
+    trClone = tr.cloneNode(true);
+    for (let i = 0; i < countOfCell; i++) {
+      let nameOfDay = '';
+      switch (i) {
+        case 0:
+          nameOfDay = 'пн';
+          break;
+        case 1:
+          nameOfDay = 'вт';
+          break;
+        case 2:
+          nameOfDay = 'ср';
+          break;
+        case 3:
+          nameOfDay = 'чт';
+          break;
+        case 4:
+          nameOfDay = 'пт';
+          break;
+        case 5:
+          nameOfDay = 'сб';
+          break;
+        case 6:
+          nameOfDay = 'вс';
+          break;
+        default:
+          break;
+      }
+      trClone.cells[i].style = 'background: rgba(120,120,120,.3)';
+      trClone.cells[i].innerText = nameOfDay;
+    }
+    thead.appendChild(trClone);
+
+    trClone = undefined;
+    for (let i = 1; i <= lastDay; i++) {
+      date.setDate(i);
+      const day = date.getDay() === 0 ? 7 : date.getDay(); // 1, 2, 3, 4, 5, 6, 7
+
+      if (trClone === undefined) {
+        trClone = tr.cloneNode(true);
+      } else if (day === 1) {
+        tbody.appendChild(trClone);
+        trClone = tr.cloneNode(true);
+      }
+
+      trClone.cells[day - 1].innerText = i;
+
+      if (i + 1 === lastDay) {
+        tbody.appendChild(trClone);
+      }
+    }
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    elem.appendChild(table);
   }
 
-  createCalendar('calendar', 2018, 2);
+  createCalendar('container8', 2018, 2);
+})();
+
+console.log('\n---------------------------------------------Задача 9\n');
+(() => {
+  setTimeout(function time() {
+    const date = new Date();
+    const container = document.querySelector('#container9');
+    const span = document.createElement('span');
+
+    const spanHours = span.cloneNode(false);
+    const spanMinutes = span.cloneNode(false);
+    const spanSecond = span.cloneNode(false);
+
+    spanHours.style = 'color: green';
+    spanMinutes.style = 'color: red';
+    spanSecond.style = 'color: blue';
+
+    spanHours.innerText = `${date.getHours()} : `;
+    spanMinutes.innerText = date.getMinutes();
+    spanSecond.innerText = ` : ${date.getSeconds()}`;
+
+    container.innerHTML = '';
+
+    container.appendChild(spanHours);
+    container.appendChild(spanMinutes);
+    container.appendChild(spanSecond);
+    setTimeout(time, 1000);
+  });
 })();
