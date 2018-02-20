@@ -437,6 +437,13 @@ console.log('\n---------------------------------------------Задача 11\n');
     return;
   } // exit from function;
 
+  for (var i = 0; i < sortLength; i++) {
+    sort[i].addEventListener('click', function (e) {
+      var atr = e.target.getAttribute('data-sort-table'); // number, string
+      var elems = {};
+    });
+  }
+
   console.log(sort);
 })();
 
