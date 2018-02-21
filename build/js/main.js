@@ -437,14 +437,66 @@ console.log('\n---------------------------------------------Задача 11\n');
     return;
   } // exit from function;
 
+  var parent = sort[0].parentElement;
+  var wrapper = [];
+
+  Object.defineProperty(wrapper, 'saved', {
+    enumerable: false,
+    writable: true,
+    value: false
+  });
+  Object.defineProperty(parent, 'sorted', {
+    enumerable: false,
+    writable: true,
+    value: {
+      string: false,
+      number: false
+    }
+  });
+
   for (var i = 0; i < sortLength; i++) {
     sort[i].addEventListener('click', function (e) {
-      var atr = e.target.getAttribute('data-sort-table'); // number, string
-      var elems = {};
+      var elem = e.target;
+      var tbody = elem.parentElement.parentElement;
+      var allRows = tbody.rows;
+      var index = elem.cellIndex;
+      var lengthAllRows = tbody.rows.length;
+      var method = elem.getAttribute('data-sort-table'); // number, string
+      var sorting = {
+        number: function number(a, b) {
+          var num1 = +a.cells[index].innerText;
+          var num2 = +b.cells[index].innerText;
+          if (num1 > num2) return 1;
+          return -1;
+        },
+        string: function string(a, b) {
+          var str1 = a.cells[index].innerText.toLowerCase();
+          var str2 = b.cells[index].innerText.toLowerCase();
+          return str1.localeCompare(str2);
+        }
+      };
+
+      if (!wrapper.saved) {
+        for (var j = 1; j < lengthAllRows; j++) {
+          wrapper[j] = tbody.rows[j];
+        }
+        wrapper.saved = true;
+      }
+
+      if (!parent.sorted[method]) {
+        wrapper.sort(sorting[method]);
+        parent.sorted[method] = true;
+        console.log('sorting');
+      } else {
+        wrapper.reverse();
+      }
+
+      // console.log(elem.parentElement.parentElement.rows);
+      // console.log(allRows);
+      // console.log(attr);
+      console.dir(wrapper);
     });
   }
-
-  console.log(sort);
 })();
 
 /* function delay(time) {

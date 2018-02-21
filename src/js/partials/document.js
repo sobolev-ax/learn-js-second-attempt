@@ -457,19 +457,69 @@ console.log('\n---------------------------------------------Задача 10\n');
 
 console.log('\n---------------------------------------------Задача 11\n');
 (() => {
-  let sort = document.querySelectorAll('[data-sort-table]');
-  let sortLength = sort.length;
+  const sort = document.querySelectorAll('[data-sort-table]');
+  const sortLength = sort.length;
 
   if (sortLength === 0) { return; } // exit from function;
 
+  const parent = sort[0].parentElement;
+  const wrapper = [];
+
+  Object.defineProperty(wrapper, 'saved', {
+    enumerable: false,
+    writable: true,
+    value: false,
+  });
+  Object.defineProperty(parent, 'sorted', {
+    enumerable: false,
+    writable: true,
+    value: {
+      string: false,
+      number: false,
+    },
+  });
+
   for (let i = 0; i < sortLength; i++) {
     sort[i].addEventListener('click', (e) => {
-      const atr = e.target.getAttribute('data-sort-table'); // number, string
-      let elems = {};
+      const elem = e.target;
+      const tbody = elem.parentElement.parentElement;
+      const allRows = tbody.rows;
+      const index = elem.cellIndex;
+      const lengthAllRows = tbody.rows.length;
+      const method = elem.getAttribute('data-sort-table'); // number, string
+      const sorting = {
+        number: (a, b) => {
+          const num1 = +a.cells[index].innerText;
+          const num2 = +b.cells[index].innerText;
+          if (num1 > num2) return 1;
+          return -1;
+        },
+        string: (a, b) => {
+          const str1 = a.cells[index].innerText.toLowerCase();
+          const str2 = b.cells[index].innerText.toLowerCase();
+          return str1.localeCompare(str2);
+        },
+      };
 
+      if (!wrapper.saved) {
+        for (let j = 1; j < lengthAllRows; j++) {
+          wrapper[j] = tbody.rows[j];
+        }
+        wrapper.saved = true;
+      }
 
+      if (!parent.sorted[method]) {
+        wrapper.sort(sorting[method]);
+        parent.sorted[method] = true;
+        console.log('sorting');
+      } else {
+        wrapper.reverse();
+      }
+
+      // console.log(elem.parentElement.parentElement.rows);
+      // console.log(allRows);
+      // console.log(attr);
+      console.dir(wrapper);
     });
   }
-
-  console.log(sort);
 })();
