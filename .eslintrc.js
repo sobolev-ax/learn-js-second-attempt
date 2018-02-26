@@ -10,6 +10,7 @@ module.exports = {
         "Element": true,
         "HTMLElement": true,
         "prompt": true,
+        "getComputedStyle": true,
     },
     "rules": {
         "no-alert": 0,

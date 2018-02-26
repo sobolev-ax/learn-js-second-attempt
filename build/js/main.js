@@ -590,7 +590,67 @@ console.log('\n---------------------------------------------Задача 13\n');
       cssText: 'box-shadow: 0px 0px 3px rgba(120,120,120,.5)',
     });
   }, 2000); */
+
+  /* function isHidden(elem) {
+    return !elem.offsetWidth && !elem.offsetHeight;
+  } */
 })();
+console.log('\n---------------------------------------------Задача 14\n');
+(function () {
+  var elem = document.querySelector('#container14');
+
+  elem.addEventListener('click', function () {
+    var height = elem.scrollHeight - elem.clientHeight - elem.scrollTop;
+    console.log('scrollBottom: ' + height);
+  });
+
+  var div = document.createElement('div');
+
+  div.style.overflowY = 'scroll';
+  div.style.width = '50px';
+  div.style.height = '50px';
+
+  div.style.visibility = 'hidden';
+
+  document.body.appendChild(div);
+  var size = div.offsetWidth - div.clientWidth;
+  document.body.removeChild(div);
+
+  console.log('scrollbar: ' + size);
+})();
+
+console.log('\n---------------------------------------------Задача 15\n');
+(function () {
+  var div = document.getElementById('moving-div');
+  var elem = document.createElement('div');
+  // IE || другой браузер
+  var computedStyle = div.currentStyle || getComputedStyle(div, '');
+
+  elem.style.width = div.offsetWidth + div.style.marginLeft + 'px';
+  elem.style.height = div.offsetHeight + 'px';
+  elem.style.marginTop = computedStyle.marginTop;
+  elem.style.marginBottom = computedStyle.marginBottom;
+
+  div.parentElement.appendChild(elem);
+
+  div.style.position = 'absolute';
+  div.style.top = 0;
+  div.style.right = 0;
+
+  // width, height, border, margin, padding
+})();
+
+console.log('\n---------------------------------------------Задача 16\n');
+(function () {
+  var field = document.querySelector('#field');
+  var ball = document.querySelector('#ball');
+
+  ball.style.top = field.clientHeight / 2 - ball.offsetHeight / 2 + 'px';
+  ball.style.left = field.clientWidth / 2 - ball.offsetWidth / 2 + 'px';
+})();
+
+console.log('\n---------------------------------------------Задача 17\n');
+(function () {})();
 
 /* function delay(time) {
   return new Promise((resolve, reject) => {
