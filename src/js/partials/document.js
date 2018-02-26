@@ -463,23 +463,33 @@ console.log('\n---------------------------------------------Задача 11\n');
   if (sortLength === 0) { return; } // exit from function;
 
   const parent = sort[0].parentElement;
-  const wrapper = [];
-
-  Object.defineProperty(wrapper, 'saved', {
-    enumerable: false,
-    writable: true,
-    value: false,
-  });
-  Object.defineProperty(parent, 'sorted', {
-    enumerable: false,
-    writable: true,
-    value: {
-      string: false,
-      number: false,
-    },
-  });
+  const wrapper = {};
 
   for (let i = 0; i < sortLength; i++) {
+    Object.defineProperty(wrapper, `coll[${i}]`, {
+      enumerable: false,
+      writable: true,
+      value: [],
+    });
+    Object.defineProperty(parent, `coll[${i}]`, {
+      enumerable: false,
+      writable: true,
+      value: {},
+    });
+    Object.defineProperty(parent[`coll[${i}]`], 'saved', {
+      enumerable: false,
+      writable: true,
+      value: false,
+    });
+    Object.defineProperty(parent[`coll[${i}]`], 'sorted', {
+      enumerable: false,
+      writable: true,
+      value: {
+        string: false,
+        number: false,
+      },
+    });
+
     sort[i].addEventListener('click', (e) => {
       const elem = e.target;
       const tbody = elem.parentElement.parentElement;
@@ -501,25 +511,30 @@ console.log('\n---------------------------------------------Задача 11\n');
         },
       };
 
-      if (!wrapper.saved) {
-        for (let j = 1; j < lengthAllRows; j++) {
-          wrapper[j] = tbody.rows[j];
+      if (!parent[`coll[${i}]`].saved) {
+        console.log(`parent[coll[${i}]]: saved`);
+        for (let j = 0; j < lengthAllRows - 1; j++) {
+          wrapper[`coll[${i}]`][j] = tbody.rows[j + 1];
         }
-        wrapper.saved = true;
+        parent[`coll[${i}]`].saved = true;
       }
 
-      if (!parent.sorted[method]) {
-        wrapper.sort(sorting[method]);
-        parent.sorted[method] = true;
-        console.log('sorting');
+      if (!parent[`coll[${i}]`].sorted[sorting[method]]) {
+        wrapper[`coll[${i}]`].sort(sorting[method]);
+        parent[`coll[${i}]`].sorted[sorting[method]] = true;
+        console.log(`sorting[coll[${i}]]: ${method}`);
       } else {
-        wrapper.reverse();
+        wrapper[`coll[${i}]`].reverse();
       }
 
-      // console.log(elem.parentElement.parentElement.rows);
-      // console.log(allRows);
-      // console.log(attr);
-      console.dir(wrapper);
+      let html = '';
+
+      for (let j = 0; j < wrapper[`coll[${i}]`].length; j++) {
+        tbody.removeChild(allRows[1]);
+        html += wrapper[`coll[${i}]`][j].outerHTML;
+      }
+
+      parent.insertAdjacentHTML('afterEnd', html);
     });
   }
 })();
