@@ -512,7 +512,6 @@ console.log('\n---------------------------------------------Задача 11\n');
       };
 
       if (!parent[`coll[${i}]`].saved) {
-        console.log(`parent[coll[${i}]]: saved`);
         for (let j = 0; j < lengthAllRows - 1; j++) {
           wrapper[`coll[${i}]`][j] = tbody.rows[j + 1];
         }
@@ -522,7 +521,6 @@ console.log('\n---------------------------------------------Задача 11\n');
       if (!parent[`coll[${i}]`].sorted[sorting[method]]) {
         wrapper[`coll[${i}]`].sort(sorting[method]);
         parent[`coll[${i}]`].sorted[sorting[method]] = true;
-        console.log(`sorting[coll[${i}]]: ${method}`);
       } else {
         wrapper[`coll[${i}]`].reverse();
       }
@@ -537,4 +535,80 @@ console.log('\n---------------------------------------------Задача 11\n');
       parent.insertAdjacentHTML('afterEnd', html);
     });
   }
+})();
+
+console.log('\n---------------------------------------------Задача 12\n');
+(() => {
+  const anchor = document.createElement('a');
+
+  anchor.setAttribute('href', '/');
+  anchor.innerText = 'Нажми меня';
+
+  anchor.style.borderStyle = 'grove';
+  anchor.style.MozBorderRadius = '8px';
+  anchor.style.WebkitBorderRadius = '8px';
+  anchor.style.border = '2px groove green';
+  anchor.style.display = 'block';
+  anchor.style.height = '30px';
+  anchor.style.lineHeight = '30px';
+  anchor.style.width = '100px';
+  anchor.style.textDecoration = 'none';
+  anchor.style.textAlign = 'center';
+  anchor.style.color = 'red';
+  anchor.style.fontWeight = 'bold';
+
+  document.querySelector('#container12').appendChild(anchor);
+})();
+console.log('\n---------------------------------------------Задача 13\n');
+(() => {
+  /**
+ * Показывает уведомление, пропадающее через 1.5 сек
+ *
+ * @param options.top {number} вертикальный отступ, в px
+ * @param options.left {number} левый отступ, в px
+ * @param options.cssText {string} строка стиля
+ * @param options.className {string} CSS-класс
+ * @param options.html {string} HTML-текст для показа
+ */
+  function showNotification(options) {
+    const notification = document.createElement('div');
+    const s = notification.style;
+
+    notification.innerText = options.html;
+    notification.classList.add(options.className);
+    if (options.className !== undefined) {
+      notification.classList.add('notification');
+    }
+
+    if (options.cssText !== undefined) {
+      s.cssText = options.cssText;
+    }
+    s.position = 'fixed';
+    s.top = `${options.top}px`;
+    s.left = `${options.left}px`;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 1500);
+  }
+
+  showNotification({
+    top: 10,
+    left: 10,
+    html: 'Привет!!!',
+    className: 'welcome',
+    cssText: 'box-shadow: 0px 0px 3px rgba(120,120,120,.5)',
+  });
+  /* let i = 0;
+  setInterval(() => {
+    showNotification({
+      top: 10,
+      left: 10,
+      html: `Привет ${++i}`,
+      className: 'welcome',
+      cssText: 'box-shadow: 0px 0px 3px rgba(120,120,120,.5)',
+    });
+  }, 2000); */
 })();
