@@ -626,7 +626,6 @@ console.log('\n---------------------------------------------Задача 15\n');
   // IE || другой браузер
   var computedStyle = div.currentStyle || getComputedStyle(div, '');
 
-  elem.style.width = div.offsetWidth + div.style.marginLeft + 'px';
   elem.style.height = div.offsetHeight + 'px';
   elem.style.marginTop = computedStyle.marginTop;
   elem.style.marginBottom = computedStyle.marginBottom;
@@ -650,7 +649,19 @@ console.log('\n---------------------------------------------Задача 16\n');
 })();
 
 console.log('\n---------------------------------------------Задача 17\n');
-(function () {})();
+(function () {
+  var elem = document.querySelector('#elem17');
+  var box = document.querySelector('#container17');
+  var width = box.clientWidth - (elem.offsetWidth - elem.clientWidth);
+
+  elem.style.width = width + 'px';
+  elem.style.width = width - (elem.offsetWidth - box.clientWidth) + 'px';
+})();
+
+console.log('\n---------------------------------------------Задача 18\n');
+(function () {
+  // Полифилл для pageYOffset в IE8
+})();
 
 /* function delay(time) {
   return new Promise((resolve, reject) => {
