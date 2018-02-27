@@ -661,6 +661,16 @@ console.log('\n---------------------------------------------Задача 17\n');
 console.log('\n---------------------------------------------Задача 18\n');
 (function () {
   // Полифилл для pageYOffset в IE8
+  if (!window.pageYOffset) {
+    Object.defineProperty(window, 'pageYOffset', {
+      get: function get() {
+        return document.documentElement.scrollTop;
+      }
+    });
+  }
+  document.querySelector('#container18').addEventListener('click', function () {
+    alert(window.pageYOffset);
+  });
 })();
 
 /* function delay(time) {

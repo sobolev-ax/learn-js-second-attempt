@@ -673,7 +673,7 @@ console.log('\n---------------------------------------------Задача 17\n');
 (() => {
   const elem = document.querySelector('#elem17');
   const box = document.querySelector('#container17');
-  let width = box.clientWidth - (elem.offsetWidth - elem.clientWidth);
+  const width = box.clientWidth - (elem.offsetWidth - elem.clientWidth);
 
   elem.style.width = `${width}px`;
   elem.style.width = `${width - (elem.offsetWidth - box.clientWidth)}px`;
@@ -682,4 +682,12 @@ console.log('\n---------------------------------------------Задача 17\n');
 console.log('\n---------------------------------------------Задача 18\n');
 (() => {
   // Полифилл для pageYOffset в IE8
+  if (!window.pageYOffset) {
+    Object.defineProperty(window, 'pageYOffset', {
+      get: () => document.documentElement.scrollTop,
+    });
+  }
+  document.querySelector('#container18').addEventListener('click', () => {
+    alert(window.pageYOffset);
+  });
 })();
