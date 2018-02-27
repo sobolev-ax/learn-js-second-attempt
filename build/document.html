@@ -33,8 +33,115 @@
     <li>Координаты в документе</li>
     <li>Итого</li>
   </ul>
-  <h7>Задача 19</h7>
-  <div id="container19"></div>
+  <h7>Задача 21</h7>
+  <div id="container21"></div>
+  <h7>Задача 20 (кликните на ЦИТАТУ чтобы увидеть заметки: 2000ms)</h7>
+  <style>
+    .note20 {
+        top: 100px;
+        position: fixed;
+        z-index: 1000;
+        padding: 5px;
+        border: 1px solid black;
+        background: white;
+        text-align: center;
+        font: italic 14px Georgia;
+    }
+    
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 0 0 0 100px;
+        padding: .5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        display: inline-block;
+        white-space: pre;
+    }
+    
+    blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: .1em;
+        margin-right: .25em;
+        vertical-align: -.4em;
+    }
+  </style>
+  <div id="container20">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+      Reprehenderit sint atque dolorum fuga ad incidunt voluptatum 
+      error fugiat animi amet! Odio temporibus nulla id unde 
+      quaerat dignissimos enim nisi rem provident molestias 
+      sit tempore omnis recusandae  esse sequi officia sapiente.
+    </p>
+    <blockquote id="blockquote20">
+      - Что на завтрак, Бэрримор? <br />
+      - Овсянка, сэр. <br />
+      - А на обед? <br />
+      - Овсянка, сэр. <br />
+      - Ну а на ужин? <br />
+      - Котлеты, сэр. <br />
+      - Уррра!!! <br />
+      - Из овсянки, сэр!!!<br />
+    </blockquote>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+      Reprehenderit sint atque dolorum fuga ad incidunt voluptatum 
+      error fugiat animi amet! Odio temporibus nulla id unde 
+      quaerat dignissimos enim nisi rem provident molestias 
+      sit tempore omnis recusandae  esse sequi officia sapiente.
+    </p>
+  </div>
+  <h7>Задача 19 (координаты четырёх точек в консоли)</h7>
+  <style>
+    #container19 {
+        padding: 20px 0 0 20px;
+        cursor: pointer;
+    }
+    #field19 {
+        overflow: hidden;
+        width: 200px;
+        height: 150px;
+        border-top: 10px solid black;
+        border-right: 10px solid gray;
+        border-bottom: 10px solid gray;
+        border-left: 10px solid black;
+        background-color: #00FF00;
+        font: 10px/1.2 monospace;
+    }
+    .triangle-right19 {
+        position: relative;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 20px solid red;
+        text-indent: -20px;
+        font: 12px/1 monospace;
+    }
+  </style>
+  <div id="container19">
+    Кликните на любое место, чтобы получить координаты относительно окна. <br>
+    Это для удобства тестирования, чтобы проверить 
+    результат, который вы получите из DOM. <br>
+    <div id="coords19">(координаты появятся тут)</div>
+    <div id="field19">
+      . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+      . . . . . . . . .
+    </div>
+    <div style="left:-20px;top:-176px" class="triangle-right19">1</div>
+    <div style="left:-10px;top:-178px" class="triangle-right19">2</div>
+    <div style="left:190px;top:-40px" class="triangle-right19">3</div>
+    <div style="left:200px;top:-42px" class="triangle-right19">4</div>
+  </div>
   <h7>Задача 18 (Полифилл для pageYOffset в IE8)</h7>
   <div id="container18">Щёлкните, чтобы проверить</div>
   <h7>Задача 17 (распахнуть элемент)</h7>

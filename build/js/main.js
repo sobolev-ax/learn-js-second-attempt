@@ -673,6 +673,99 @@ console.log('\n---------------------------------------------Задача 18\n');
   });
 })();
 
+console.log('\n---------------------------------------------Задача 19\n');
+(function () {
+  // выводит текущие координаты при клике
+  document.getElementById('container19').onclick = function (e) {
+    document.getElementById('coords19').innerHTML = e.clientX + ' : ' + e.clientY;
+  };
+
+  var field = document.getElementById('field19');
+  var coords = field.getBoundingClientRect();
+
+  console.log('Refresh page to update coords!');
+  console.log('1. ' + coords.left + ' : ' + coords.top);
+  console.log('2. ' + (coords.left + field.clientLeft) + ' : ' + (coords.top + field.clientTop));
+  console.log('3. ' + (coords.left + field.clientLeft + field.clientWidth) + ' : ' + (coords.top + field.clientTop + field.clientHeight));
+  console.log('4. ' + coords.right + ' : ' + coords.bottom);
+})();
+
+console.log('\n---------------------------------------------Задача 20\n');
+(function () {
+  /**
+     * Позиционирует элемент elem относительно элемента anchor, как указано в
+     * в position.
+     *
+     * @param {Node} anchor     Элемент-якорь, относительно которого задана позиция
+     * @param {string} position Позиция: одно из top/right/bottom
+     * @param {Node} elem       Элемент, который будет позиционирован
+     */
+  function positionAt(anchor, position, elem) {
+    var e = elem.cloneNode(true);
+    var coords = anchor.getBoundingClientRect();
+    var height = elem.offsetHeight;
+    var width = elem.offsetWidth;
+    switch (position) {
+      case 'top':
+        e.style.top = coords.top - height + 'px';
+        e.style.left = coords.left + 'px';
+        break;
+      case 'right':
+        e.style.top = coords.top + 'px';
+        e.style.left = coords.right + 'px';
+        break;
+      case 'bottom':
+        e.style.top = coords.bottom + 'px';
+        e.style.left = coords.left + 'px';
+        break;
+      case 'left':
+        e.style.top = coords.top + 'px';
+        e.style.left = coords.left - width + 'px';
+        break;
+      default:
+        console.log('positionAt: unknown position');
+        break;
+    }
+    elem.parentElement.replaceChild(e, elem);
+
+    return e;
+  }
+
+  /**
+   * Показывает заметку с текстом html на позиции position
+   * относительно элемента anchor
+   */
+  function showNote(anchor, position, html) {
+    var note = document.createElement('div');
+
+    note.classList.add('note20');
+    note.innerText = html;
+    anchor.parentElement.appendChild(note);
+
+    return positionAt(anchor, position, note);
+  }
+
+  // проверка работоспособности
+  var blockquote = document.querySelector('#blockquote20');
+
+  blockquote.addEventListener('click', function () {
+    var note1 = showNote(blockquote, 'top', 'заметка сверху');
+    var note2 = showNote(blockquote, 'right', 'заметка справа');
+    var note3 = showNote(blockquote, 'bottom', 'заметка снизу');
+    var note4 = showNote(blockquote, 'left', 'заметка слева');
+    var parent = note1.parentElement;
+    setTimeout(function () {
+      parent.removeChild(note1);
+      parent.removeChild(note2);
+      parent.removeChild(note3);
+      parent.removeChild(note4);
+    }, 2000);
+  });
+})();
+
+console.log('\n---------------------------------------------Задача 21\n');
+(function () {})();
+
 /* function delay(time) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
