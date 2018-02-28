@@ -726,21 +726,37 @@ console.log('\n---------------------------------------------Задача 20\n');
     const height = elem.offsetHeight;
     const width = elem.offsetWidth;
     switch (position) {
+      case 'top-out':
       case 'top':
-        e.style.top = `${coords.top - height}px`;
+        e.style.top = `${(window.pageYOffset + coords.top) - height}px`;
         e.style.left = `${coords.left}px`;
         break;
+      case 'right-out':
       case 'right':
-        e.style.top = `${coords.top}px`;
+        e.style.top = `${coords.top + window.pageYOffset}px`;
         e.style.left = `${coords.right}px`;
         break;
+      case 'bottom-out':
       case 'bottom':
-        e.style.top = `${coords.bottom}px`;
+        e.style.top = `${coords.bottom + window.pageYOffset}px`;
         e.style.left = `${coords.left}px`;
         break;
+      case 'left-out':
       case 'left':
-        e.style.top = `${coords.top}px`;
+        e.style.top = `${coords.top + window.pageYOffset}px`;
         e.style.left = `${coords.left - width}px`;
+        break;
+      case 'top-in':
+        console.log('--------------');
+        break;
+      case 'right-in':
+        console.log('--------------');
+        break;
+      case 'bottom-in':
+        console.log('--------------');
+        break;
+      case 'left-in':
+        console.log('--------------');
         break;
       default:
         console.log('positionAt: unknown position');
@@ -786,14 +802,30 @@ console.log('\n---------------------------------------------Задача 20\n');
 console.log('\n---------------------------------------------Задача 21\n');
 (() => {
   function getDocumentScroll() {
+    const h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight,
+    );
     return {
-      top: 0,
-      bottom: 0,
-      height: screen.availHeight,
+      top: window.pageYOffset,
+      bottom: window.pageYOffset + document.documentElement.clientHeight,
+      height: h,
     };
   }
 
-  let result = getDocumentScroll();
+  document.getElementById('container21').addEventListener('click', () => {
+    const result = getDocumentScroll();
+
+    console.log(`координата верхней границы видимой части: ${result.top}`);
+    console.log(`координата нижней границы видимой части: ${result.bottom}`);
+    console.log(`полная высота документа, включая прокрутку: ${result.height}`);
+  });
+
+  const result = getDocumentScroll();
 
   console.log(`координата верхней границы видимой части: ${result.top}`);
   console.log(`координата нижней границы видимой части: ${result.bottom}`);

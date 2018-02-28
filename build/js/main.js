@@ -706,21 +706,37 @@ console.log('\n---------------------------------------------Задача 20\n');
     var height = elem.offsetHeight;
     var width = elem.offsetWidth;
     switch (position) {
+      case 'top-out':
       case 'top':
-        e.style.top = coords.top - height + 'px';
+        e.style.top = window.pageYOffset + coords.top - height + 'px';
         e.style.left = coords.left + 'px';
         break;
+      case 'right-out':
       case 'right':
-        e.style.top = coords.top + 'px';
+        e.style.top = coords.top + window.pageYOffset + 'px';
         e.style.left = coords.right + 'px';
         break;
+      case 'bottom-out':
       case 'bottom':
-        e.style.top = coords.bottom + 'px';
+        e.style.top = coords.bottom + window.pageYOffset + 'px';
         e.style.left = coords.left + 'px';
         break;
+      case 'left-out':
       case 'left':
-        e.style.top = coords.top + 'px';
+        e.style.top = coords.top + window.pageYOffset + 'px';
         e.style.left = coords.left - width + 'px';
+        break;
+      case 'top-in':
+        console.log('--------------');
+        break;
+      case 'right-in':
+        console.log('--------------');
+        break;
+      case 'bottom-in':
+        console.log('--------------');
+        break;
+      case 'left-in':
+        console.log('--------------');
         break;
       default:
         console.log('positionAt: unknown position');
@@ -766,12 +782,21 @@ console.log('\n---------------------------------------------Задача 20\n');
 console.log('\n---------------------------------------------Задача 21\n');
 (function () {
   function getDocumentScroll() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
     return {
-      top: 0,
-      bottom: 0,
-      height: screen.availHeight
+      top: window.pageYOffset,
+      bottom: window.pageYOffset + document.documentElement.clientHeight,
+      height: h
     };
   }
+
+  document.getElementById('container21').addEventListener('click', function () {
+    var result = getDocumentScroll();
+
+    console.log('\u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u0430 \u0432\u0435\u0440\u0445\u043D\u0435\u0439 \u0433\u0440\u0430\u043D\u0438\u0446\u044B \u0432\u0438\u0434\u0438\u043C\u043E\u0439 \u0447\u0430\u0441\u0442\u0438: ' + result.top);
+    console.log('\u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u0430 \u043D\u0438\u0436\u043D\u0435\u0439 \u0433\u0440\u0430\u043D\u0438\u0446\u044B \u0432\u0438\u0434\u0438\u043C\u043E\u0439 \u0447\u0430\u0441\u0442\u0438: ' + result.bottom);
+    console.log('\u043F\u043E\u043B\u043D\u0430\u044F \u0432\u044B\u0441\u043E\u0442\u0430 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0430, \u0432\u043A\u043B\u044E\u0447\u0430\u044F \u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0443: ' + result.height);
+  });
 
   var result = getDocumentScroll();
 
