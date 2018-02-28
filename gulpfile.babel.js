@@ -33,17 +33,17 @@ const path = {
     fonts: 'build/fonts/',
     json: 'build/json/',
   },
-  src: { /* Пути откуда брать исходники */
-    jade: 'src/*.jade', /* Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html */
-    html: 'src/*.html', /* Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html */
-    jsUglify: 'src/js/mainUglify.js', /* В стилях и скриптах нам понадобятся только main файлы */
-    js: 'src/js/main.js', /* В стилях и скриптах нам понадобятся только main файлы */
+  src: {
+    jade: 'src/*.jade',
+    html: 'src/*.html',
+    jsUglify: 'src/js/mainUglify.js',
+    js: 'src/js/*.js',
     style: 'src/style/main.scss',
-    img: ['src/images/*.*', 'src/images/photorama/*.*'], /* означает - взять все файлы всех расширений из папки и из вложенных каталогов */
+    img: ['src/images/*.*', 'src/images/photorama/*.*'],
     fonts: 'src/fonts/*.*',
     json: 'src/json/*.*',
   },
-  watch: { /* Тут мы укажем, за изменением каких файлов мы хотим наблюдать */
+  watch: {
     jade: ['src/*.jade', 'src/template/*.jade'],
     html: 'src/template/*.html',
     js: ['src/js/*.js', 'src/js/partials/*.js'],

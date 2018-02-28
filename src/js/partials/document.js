@@ -747,16 +747,20 @@ console.log('\n---------------------------------------------Задача 20\n');
         e.style.left = `${coords.left - width}px`;
         break;
       case 'top-in':
-        console.log('--------------');
+        e.style.top = `${coords.top + window.pageYOffset}px`;
+        e.style.left = `${coords.left}px`;
         break;
       case 'right-in':
-        console.log('--------------');
+        e.style.top = `${coords.top + window.pageYOffset}px`;
+        e.style.left = `${coords.right - width}px`;
         break;
       case 'bottom-in':
-        console.log('--------------');
+        e.style.top = `${(coords.bottom + window.pageYOffset) - height}px`;
+        e.style.left = `${coords.left}px`;
         break;
       case 'left-in':
-        console.log('--------------');
+        e.style.top = `${(coords.bottom + window.pageYOffset) - height}px`;
+        e.style.left = `${coords.left}px`;
         break;
       default:
         console.log('positionAt: unknown position');
@@ -789,12 +793,18 @@ console.log('\n---------------------------------------------Задача 20\n');
     const note2 = showNote(blockquote, 'right', 'заметка справа');
     const note3 = showNote(blockquote, 'bottom', 'заметка снизу');
     const note4 = showNote(blockquote, 'left', 'заметка слева');
+    const note5 = showNote(blockquote, 'top-in', 'заметка top-in');
+    const note6 = showNote(blockquote, 'right-in', 'заметка right-in');
+    const note7 = showNote(blockquote, 'left-in', 'заметка left-in');
     const parent = note1.parentElement;
     setTimeout(() => {
       parent.removeChild(note1);
       parent.removeChild(note2);
       parent.removeChild(note3);
       parent.removeChild(note4);
+      parent.removeChild(note5);
+      parent.removeChild(note6);
+      parent.removeChild(note7);
     }, 2000);
   });
 })();

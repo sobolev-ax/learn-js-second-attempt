@@ -1,0 +1,21 @@
+include template/header
+style.
+    body {padding: 15px;}
+.index-wrapper
+    ul
+        li
+            a(href="index.html" title="Современный учебник Javascript") назад
+    h1 Основы работы с событиями
+    p.
+        Введение в браузерные события, общие свойства всех событий и приёмы работы с ними.
+    ul
+        li Введение в браузерные события
+        li Порядок обработки событий
+        li Объект события
+        li Всплытие и перехват
+        li Делегирование событий
+        li Приём проектирования "поведение"
+        li Действия браузера по умолчанию
+        li Генерация событий на элементах
+script(defer src="./js/events-and-interfaces.js")
+include template/footer
