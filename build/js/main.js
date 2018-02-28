@@ -764,7 +764,21 @@ console.log('\n---------------------------------------------Задача 20\n');
 })();
 
 console.log('\n---------------------------------------------Задача 21\n');
-(function () {})();
+(function () {
+  function getDocumentScroll() {
+    return {
+      top: 0,
+      bottom: 0,
+      height: screen.availHeight
+    };
+  }
+
+  var result = getDocumentScroll();
+
+  console.log('\u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u0430 \u0432\u0435\u0440\u0445\u043D\u0435\u0439 \u0433\u0440\u0430\u043D\u0438\u0446\u044B \u0432\u0438\u0434\u0438\u043C\u043E\u0439 \u0447\u0430\u0441\u0442\u0438: ' + result.top);
+  console.log('\u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u0430 \u043D\u0438\u0436\u043D\u0435\u0439 \u0433\u0440\u0430\u043D\u0438\u0446\u044B \u0432\u0438\u0434\u0438\u043C\u043E\u0439 \u0447\u0430\u0441\u0442\u0438: ' + result.bottom);
+  console.log('\u043F\u043E\u043B\u043D\u0430\u044F \u0432\u044B\u0441\u043E\u0442\u0430 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0430, \u0432\u043A\u043B\u044E\u0447\u0430\u044F \u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0443: ' + result.height);
+})();
 
 /* function delay(time) {
   return new Promise((resolve, reject) => {

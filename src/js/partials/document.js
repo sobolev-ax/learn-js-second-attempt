@@ -785,5 +785,17 @@ console.log('\n---------------------------------------------Задача 20\n');
 
 console.log('\n---------------------------------------------Задача 21\n');
 (() => {
+  function getDocumentScroll() {
+    return {
+      top: 0,
+      bottom: 0,
+      height: screen.availHeight,
+    };
+  }
 
+  let result = getDocumentScroll();
+
+  console.log(`координата верхней границы видимой части: ${result.top}`);
+  console.log(`координата нижней границы видимой части: ${result.bottom}`);
+  console.log(`полная высота документа, включая прокрутку: ${result.height}`);
 })();
