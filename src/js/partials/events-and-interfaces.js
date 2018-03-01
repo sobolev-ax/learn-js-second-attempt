@@ -23,7 +23,7 @@ console.log('\n---------------------------------------------Задача 2\n');
     btn.addEventListener('click', handler);
   }
 })();
-console.log('\n---------------------------------------------Задача 2\n');
+console.log('\n---------------------------------------------Задача 3\n');
 (() => {
   const btn = document.querySelectorAll('[data-menu-btn]');
   const box = document.querySelectorAll('[data-menu-box]');

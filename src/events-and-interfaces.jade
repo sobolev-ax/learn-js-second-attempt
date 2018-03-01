@@ -17,6 +17,48 @@ style.
         li Приём проектирования "поведение"
         li Действия браузера по умолчанию
         li Генерация событий на элементах
+    h7 Задача 4
+    style.
+        .remove-button {
+            font-size: 110%;
+            color: darkred;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            float: right;
+        }
+        .pane {
+            background: #edf5e1;
+            padding: 10px 20px 10px;
+            border-top: solid 2px #c4df9b;
+            margin-bottom: 30px;
+        }
+    p#container4
+        .pane
+            button(class="remove-button" data-delete-parent) [x]
+            h3 Лошадь
+            p
+                | Домашняя лошадь — животное семейства непарнокопытных, 
+                | одомашненный и единственный сохранившийся подвид дикой лошади, 
+                | вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.
+        .pane
+            button(class="remove-button" data-delete-parent) [x]
+            h3 Осёл
+            p
+                | Домашний осёл или ишак — одомашненный подвид дикого осла, 
+                | сыгравший важную историческую роль в развитии хозяйства и 
+                | культуры человека. Все одомашненные ослы относятся к африканским ослам.
+        .pane
+            button(class="remove-button" data-delete-parent) [x]
+            h3 Корова, а также пара слов о диком быке, о волах и о тёлках. 
+            p
+                | Коро́ва — самка домашнего быка, одомашненного подвида 
+                | дикого быка, парнокопытного жвачного животного семейства полорогих. 
+                | Самцы вида называются быками, молодняк — телятами, 
+                | кастрированные самцы — волами. Молодых (до первой стельности) 
+                |самок называют тёлками.
     h7 Задача 3
     style.
         [data-menu-btn] {
@@ -42,27 +84,27 @@ style.
             display: none;
         }
     p#container3
-        div(data-menu-btn="menu3_0")
+        div(data-menu-btn)
             span.right ▶
             span.down ▼
             | Сладости (нажми меня)!
-        ul(data-menu-box="menu3_0")
+        ul(data-menu-box)
             li Торт
             li Пончик
             li Пирожное
-        div(data-menu-btn="menu3_1")
+        div(data-menu-btn)
             span.right ▶
             span.down ▼
             | Сладости (нажми меня)!
-        ul(data-menu-box="menu3_1")
+        ul(data-menu-box)
             li Торт
             li Пончик
             li Пирожное
-        div(data-menu-btn="menu3_2")
+        div(data-menu-btn)
             span.right ▶
             span.down ▼
             | Сладости (нажми меня)!
-        ul(data-menu-box="menu3_0")
+        ul(data-menu-box)
             li Торт
             li Пончик
             li Пирожное
