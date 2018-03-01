@@ -17,8 +17,60 @@ style.
         li Приём проектирования "поведение"
         li Действия браузера по умолчанию
         li Генерация событий на элементах
+    h7 Задача 3
+    style.
+        [data-menu-btn] {
+            padding-left: 20px;
+            position: relative;
+        }
+        [data-menu-btn] > .right,
+        [data-menu-btn] > .down {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        [data-menu-btn] > .right {
+            display: block;
+        }
+        [data-menu-btn] > .down {
+            display: none;
+        }
+        [data-menu-btn].open > .down {
+            display: block;
+        }
+        [data-menu-btn].open > .right {
+            display: none;
+        }
+    p#container3
+        div(data-menu-btn="menu3_0")
+            span.right ▶
+            span.down ▼
+            | Сладости (нажми меня)!
+        ul(data-menu-box="menu3_0")
+            li Торт
+            li Пончик
+            li Пирожное
+        div(data-menu-btn="menu3_1")
+            span.right ▶
+            span.down ▼
+            | Сладости (нажми меня)!
+        ul(data-menu-box="menu3_1")
+            li Торт
+            li Пончик
+            li Пирожное
+        div(data-menu-btn="menu3_2")
+            span.right ▶
+            span.down ▼
+            | Сладости (нажми меня)!
+        ul(data-menu-box="menu3_0")
+            li Торт
+            li Пончик
+            li Пирожное
+    h7 Задача 2
+    p#container2
+        input(id="input2" type="button" value="Нажмите, чтобы спрятать меня")
     h7 Задача 1
-    #container1
+    p#container1
         input(id="input1" type="button" value="Нажмите, чтобы спрятать текст")
         div(id="text1") Текст
 script(defer src="./js/events-and-interfaces.js")
