@@ -85,6 +85,51 @@ console.log('\n---------------------------------------------Задача 4\n');
   const slider = document.querySelector('#slider ul');
 
   if (next !== null && prev !== null && slider !== null) {
-    console.log(122);
+    const li = slider.querySelectorAll('li');
+    let current;
+    const step = 3;
+    let distance;
+    let position;
+
+    current = step;
+    position = 0;
+
+    next.addEventListener('click', () => {
+      if (li[current] === undefined) {
+        return;
+      }
+      distance = 0;
+      let i = current;
+      const max = current + step;
+      for (i; i < max; i++) {
+        if (li[i] === undefined) {
+          break;
+        } else {
+          distance += li[i].offsetWidth;
+          current++;
+        }
+      }
+      position -= distance;
+      slider.style.transform = `translateX(${position}px)`;
+    });
+
+    prev.addEventListener('click', () => {
+      if (current === 0) {
+        return;
+      }
+      distance = 0;
+      let i = current;
+      const max = current + step;
+      for (i; i < max; i++) {
+        if (li[i] === undefined) {
+          break;
+        } else {
+          distance += li[i].offsetWidth;
+          current--;
+        }
+      }
+      position += distance;
+      slider.style.transform = `translateX(${position}px)`;
+    });
   }
 })();
