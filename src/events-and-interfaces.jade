@@ -17,6 +17,97 @@ style.
         li Приём проектирования "поведение"
         li Действия браузера по умолчанию
         li Генерация событий на элементах
+    h7 Задача 5
+    style.
+        .arrow {
+            padding: 0;
+            background: #ddd;
+            border-radius: 15px;
+            border: 1px solid gray;
+            font-size: 24px;
+            line-height: 24px;
+            color: #444;
+            display: block;
+        }
+
+        .arrow:focus {
+            outline: none;
+        }
+
+        .arrow:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        .ul {
+            height: 130px;
+            width: 9999px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            /* убрать между inline-block li лишние пробелы, которые есть в HTML */
+            /* http://davidwalsh.name/remove-whitespace-inline-block */
+            font-size: 0;
+        }
+
+        .ul img {
+            width: 130px;
+            height: 130px;
+            /* по умолчанию inline, но в ряде браузеров это даст лишнее пространство вокруг элементов */
+            display: block;
+        }
+
+        .ul li {
+            /* если в HTML между элементами <li>..</li> есть пробелы, то они будут видны на странице,
+            чтобы их избежать, нужно либо писать <li>..</li><li>..</li> 
+            вплотную, либо не ставить закрывающие </li> */
+            display: inline-block;
+        }
+        #slider {
+            position: relative;
+            width: 390px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        #slider .slider-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+        #slider .arrow {
+            position: absolute;
+            top: 50px;
+        }
+        #slider .left {
+            left: 0px;
+        }
+        #slider .right {
+            right: 0px;
+        }
+    #slider
+        button.arrow.left ⇦
+        button.arrow.right ⇨
+        .slider-wrapper
+            ul(class='ul')
+                li
+                    img(src='https://js.cx/carousel/1.png')
+                li
+                    img(src='https://js.cx/carousel/2.png')
+                li
+                    img(src='https://js.cx/carousel/3.png')
+                li
+                    img(src='https://js.cx/carousel/4.png')
+                li
+                    img(src='https://js.cx/carousel/5.png')
+                li
+                    img(src='https://js.cx/carousel/6.png')
+                li
+                    img(src='https://js.cx/carousel/7.png')
+                li
+                    img(src='https://js.cx/carousel/8.png')
+                li
+                    img(src='https://js.cx/carousel/9.png')
+                li
+                    img(src='https://js.cx/carousel/10.png')
     h7 Задача 4
     style.
         .remove-button {
@@ -35,7 +126,7 @@ style.
             border-top: solid 2px #c4df9b;
             margin-bottom: 30px;
         }
-    p#container4
+    #container4
         .pane
             button(class="remove-button" data-delete-parent) [x]
             h3 Лошадь
@@ -83,7 +174,7 @@ style.
         [data-menu-btn].open > .right {
             display: none;
         }
-    p#container3
+    #container3
         div(data-menu-btn)
             span.right ▶
             span.down ▼
@@ -109,10 +200,10 @@ style.
             li Пончик
             li Пирожное
     h7 Задача 2
-    p#container2
+    #container2
         input(id="input2" type="button" value="Нажмите, чтобы спрятать меня")
     h7 Задача 1
-    p#container1
+    #container1
         input(id="input1" type="button" value="Нажмите, чтобы спрятать текст")
         div(id="text1") Текст
 script(defer src="./js/events-and-interfaces.js")

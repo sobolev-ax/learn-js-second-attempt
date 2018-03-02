@@ -57,3 +57,34 @@ console.log('\n---------------------------------------------Задача 3\n');
     }
   }
 })();
+console.log('\n---------------------------------------------Задача 3\n');
+(() => {
+  const btn = document.querySelectorAll('[data-delete-parent]');
+
+  function handler(button) {
+    const message = button.parentElement;
+    const parent = message.parentElement;
+
+    parent.removeChild(message);
+  }
+
+  if (btn !== null) {
+    for (let i = 0; i < btn.length; i++) {
+      btn[i].style.cursor = 'pointer';
+
+      btn[i].addEventListener('click', () => {
+        handler(btn[i]);
+      });
+    }
+  }
+})();
+console.log('\n---------------------------------------------Задача 4\n');
+(() => {
+  const next = document.querySelector('#slider .right');
+  const prev = document.querySelector('#slider .left');
+  const slider = document.querySelector('#slider ul');
+
+  if (next !== null && prev !== null && slider !== null) {
+    console.log(122);
+  }
+})();
