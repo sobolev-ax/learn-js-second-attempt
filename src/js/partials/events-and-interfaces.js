@@ -86,49 +86,40 @@ console.log('\n---------------------------------------------Задача 4\n');
 
   if (next !== null && prev !== null && slider !== null) {
     const li = slider.querySelectorAll('li');
-    let current;
+    const liLength = li.length;
     const step = 3;
-    let distance;
-    let position;
+    let position = 0;
 
-    current = step;
-    position = 0;
+    let left = 0;
+    let right = 2;
 
     next.addEventListener('click', () => {
-      if (li[current] === undefined) {
-        return;
-      }
-      distance = 0;
-      let i = current;
-      const max = current + step;
-      for (i; i < max; i++) {
-        if (li[i] === undefined) {
+      let offset = 0;
+      const max = right + step;
+      for (let i = right + 1; i <= max; i++) {
+        if (i === liLength) {
           break;
-        } else {
-          distance += li[i].offsetWidth;
-          current++;
         }
+        offset += li[i].offsetWidth;
+        right = i;
       }
-      position -= distance;
+      left = right - (step - 1);
+      position -= offset;
       slider.style.transform = `translateX(${position}px)`;
     });
 
     prev.addEventListener('click', () => {
-      if (current === 0) {
-        return;
-      }
-      distance = 0;
-      let i = current;
-      const max = current + step;
-      for (i; i < max; i++) {
-        if (li[i] === undefined) {
+      let offset = 0;
+      const max = left - step;
+      for (let i = left - 1; max <= i; i--) {
+        if (i < 0) {
           break;
-        } else {
-          distance += li[i].offsetWidth;
-          current--;
         }
+        offset += li[i].offsetWidth;
+        left = i;
       }
-      position += distance;
+      right = left + (step - 1);
+      position += offset;
       slider.style.transform = `translateX(${position}px)`;
     });
   }
