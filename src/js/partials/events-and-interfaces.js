@@ -237,8 +237,11 @@ console.log('\n---------------------------------------------Задача 9\n');
     e.target.offsetParent.appendChild(tooltip);
 
     const offset = 5;
-    let parentY;
-    let top;
+
+    let parentY = 0;
+    let parentX = 0;
+    let top = 0;
+    let left = 0;
 
     if (
       e.target.getBoundingClientRect().top
@@ -256,7 +259,28 @@ console.log('\n---------------------------------------------Задача 9\n');
       top = parentY + offset;
     }
 
+    parentX =
+      e.target.getBoundingClientRect().left -
+      e.target.offsetParent.getBoundingClientRect().left;
+
+    if (
+      parentX >=
+      tooltip.offsetWidth / 2
+    ) {
+      left = parentX + ((e.target.offsetWidth / 2) - (tooltip.offsetWidth / 2));
+    }
+    if (e.target.getBoundingClientRect().left - offset < 0) {
+      left = parentX + Math.abs(e.target.getBoundingClientRect().left) + offset;
+      console.log(left);
+    } else {
+      left = parentX;
+    }
+
+    /* console.log(parentX + Math.abs(e.target.getBoundingClientRect().left));
+    console.log(left); */
+
     tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
   });
   elem.addEventListener('mouseout', (e) => {
     if (!e.target.hasAttribute('data-tooltip')) return;
