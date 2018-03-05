@@ -220,3 +220,46 @@ console.log('\n---------------------------------------------Задача 9\n');
     }
   });
 })();
+console.log('\n---------------------------------------------Задача 9\n');
+(() => {
+  const elem = document.querySelector('#container10');
+
+  if (elem === null) return;
+
+  let tooltip;
+
+  elem.addEventListener('mouseover', (e) => {
+    if (!e.target.hasAttribute('data-tooltip')) return;
+
+    tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip10');
+    tooltip.innerHTML = e.target.getAttribute('data-tooltip');
+    e.target.offsetParent.appendChild(tooltip);
+
+    const offset = 5;
+    let parentY;
+    let top;
+
+    if (
+      e.target.getBoundingClientRect().top
+      >
+      tooltip.offsetHeight + offset
+    ) {
+      parentY =
+        e.target.getBoundingClientRect().top -
+        e.target.offsetParent.getBoundingClientRect().top;
+      top = parentY - tooltip.offsetHeight - offset;
+    } else {
+      parentY =
+        e.target.getBoundingClientRect().bottom -
+        e.target.offsetParent.getBoundingClientRect().top;
+      top = parentY + offset;
+    }
+
+    tooltip.style.top = `${top}px`;
+  });
+  elem.addEventListener('mouseout', (e) => {
+    if (!e.target.hasAttribute('data-tooltip')) return;
+    tooltip.offsetParent.removeChild(tooltip);
+  });
+})();
