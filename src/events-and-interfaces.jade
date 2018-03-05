@@ -17,6 +17,186 @@ style.
         li Приём проектирования "поведение"
         li Действия браузера по умолчанию
         li Генерация событий на элементах
+    h7 Задача 9 (сортировка таблицы по клику)
+    style.
+        .th9 {
+            cursor: pointer;
+        }
+        .th9:hover {
+            background: yellow;
+        }
+    table#grid9
+        thead
+            tr
+                th.th9(data-type='number') Возраст
+                th.th9(data-type='string') Имя
+                th.th9(data-type='string') Фамилия
+        tbody
+            tr
+                td 5
+                td Вася
+                td Иванов
+            tr
+                td 2
+                td Петя
+                td Петров
+            tr
+                td 12
+                td Женя
+                td Пушкин
+            tr
+                td 9
+                td Маша
+                td Лермонтова
+            tr
+                td 1
+                td Александр
+                td Соболев
+    h7 Задача 8
+    style.
+        .tree8 li span {
+            cursor: pointer;
+            user-select: none;
+        }
+        .tree8 li span:hover {
+            font-weight: bold;
+        }
+    ul.tree8
+        li
+            span Животные
+            ul
+                li
+                    span Млекопитающие
+                    ul
+                        li
+                            span Коровы
+                        li
+                            span Ослы
+                        li
+                            span Собаки
+                        li
+                            span Тигры
+            li
+                span Другие
+                ul
+                    li
+                        span Змеи
+                    li
+                        span Птицы
+                    li
+                        span Ящерицы
+        li
+            span Рыбы
+            ul
+                li
+                    span Аквариумные
+                    ul
+                        li
+                            span Гуппи
+                        li
+                            span Скалярии
+            li
+                span Морские
+                ul
+                    li
+                        span Морская форель
+
+    h7 Задача 7
+    style.
+        .header7 {
+            margin: 0;
+            padding-bottom: .3em;
+            font-size: 1.1em;
+        }
+
+        .p7 {
+            margin: 0;
+            padding: 0 0 .5em;
+        }
+
+        .pane7 {
+            background: #edf5e1;
+            padding: 10px 20px 10px;
+            border-top: solid 2px #c4df9b;
+            margin: 10px 0;
+        }
+
+        .remove-button7 {
+            font-size: 110%;
+            color: darkred;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            float: right;
+        }
+    #container7
+        div
+            .pane7
+                button.remove-button7 [x]
+                .header7 Лошадь
+                .p7
+                    | Домашняя лошадь — животное семейства 
+                    | непарнокопытных, одомашненный и единственный 
+                    | сохранившийся подвид дикой лошади, вымершей 
+                    | в дикой природе, за исключением небольшой 
+                    | популяции лошади Пржевальского.
+            .pane7
+                button.remove-button7 [x]
+                .header7 Осёл
+                .p7
+                    | Домашний осёл или ишак — одомашненный подвид 
+                    | дикого осла, сыгравший важную историческую 
+                    |роль в развитии хозяйства и культуры человека. 
+                    |Все одомашненные ослы относятся к африканским ослам.
+            .pane7
+                button.remove-button7 [x]
+                .header7 Корова, а также пара слов о диком быке, о волах и о тёлках. 
+                .p7
+                    | Коро́ва — самка домашнего быка, одомашненного 
+                    | подвида дикого быка, парнокопытного жвачного 
+                    | животного семейства полорогих. Самцы вида 
+                    | называются быками, молодняк — телятами, 
+                    | кастрированные самцы — волами. Молодых (до первой стельности) 
+                    |самок называют тёлками.
+    h7 Задача 6
+    style.
+        #field6 {
+            width: 200px;
+            height: 150px;
+            border: 10px groove black;
+            background-color: #00FF00;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            cursor: default;
+        }
+
+        #ball6 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -20px;
+            margin-top: -20px;
+            outline: 1px solid red;
+            transition: all .5s linear;
+        }
+    #container6
+        | Кликните на любое место поля, чтобы мяч перелетел туда. <br />
+        | Мяч никогда не вылетит за границы поля.
+        #field6
+            img(src="/images/doom.png" id="ball6")
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . .
+            | . . . . . . . . . . . . . . . . . . . . . . .
+  
     h7 Задача 5
     style.
         .arrow {

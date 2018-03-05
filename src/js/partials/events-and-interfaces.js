@@ -57,7 +57,7 @@ console.log('\n---------------------------------------------Задача 3\n');
     }
   }
 })();
-console.log('\n---------------------------------------------Задача 3\n');
+console.log('\n---------------------------------------------Задача 4\n');
 (() => {
   const btn = document.querySelectorAll('[data-delete-parent]');
 
@@ -78,7 +78,7 @@ console.log('\n---------------------------------------------Задача 3\n');
     }
   }
 })();
-console.log('\n---------------------------------------------Задача 4\n');
+console.log('\n---------------------------------------------Задача 5\n');
 (() => {
   const next = document.querySelector('#slider .right');
   const prev = document.querySelector('#slider .left');
@@ -123,4 +123,100 @@ console.log('\n---------------------------------------------Задача 4\n');
       slider.style.transform = `translateX(${position}px)`;
     });
   }
+})();
+console.log('\n---------------------------------------------Задача 6\n');
+(() => {
+  const field = document.querySelector('#field6');
+  const ball = document.querySelector('#ball6');
+
+  if (field !== null && ball !== null) {
+    field.addEventListener('click', (e) => {
+      ball.style.margin = `${0}px`;
+
+      const clickX = e.clientX - field.getBoundingClientRect().left;
+      const clickY = e.clientY - field.getBoundingClientRect().top;
+
+      let goX = clickX - field.clientLeft - (ball.offsetWidth / 2);
+      let goY = clickY - field.clientTop - (ball.offsetHeight / 2);
+
+      goX = Math.max(goX, 0);
+      goX = Math.min(goX, field.clientWidth - ball.offsetWidth);
+
+      goY = Math.max(goY, 0);
+      goY = Math.min(goY, field.clientHeight - ball.offsetHeight);
+
+      ball.style.left = `${goX}px`;
+      ball.style.top = `${goY}px`;
+    });
+  }
+})();
+console.log('\n---------------------------------------------Задача 7\n');
+(() => {
+  const elem = document.querySelector('#container7');
+
+  if (elem === null) return;
+
+  elem.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-button7')) {
+      e.target.parentElement.addEventListener('transitionend', (event) => {
+        event.target.parentElement.removeChild(event.target);
+      });
+      e.target.parentElement.style.transition = 'opacity .5s ease';
+      e.target.parentElement.style.opacity = '0';
+    }
+  });
+})();
+console.log('\n---------------------------------------------Задача 8\n');
+(() => {
+  const elem = document.querySelector('.tree8');
+
+  if (elem === null) return;
+
+  elem.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'SPAN'
+        ||
+        e.target.nextElementSibling === null
+    ) return;
+    if (e.target.nextElementSibling.hasAttribute('hidden')) {
+      e.target.nextElementSibling.removeAttribute('hidden');
+    } else {
+      e.target.nextElementSibling.setAttribute('hidden', '');
+    }
+  });
+})();
+console.log('\n---------------------------------------------Задача 9\n');
+(() => {
+  const elem = document.querySelector('#grid9');
+
+  if (elem === null) return;
+
+  elem.addEventListener('click', (e) => {
+    if (!e.target.hasAttribute('data-type')) return;
+    const sort = {
+      number: (index) => {
+        const i = index;
+        return (a, b) => {
+          const compareA = +a.cells[i].innerText;
+          const compareB = +b.cells[i].innerText;
+          return compareA - compareB;
+        };
+      },
+      string: (index) => {
+        const i = index;
+        return (a, b) => {
+          const compareA = a.cells[i].innerText;
+          const compareB = b.cells[i].innerText;
+          return compareA.localeCompare(compareB);
+        };
+      },
+    };
+
+
+    const arr = Array.prototype.slice.call(e.currentTarget.tBodies[0].rows);
+    arr.sort(sort[e.target.getAttribute('data-type')](e.target.cellIndex));
+
+    for (let i = 0; i < arr.length; i++) {
+      e.currentTarget.tBodies[0].appendChild(arr[i]);
+    }
+  });
 })();
