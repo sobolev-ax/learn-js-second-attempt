@@ -1,0 +1,36 @@
+include template/header
+style.
+    body {padding: 15px;}
+.index-wrapper
+    ul
+        li
+            a(href="index.html" title="Современный учебник Javascript") назад
+    h1 Основы работы с событиями
+    p.
+        Введение в браузерные события, общие свойства всех событий и приёмы работы с ними.
+    ul
+        li.
+            Мышь: клики, кнопка, координаты
+        li.
+            Мышь: отмена выделения, невыделяемые элементы
+        li.
+            Мышь: движение mouseover/out, mouseenter/leave
+        li.
+            Мышь: Drag'n'Drop
+        li.
+            Мышь: Drag'n'Drop более глубоко
+        li.
+            Мышь: колёсико, событие wheel
+        li.
+            Мышь: IE8-, исправление события
+        li.
+            Прокрутка: событие scroll
+        li.
+            Клавиатура: keyup, keydown, keypress
+        li.
+            Загрузка документа: DOMContentLoaded, load, beforeunload, unload
+        li.
+            Загрузка скриптов, картинок, фреймов: onload и onerror
+    h7 Задача 1
+script(defer src="./js/event-details.js")
+include template/footer

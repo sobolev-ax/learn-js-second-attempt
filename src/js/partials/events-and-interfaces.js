@@ -220,7 +220,7 @@ console.log('\n---------------------------------------------Задача 9\n');
     }
   });
 })();
-console.log('\n---------------------------------------------Задача 9\n');
+console.log('\n---------------------------------------------Задача 10\n');
 (() => {
   const elem = document.querySelector('#container10');
 
@@ -276,14 +276,49 @@ console.log('\n---------------------------------------------Задача 9\n');
       left = parentX;
     }
 
-    /* console.log(parentX + Math.abs(e.target.getBoundingClientRect().left));
-    console.log(left); */
-
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
   });
   elem.addEventListener('mouseout', (e) => {
     if (!e.target.hasAttribute('data-tooltip')) return;
     tooltip.offsetParent.removeChild(tooltip);
+  });
+})();
+console.log('\n---------------------------------------------Задача 11\n');
+(() => {
+  const elem = document.querySelector('#contents11');
+
+  if (elem === null) return;
+
+  elem.addEventListener('click', (e) => {
+    let node = e.target;
+    while (node !== e.currentTarget) {
+      if (node.tagName === 'A') break;
+      node = node.parentElement;
+    }
+    if (node === e.currentTarget) return;
+
+    if (!window.confirm(`Перейти на: ${node.getAttribute('href')}`)) {
+      e.preventDefault();
+    }
+  });
+})();
+console.log('\n---------------------------------------------Задача 12\n');
+(() => {
+  const elem = document.querySelector('#container12');
+  const img = document.querySelector('#largeImg12');
+
+  if (elem === null && img === null) return;
+
+  elem.addEventListener('click', (e) => {
+    let node = e.target;
+    while (node !== e.currentTarget) {
+      if (node.tagName === 'A') break;
+      node = node.parentElement;
+    }
+    if (node === e.currentTarget) return;
+
+    img.setAttribute('src', node.getAttribute('href'));
+    e.preventDefault();
   });
 })();

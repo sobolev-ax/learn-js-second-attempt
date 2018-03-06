@@ -1,0 +1,1 @@
+//= partials/event-details.js
