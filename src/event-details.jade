@@ -31,6 +31,62 @@ style.
             Загрузка документа: DOMContentLoaded, load, beforeunload, unload
         li.
             Загрузка скриптов, картинок, фреймов: onload и onerror
-    h7 Задача 1
+    #container2
+        p
+            h7 Задача 2
+        style.
+            .tree2 li {
+                cursor: pointer;
+            }
+        ul#tree2.tree2
+            li
+                | Животные
+                ul
+                    li
+                        | Млекопитающие
+                        ul
+                            li Коровы
+                            li Ослы
+                            li Собаки
+                            li Тигры
+                    li
+                        | Другие
+                        ul
+                            li Змеи
+                            li Птицы
+                            li Ящерицы
+            li
+                | Рыбы
+                ul
+                    li
+                        | Аквариумные
+                        ul
+                            li Гуппи
+                            li Скалярии
+                    li
+                        | Морские
+                        ul
+                            li Морская форель
+
+    #container1
+        p
+            h7 Задача 1
+        style.
+            .selected1 {
+                background: #0f0;
+            }
+
+            #ul1 li {
+                cursor: pointer;
+            }
+        | Клик на элементе выделяет только его. <br />
+        | Ctrl(Cmd)+Клик добавляет/убирает элемент из выделенных. <br>
+        | Shift+Клик добавляет промежуток от последнего кликнутого к выделению. <br>
+        ul#ul1
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
 script(defer src="./js/event-details.js")
 include template/footer
