@@ -31,6 +31,47 @@ style.
             Загрузка документа: DOMContentLoaded, load, beforeunload, unload
         li.
             Загрузка скриптов, картинок, фреймов: onload и onerror
+    #container3
+        p
+            h7 Задача 3
+        style.
+            #house3 {
+                margin-top: 50px;
+                width: 400px;
+                border: 1px solid brown;
+            }
+
+            #roof3 {
+                width: 0;
+                height: 0;
+                border-left: 200px solid transparent;
+                border-right: 200px solid transparent;
+                border-bottom: 20px solid brown;
+                margin-top: -20px;
+            }
+
+            .p3 {
+                text-align: justify;
+                margin: 10px 3px;
+            }
+        #house3(data-tooltip='Это – внутренность дома')
+            #roof3(data-tooltip='Это – крыша')
+            p.p3
+                | Жили-были на свете три поросёнка. Три брата.
+            p.p3
+                | Все одинакового роста, кругленькие, розовые, 
+                | с одинаковыми весёлыми хвостиками.
+            p.p3
+                | Даже имена у них были похожи. Звали поросят 
+                | Ниф-Ниф, Нуф-Нуф и Наф-Наф. Всё лето они 
+                | кувыркались в зелёной траве, грелись на солнышке, нежились в лужах.
+            p.p3
+                | Но вот наступила осень. 
+                a(
+                    href='http://ru.wikipedia.org/wiki/Три_поросёнка',
+                    data-tooltip='Читать дальше…'
+                    ) Наведи на меня
+
     #container2
         p
             h7 Задача 2

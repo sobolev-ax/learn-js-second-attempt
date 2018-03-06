@@ -74,3 +74,45 @@ console.log('\n---------------------------------------------Задача 2\n');
     target.insertBefore(text, target.firstChild);
   });
 })();
+console.log('\n---------------------------------------------Задача 3\n');
+(() => {
+  const elem = document.querySelector('#house3');
+
+  if (elem === null) return;
+
+  let showingTooltip;
+
+  elem.onmouseover = (e) => {
+    const targ = e.target;
+
+    const tooltip = targ.getAttribute('data-tooltip');
+    if (!tooltip) return;
+
+    const tooltipElem = document.createElement('div');
+    tooltipElem.className = 'tooltip';
+    tooltipElem.innerHTML = tooltip;
+    document.body.appendChild(tooltipElem);
+
+    const coords = targ.getBoundingClientRect();
+
+    let left = coords.left + ((targ.offsetWidth - tooltipElem.offsetWidth) / 2);
+    if (left < 0) left = 0; // не вылезать за левую границу окна
+
+    let top = coords.top - tooltipElem.offsetHeight - 5;
+    if (top < 0) { // не вылезать за верхнюю границу окна
+      top = coords.top + targ.offsetHeight + 5;
+    }
+
+    tooltipElem.style.left = `${left}px`;
+    tooltipElem.style.top = `${top}px`;
+
+    showingTooltip = tooltipElem;
+  };
+
+  document.onmouseout = (e) => {
+    if (showingTooltip) {
+      document.body.removeChild(showingTooltip);
+      showingTooltip = null;
+    }
+  };
+})();
