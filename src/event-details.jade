@@ -31,6 +31,48 @@ style.
             Загрузка документа: DOMContentLoaded, load, beforeunload, unload
         li.
             Загрузка скриптов, картинок, фреймов: onload и onerror
+    #container4
+        p
+            h7 Задача 4
+        style.
+            .hours4 {
+                color: red;
+            }
+
+            .minutes4 {
+                color: green;
+            }
+
+            .seconds4 {
+                color: blue;
+            }
+
+            .clock4 {
+                border: 1px dashed black;
+                padding: 5px;
+                display: inline-block;
+                background: yellow;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .tooltip4 {
+                position: absolute;
+                background: #eee;
+                border: 1px brown solid;
+                padding: 3px;
+            }
+            #container4 {
+                position: relative;
+            }
+        #elem4.clock4
+            span.hours4 12
+            |  :
+            span.minutes4 30
+            |  :
+            span.seconds4 00
+        #tooltip4(hidden) Tooltip
     #container3
         p
             h7 Задача 3

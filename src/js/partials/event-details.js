@@ -83,12 +83,17 @@ console.log('\n---------------------------------------------Задача 3\n');
   let tooltip;
 
   elem.addEventListener('mouseover', (e) => {
-    if (!e.target.hasAttribute('data-tooltip')) return;
+    let node = e.target;
+    while (node !== e.currentTarget) {
+      if (node.hasAttribute('data-tooltip')) break;
+      node = node.parentElement;
+    }
+    if (node === e.currentTarget) return;
 
     tooltip = document.createElement('span');
     tooltip.classList.add('tooltip3');
-    tooltip.innerHTML = e.target.getAttribute('data-tooltip');
-    e.target.offsetParent.appendChild(tooltip);
+    tooltip.innerHTML = node.getAttribute('data-tooltip');
+    node.offsetParent.appendChild(tooltip);
 
     const offset = 6;
 
@@ -99,80 +104,105 @@ console.log('\n---------------------------------------------Задача 3\n');
     let maximumAvailableWidth = 0;
 
     if (
-      e.target.getBoundingClientRect().top
+      node.getBoundingClientRect().top
       >
       tooltip.offsetHeight + offset
     ) {
       parentY =
-        e.target.getBoundingClientRect().top -
-        e.target.offsetParent.getBoundingClientRect().top;
+        node.getBoundingClientRect().top -
+        node.offsetParent.getBoundingClientRect().top;
       top = parentY - tooltip.offsetHeight - offset;
     } else {
       parentY =
-        e.target.getBoundingClientRect().bottom -
-        e.target.offsetParent.getBoundingClientRect().top;
+        node.getBoundingClientRect().bottom -
+        node.offsetParent.getBoundingClientRect().top;
       top = parentY + offset;
     }
 
 
     if (
-      e.target.getBoundingClientRect().left >= 0 &&
-      e.target.offsetParent.getBoundingClientRect().left >= 0
+      node.getBoundingClientRect().left >= 0 &&
+      node.offsetParent.getBoundingClientRect().left >= 0
     ) {
       maximumAvailableWidth =
-        e.target.getBoundingClientRect().left +
-        (e.target.offsetWidth / 2);
+        node.getBoundingClientRect().left +
+        (node.offsetWidth / 2);
       parentX =
-        e.target.getBoundingClientRect().left -
-        e.target.offsetParent.getBoundingClientRect().left;
+        node.getBoundingClientRect().left -
+        node.offsetParent.getBoundingClientRect().left;
 
       if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
         left =
-          (parentX + (e.target.offsetWidth / 2))
+          (parentX + (node.offsetWidth / 2))
           - (tooltip.offsetWidth / 2);
       } else {
         left =
-          (parentX + (e.target.offsetWidth / 2) + offset)
+          (parentX + (node.offsetWidth / 2) + offset)
           - maximumAvailableWidth;
       }
     } else if (
-      e.target.getBoundingClientRect().left >= 0 &&
-      e.target.offsetParent.getBoundingClientRect().left < 0
+      node.getBoundingClientRect().left >= 0 &&
+      node.offsetParent.getBoundingClientRect().left < 0
     ) {
       maximumAvailableWidth =
-        e.target.getBoundingClientRect().left +
-        (e.target.offsetWidth / 2);
+        node.getBoundingClientRect().left +
+        (node.offsetWidth / 2);
       parentX =
-        e.target.getBoundingClientRect().left +
-        Math.abs(e.target.offsetParent.getBoundingClientRect().left);
+        node.getBoundingClientRect().left +
+        Math.abs(node.offsetParent.getBoundingClientRect().left);
 
       if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
         left =
-          (parentX + (e.target.offsetWidth / 2))
+          (parentX + (node.offsetWidth / 2))
           - (tooltip.offsetWidth / 2);
       } else {
         left =
-          (parentX + (e.target.offsetWidth / 2) + offset)
+          (parentX + (node.offsetWidth / 2) + offset)
           - maximumAvailableWidth;
       }
     } else if (
-      e.target.getBoundingClientRect().left < 0
+      node.getBoundingClientRect().left < 0
     ) {
       parentX =
-        Math.abs(e.target.offsetParent.getBoundingClientRect().left) -
-        Math.abs(e.target.getBoundingClientRect().left);
+        Math.abs(node.offsetParent.getBoundingClientRect().left) -
+        Math.abs(node.getBoundingClientRect().left);
 
       left =
         parentX +
         offset +
-        Math.abs(e.target.getBoundingClientRect().left);
+        Math.abs(node.getBoundingClientRect().left);
     }
 
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
   });
-  elem.addEventListener('mouseout', (e) => {
-    if (!e.target.hasAttribute('data-tooltip')) return;
+  elem.addEventListener('mouseout', () => {
+    if (!tooltip) return;
     tooltip.offsetParent.removeChild(tooltip);
+    tooltip = false;
   });
+})();
+console.log('\n---------------------------------------------Задача 4\n');
+(() => {
+  function HoverIntent(options) {
+    /* ваш код для инициализации и работы HoverIntent */
+    this.destroy = () => {
+      // для удаления HoverIntent тесты вызывают эту функцию
+    };
+  }
+
+  const clock = document.querySelector('#elem4');
+  const tooltip = document.querySelector('#tooltip4');
+
+  setTimeout(() => {
+    const intent = new HoverIntent({
+      elem: clock,
+      over: () => {
+        tooltip.hidden = false;
+      },
+      out: () => {
+        tooltip.hidden = true;
+      },
+    });
+  }, 2000);
 })();
