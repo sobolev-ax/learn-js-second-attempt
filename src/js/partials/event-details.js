@@ -76,43 +76,103 @@ console.log('\n---------------------------------------------Задача 2\n');
 })();
 console.log('\n---------------------------------------------Задача 3\n');
 (() => {
-  const elem = document.querySelector('#house3');
+  const elem = document.querySelector('#container3');
 
   if (elem === null) return;
 
-  let showingTooltip;
+  let tooltip;
 
-  elem.onmouseover = (e) => {
-    const targ = e.target;
+  elem.addEventListener('mouseover', (e) => {
+    if (!e.target.hasAttribute('data-tooltip')) return;
 
-    const tooltip = targ.getAttribute('data-tooltip');
-    if (!tooltip) return;
+    tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip3');
+    tooltip.innerHTML = e.target.getAttribute('data-tooltip');
+    e.target.offsetParent.appendChild(tooltip);
 
-    const tooltipElem = document.createElement('div');
-    tooltipElem.className = 'tooltip';
-    tooltipElem.innerHTML = tooltip;
-    document.body.appendChild(tooltipElem);
+    const offset = 6;
 
-    const coords = targ.getBoundingClientRect();
+    let parentY = 0;
+    let parentX = 0;
+    let top = 0;
+    let left = 0;
+    let maximumAvailableWidth = 0;
 
-    let left = coords.left + ((targ.offsetWidth - tooltipElem.offsetWidth) / 2);
-    if (left < 0) left = 0; // не вылезать за левую границу окна
-
-    let top = coords.top - tooltipElem.offsetHeight - 5;
-    if (top < 0) { // не вылезать за верхнюю границу окна
-      top = coords.top + targ.offsetHeight + 5;
+    if (
+      e.target.getBoundingClientRect().top
+      >
+      tooltip.offsetHeight + offset
+    ) {
+      parentY =
+        e.target.getBoundingClientRect().top -
+        e.target.offsetParent.getBoundingClientRect().top;
+      top = parentY - tooltip.offsetHeight - offset;
+    } else {
+      parentY =
+        e.target.getBoundingClientRect().bottom -
+        e.target.offsetParent.getBoundingClientRect().top;
+      top = parentY + offset;
     }
 
-    tooltipElem.style.left = `${left}px`;
-    tooltipElem.style.top = `${top}px`;
 
-    showingTooltip = tooltipElem;
-  };
+    if (
+      e.target.getBoundingClientRect().left >= 0 &&
+      e.target.offsetParent.getBoundingClientRect().left >= 0
+    ) {
+      maximumAvailableWidth =
+        e.target.getBoundingClientRect().left +
+        (e.target.offsetWidth / 2);
+      parentX =
+        e.target.getBoundingClientRect().left -
+        e.target.offsetParent.getBoundingClientRect().left;
 
-  document.onmouseout = (e) => {
-    if (showingTooltip) {
-      document.body.removeChild(showingTooltip);
-      showingTooltip = null;
+      if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
+        left =
+          (parentX + (e.target.offsetWidth / 2))
+          - (tooltip.offsetWidth / 2);
+      } else {
+        left =
+          (parentX + (e.target.offsetWidth / 2) + offset)
+          - maximumAvailableWidth;
+      }
+    } else if (
+      e.target.getBoundingClientRect().left >= 0 &&
+      e.target.offsetParent.getBoundingClientRect().left < 0
+    ) {
+      maximumAvailableWidth =
+        e.target.getBoundingClientRect().left +
+        (e.target.offsetWidth / 2);
+      parentX =
+        e.target.getBoundingClientRect().left +
+        Math.abs(e.target.offsetParent.getBoundingClientRect().left);
+
+      if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
+        left =
+          (parentX + (e.target.offsetWidth / 2))
+          - (tooltip.offsetWidth / 2);
+      } else {
+        left =
+          (parentX + (e.target.offsetWidth / 2) + offset)
+          - maximumAvailableWidth;
+      }
+    } else if (
+      e.target.getBoundingClientRect().left < 0
+    ) {
+      parentX =
+        Math.abs(e.target.offsetParent.getBoundingClientRect().left) -
+        Math.abs(e.target.getBoundingClientRect().left);
+
+      left =
+        parentX +
+        offset +
+        Math.abs(e.target.getBoundingClientRect().left);
     }
-  };
+
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
+  });
+  elem.addEventListener('mouseout', (e) => {
+    if (!e.target.hasAttribute('data-tooltip')) return;
+    tooltip.offsetParent.removeChild(tooltip);
+  });
 })();

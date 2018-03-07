@@ -236,12 +236,13 @@ console.log('\n---------------------------------------------Задача 10\n');
     tooltip.innerHTML = e.target.getAttribute('data-tooltip');
     e.target.offsetParent.appendChild(tooltip);
 
-    const offset = 5;
+    const offset = 6;
 
     let parentY = 0;
     let parentX = 0;
     let top = 0;
     let left = 0;
+    let maximumAvailableWidth = 0;
 
     if (
       e.target.getBoundingClientRect().top
@@ -259,21 +260,58 @@ console.log('\n---------------------------------------------Задача 10\n');
       top = parentY + offset;
     }
 
-    parentX =
-      e.target.getBoundingClientRect().left -
-      e.target.offsetParent.getBoundingClientRect().left;
 
     if (
-      parentX >=
-      tooltip.offsetWidth / 2
+      e.target.getBoundingClientRect().left >= 0 &&
+      e.target.offsetParent.getBoundingClientRect().left >= 0
     ) {
-      left = parentX + ((e.target.offsetWidth / 2) - (tooltip.offsetWidth / 2));
-    }
-    if (e.target.getBoundingClientRect().left - offset < 0) {
-      left = parentX + Math.abs(e.target.getBoundingClientRect().left) + offset;
-      console.log(left);
-    } else {
-      left = parentX;
+      maximumAvailableWidth =
+        e.target.getBoundingClientRect().left +
+        (e.target.offsetWidth / 2);
+      parentX =
+        e.target.getBoundingClientRect().left -
+        e.target.offsetParent.getBoundingClientRect().left;
+
+      if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
+        left =
+          (parentX + (e.target.offsetWidth / 2))
+          - (tooltip.offsetWidth / 2);
+      } else {
+        left =
+          (parentX + (e.target.offsetWidth / 2) + offset)
+          - maximumAvailableWidth;
+      }
+    } else if (
+      e.target.getBoundingClientRect().left >= 0 &&
+      e.target.offsetParent.getBoundingClientRect().left < 0
+    ) {
+      maximumAvailableWidth =
+        e.target.getBoundingClientRect().left +
+        (e.target.offsetWidth / 2);
+      parentX =
+        e.target.getBoundingClientRect().left +
+        Math.abs(e.target.offsetParent.getBoundingClientRect().left);
+
+      if (maximumAvailableWidth >= (tooltip.offsetWidth / 2)) {
+        left =
+          (parentX + (e.target.offsetWidth / 2))
+          - (tooltip.offsetWidth / 2);
+      } else {
+        left =
+          (parentX + (e.target.offsetWidth / 2) + offset)
+          - maximumAvailableWidth;
+      }
+    } else if (
+      e.target.getBoundingClientRect().left < 0
+    ) {
+      parentX =
+        Math.abs(e.target.offsetParent.getBoundingClientRect().left) -
+        Math.abs(e.target.getBoundingClientRect().left);
+
+      left =
+        parentX +
+        offset +
+        Math.abs(e.target.getBoundingClientRect().left);
     }
 
     tooltip.style.top = `${top}px`;
