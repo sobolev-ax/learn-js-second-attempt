@@ -185,24 +185,193 @@ console.log('\n---------------------------------------------Задача 3\n');
 console.log('\n---------------------------------------------Задача 4\n');
 (() => {
   function HoverIntent(options) {
-    /* ваш код для инициализации и работы HoverIntent */
-    this.destroy = () => {
-      // для удаления HoverIntent тесты вызывают эту функцию
+    let started = false;
+    let hover = false;
+    let timer;
+    this.destroy = () => {};
+    return (e) => {
+      switch (e.type) {
+        case 'mouseenter':
+          if (!started) {
+            started = true;
+            timer = setTimeout(() => {
+              options.over();
+              hover = true;
+              started = false;
+            }, 200);
+          }
+          break;
+        case 'mouseleave':
+          if (started) {
+            clearTimeout(timer);
+            started = false;
+          } else if (hover) {
+            options.out();
+            hover = false;
+          }
+          break;
+        default:
+          break;
+      }
     };
   }
 
   const clock = document.querySelector('#elem4');
-  const tooltip = document.querySelector('#tooltip4');
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip4';
+  tooltip.innerHTML = 'Подсказка';
 
-  setTimeout(() => {
-    const intent = new HoverIntent({
-      elem: clock,
-      over: () => {
-        tooltip.hidden = false;
-      },
-      out: () => {
-        tooltip.hidden = true;
-      },
-    });
-  }, 2000);
+  const hover = new HoverIntent({
+    elem: clock,
+    over: function Over() {
+      tooltip.style.left = `${this.elem.getBoundingClientRect().left}px`;
+      tooltip.style.top = `${this.elem.getBoundingClientRect().bottom + 5}p`;
+      this.elem.appendChild(tooltip);
+    },
+    out: function out() {
+      this.elem.removeChild(tooltip);
+    },
+  });
+
+  clock.addEventListener('mouseenter', (e) => {
+    hover(e);
+  });
+
+  clock.addEventListener('mouseleave', (e) => {
+    hover(e);
+  });
+})();
+console.log('\n---------------------------------------------Задача 5\n');
+(() => {
+  function getCoords(elem) {
+    const box = elem.getBoundingClientRect();
+
+    const { body } = document;
+    const docEl = document.documentElement;
+
+    const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    const clientTop = docEl.clientTop || body.clientTop || 0;
+    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    const top = (box.top + scrollTop) - clientTop;
+    const left = (box.left + scrollLeft) - clientLeft;
+
+    return {
+      top,
+      left,
+    };
+  }
+
+  const thumb = document.querySelector('.thumb5');
+  const slider = document.querySelector('#slider5');
+
+  const coordsOfSlider = getCoords(slider);
+  const minX = coordsOfSlider.left + 10;
+  const maxX = (coordsOfSlider.left + slider.clientWidth) - 20;
+
+  thumb.addEventListener('dragstart', () => false);
+  thumb.addEventListener('mousedown', (e) => {
+    const coords = getCoords(thumb);
+    const shiftX = e.pageX - coords.left;
+    const shiftY = e.pageY - coords.top;
+
+    thumb.style.position = 'absolute';
+    document.body.appendChild(thumb);
+
+    const moveAt = function moveAt(event) {
+      let x = event.pageX - shiftX;
+      if (x < minX) {
+        x = minX;
+      } else if (x > maxX) {
+        x = maxX;
+      }
+      thumb.style.left = `${x}px`;
+    };
+
+    thumb.style.top = `${e.pageY - shiftY}px`;
+    moveAt(e);
+
+    document.onmousemove = (event) => {
+      moveAt(event);
+    };
+
+    document.onmouseup = () => {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  });
+})();
+console.log('\n---------------------------------------------Задача 6\n');
+(() => {
+  function getCoords(elem) {
+    const box = elem.getBoundingClientRect();
+
+    const { body } = document;
+    const docEl = document.documentElement;
+
+    const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    const clientTop = docEl.clientTop || body.clientTop || 0;
+    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    const top = (box.top + scrollTop) - clientTop;
+    const left = (box.left + scrollLeft) - clientLeft;
+
+    return {
+      top,
+      left,
+    };
+  }
+
+  const elem = document.querySelector('#container6');
+  const draggable = document.querySelectorAll('.draggable6');
+
+  for (let i = 0; i < draggable.length; i++) {
+    draggable[i].ondragstart = () => false;
+  }
+
+  elem.addEventListener('mousedown', (e) => {
+    if (!e.target.classList.contains('draggable6')) return;
+    const availableWidth = document.body.clientWidth;
+    const availableHeight = document.body.clientHeight;
+
+    const nodeTarget = e.target;
+    const nodeCoords = getCoords(e.target);
+
+    const shiftX = e.pageX - nodeCoords.left;
+    const shiftY = e.pageY - nodeCoords.top;
+
+    const moveAt = function moveAt(event) {
+      let x = event.pageX - shiftX;
+      let y = event.pageY - shiftY;
+
+      console.log(x); // !!!!!!
+      if (x < 0) {
+        x = 0;
+      } else if (x > availableWidth - nodeTarget.offsetWidth) {
+        x = availableWidth - nodeTarget.offsetWidth;
+      }
+      if (y < 0) {
+        y = 0;
+      } else if (y > availableHeight - nodeTarget.offsetHeight) {
+        y = availableHeight - nodeTarget.offsetHeight;
+      }
+
+      nodeTarget.style.left = `${x}px`;
+      nodeTarget.style.top = `${y}px`;
+    };
+    const disableMove = function disableMove() {
+      document.body.removeEventListener('mousemove', moveAt);
+      nodeTarget.removeEventListener('mouseup', disableMove);
+    };
+
+    document.body.addEventListener('mousemove', moveAt);
+    nodeTarget.addEventListener('mouseup', disableMove);
+
+    nodeTarget.style.position = 'absolute';
+    moveAt(e);
+  });
 })();

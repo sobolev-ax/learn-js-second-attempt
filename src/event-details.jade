@@ -31,6 +31,94 @@ style.
             Загрузка документа: DOMContentLoaded, load, beforeunload, unload
         li.
             Загрузка скриптов, картинок, фреймов: onload и onerror
+    #container6
+        p
+            h7 Задача 6
+        style.
+            #field6 {
+                background: url(https://js.cx/drag-heroes/field.png);
+                width: 800px;
+                height: 600px;
+                float: left;
+            }
+            /* герои и мяч (переносимые элементы) */
+
+            .hero6 {
+                background: url(https://js.cx/drag-heroes/heroes.png);
+                width: 130px;
+                height: 128px;
+                float: left;
+            }
+
+            #hero61 {
+                background-position: 0 0;
+            }
+
+            #hero62 {
+                background-position: 0 -128px;
+            }
+
+            #hero63 {
+                background-position: -120px 0;
+            }
+
+            #hero64 {
+                background-position: -125px -128px;
+            }
+
+            #hero65 {
+            background-position: -248px -128px;
+            }
+
+            #hero66 {
+                background-position: -244px 0;
+            }
+
+            .draggable6 {
+                cursor: pointer;
+            }
+        h2 Расставьте супергероев по полю.
+        p
+            | Супергерои и мяч -- это элементы с классом "draggable". Сделайте так, чтобы их можно было переносить.
+        p
+            | Важно: если супергероя подносят к низу или верху страницы, она должна автоматически прокручиваться. Если страница помещается на вашем экране целиком и не имеет вертикальной прокрутки -- сделайте окно браузера меньше, чтобы протестировать эту возможность.
+        p Да, и ещё: супергерои ни при каких условиях не должны попасть за край экрана.
+        #field6
+        #hero61.hero6.draggable6
+        #hero62.hero6.draggable6
+        #hero63.hero6.draggable6
+        #hero64.hero6.draggable6
+        #hero65.hero6.draggable6
+        #hero66.hero6.draggable6
+        img(class="draggable6" src='https://js.cx/drag-heroes/ball.png')
+        div(style='clear:both')
+    #container5
+        p
+            h7 Задача 5
+        style.
+            .slider5 {
+                border-radius: 5px;
+                background: #E0E0E0;
+                background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+                background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+                background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+                width: 310px;
+                height: 15px;
+                margin: 5px;
+            }
+
+            .thumb5 {
+                width: 10px;
+                height: 25px;
+                border-radius: 3px;
+                position: relative;
+                left: 10px;
+                top: -5px;
+                background: blue;
+                cursor: pointer;
+            }
+        #slider5.slider5
+            .thumb5
     #container4
         p
             h7 Задача 4
