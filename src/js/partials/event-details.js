@@ -387,3 +387,171 @@ console.log('\n---------------------------------------------Задача 6\n');
     elem.appendChild(nodeTarget);
   });
 })();
+console.log('\n---------------------------------------------Задача 7\n');
+(() => {
+//   const DragManager = (() => {
+//     /**
+//      * составной объект для хранения информации о переносе:
+//      * {
+//      *   elem - элемент, на котором была зажата мышь
+//      *   avatar - аватар
+//      *   downX/downY - координаты, на которых был mousedown
+//      *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
+//      * }
+//      */
+//     let dragObject = {};
+//     const self = this;
+//     function onMouseDown(e) {
+//       if (e.which !== 1) return;
+
+//       const elem = e.target.closest('.draggable7');
+//       if (!elem) return;
+
+//       dragObject.elem = elem;
+
+//       // запомним, что элемент нажат на текущих координатах pageX/pageY
+//       dragObject.downX = e.pageX;
+//       dragObject.downY = e.pageY;
+
+//       // return false;
+//     }
+
+//     function createAvatar() {
+//       // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
+//       const avatar = dragObject.elem;
+//       const old = {
+//         parent: avatar.parentNode,
+//         nextSibling: avatar.nextSibling,
+//         position: avatar.position || '',
+//         left: avatar.left || '',
+//         top: avatar.top || '',
+//         zIndex: avatar.zIndex || '',
+//       };
+
+//       // функция для отмены переноса
+//       avatar.rollback = () => {
+//         old.parent.insertBefore(avatar, old.nextSibling);
+//         avatar.style.position = old.position;
+//         avatar.style.left = old.left;
+//         avatar.style.top = old.top;
+//         avatar.style.zIndex = old.zIndex;
+//       };
+
+//       return avatar;
+//     }
+
+//     function getCoords(elem) { // кроме IE8-
+//       const box = elem.getBoundingClientRect();
+//       return {
+//         top: box.top + window.pageYOffset,
+//         left: box.left + window.pageXOffset,
+//       };
+//     }
+
+//     function startDrag() {
+//       const { avatar } = dragObject;
+
+//       // инициировать начало переноса
+//       document.body.appendChild(avatar);
+//       avatar.style.zIndex = 9999;
+//       avatar.style.position = 'absolute';
+//     }
+
+//     function onMouseMove(e) {
+//       if (!dragObject.elem) return true; // элемент не зажат
+
+//       if (!dragObject.avatar) { // если перенос не начат...
+//         const moveX = e.pageX - dragObject.downX;
+//         const moveY = e.pageY - dragObject.downY;
+
+//         // если мышь передвинулась в нажатом состоянии недостаточно далеко
+//         if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
+//           return true;
+//         }
+
+//         // начинаем перенос
+//         dragObject.avatar = createAvatar(e); // создать аватар
+//         if (!dragObject.avatar) { // отмена переноса, нельзя "захватить" за эту часть элемента
+//           dragObject = {};
+//           return true;
+//         }
+
+//         // аватар создан успешно
+//         // создать вспомогательные свойства shiftX/shiftY
+//         const coords = getCoords(dragObject.avatar);
+//         dragObject.shiftX = dragObject.downX - coords.left;
+//         dragObject.shiftY = dragObject.downY - coords.top;
+
+//         startDrag(e); // отобразить начало переноса
+//       }
+
+//       // отобразить перенос объекта при каждом движении мыши
+//       dragObject.avatar.style.left = `${e.pageX - dragObject.shiftX}px`;
+//       dragObject.avatar.style.top = `${e.pageY - dragObject.shiftY}px`;
+
+//       return false;
+//     }
+
+//     function findDroppable(event) {
+//       // спрячем переносимый элемент
+//       dragObject.avatar.hidden = true;
+
+//       // получить самый вложенный элемент под курсором мыши
+//       const elem = document.elementFromPoint(event.clientX, event.clientY);
+
+//       // показать переносимый элемент обратно
+//       dragObject.avatar.hidden = false;
+
+//       if (elem == null) {
+//         // такое возможно, если курсор мыши "вылетел" за границу окна
+//         return null;
+//       }
+
+//       return elem.closest('.droppable7');
+//     }
+
+
+//     function finishDrag(e) {
+//       const dropElem = findDroppable(e);
+
+//       if (!dropElem) {
+//         self.onDragCancel(dragObject);
+//       } else {
+//         self.onDragEnd(dragObject, dropElem);
+//       }
+//     }
+
+//     function onMouseUp(e) {
+//       if (dragObject.avatar) { // если перенос идет
+//         finishDrag(e);
+//       }
+//       // перенос либо не начинался, либо завершился
+//       // в любом случае очистим "состояние переноса" dragObject
+//       dragObject = {};
+//     }
+
+//     document.onmousemove = onMouseMove;
+//     document.onmouseup = onMouseUp;
+//     document.onmousedown = onMouseDown;
+
+//     this.onDragEnd = function DragEnd(dObject, dropElem) {
+//       console.log(dObject, dropElem);
+//     };
+//     this.onDragCancel = function DragCancel(dObject) {
+//       console.log(dObject);
+//     };
+//   })();
+
+//   DragManager.onDragCancel = (dragObject) => {
+//     dragObject.avatar.rollback();
+//   };
+
+//   DragManager.onDragEnd = (dragObject, dropElem) => {
+//     const dObject = dragObject;
+//     dObject.elem.style.display = 'none';
+//     dropElem.classList.add('computer-smile7');
+//     setTimeout(() => {
+//       dropElem.classList.remove('computer-smile7');
+//     }, 200);
+//   };
+})();
