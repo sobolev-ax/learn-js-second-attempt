@@ -348,7 +348,6 @@ console.log('\n---------------------------------------------Задача 6\n');
       let x = event.pageX - shiftX;
       let y = event.pageY - shiftY;
 
-      console.log(x); // !!!!!!
       if (x < 0) {
         x = 0;
       } else if (x > availableWidth - nodeTarget.offsetWidth) {
@@ -358,6 +357,18 @@ console.log('\n---------------------------------------------Задача 6\n');
         y = 0;
       } else if (y > availableHeight - nodeTarget.offsetHeight) {
         y = availableHeight - nodeTarget.offsetHeight;
+      }
+
+      if (y < window.pageYOffset) {
+        window.scrollBy(0, y - window.pageYOffset);
+      } else if (
+        y + nodeTarget.offsetHeight >
+        window.pageYOffset + document.documentElement.clientHeight) {
+        window.scrollBy(
+          0,
+          (y + nodeTarget.offsetHeight) -
+          (window.pageYOffset + document.documentElement.clientHeight),
+        );
       }
 
       nodeTarget.style.left = `${x}px`;
@@ -373,5 +384,6 @@ console.log('\n---------------------------------------------Задача 6\n');
 
     nodeTarget.style.position = 'absolute';
     moveAt(e);
+    elem.appendChild(nodeTarget);
   });
 })();
