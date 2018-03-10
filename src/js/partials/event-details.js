@@ -389,169 +389,324 @@ console.log('\n---------------------------------------------Задача 6\n');
 })();
 console.log('\n---------------------------------------------Задача 7\n');
 (() => {
-//   const DragManager = (() => {
-//     /**
-//      * составной объект для хранения информации о переносе:
-//      * {
-//      *   elem - элемент, на котором была зажата мышь
-//      *   avatar - аватар
-//      *   downX/downY - координаты, на которых был mousedown
-//      *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
-//      * }
-//      */
-//     let dragObject = {};
-//     const self = this;
-//     function onMouseDown(e) {
-//       if (e.which !== 1) return;
+  const DragManager = () => {
+    /**
+     * составной объект для хранения информации о переносе:
+     * {
+     *   elem - элемент, на котором была зажата мышь
+     *   avatar - аватар
+     *   downX/downY - координаты, на которых был mousedown
+     *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
+     * }
+     */
+    let dragObject = {};
+    const self = window;
+    function onMouseDown(e) {
+      if (e.which !== 1) return '';
 
-//       const elem = e.target.closest('.draggable7');
-//       if (!elem) return;
+      const elem = e.target.closest('.draggable7');
+      if (!elem) return '';
 
-//       dragObject.elem = elem;
+      dragObject.elem = elem;
 
-//       // запомним, что элемент нажат на текущих координатах pageX/pageY
-//       dragObject.downX = e.pageX;
-//       dragObject.downY = e.pageY;
+      // запомним, что элемент нажат на текущих координатах pageX/pageY
+      dragObject.downX = e.pageX;
+      dragObject.downY = e.pageY;
 
-//       // return false;
-//     }
+      return false;
+    }
 
-//     function createAvatar() {
-//       // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
-//       const avatar = dragObject.elem;
-//       const old = {
-//         parent: avatar.parentNode,
-//         nextSibling: avatar.nextSibling,
-//         position: avatar.position || '',
-//         left: avatar.left || '',
-//         top: avatar.top || '',
-//         zIndex: avatar.zIndex || '',
-//       };
+    function createAvatar() {
+      // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
+      const avatar = dragObject.elem;
+      const old = {
+        parent: avatar.parentNode,
+        nextSibling: avatar.nextSibling,
+        position: avatar.position || '',
+        left: avatar.left || '',
+        top: avatar.top || '',
+        zIndex: avatar.zIndex || '',
+      };
+      // функция для отмены переноса
+      avatar.rollback = () => {
+        old.parent.insertBefore(avatar, old.nextSibling);
+        avatar.style.position = old.position;
+        avatar.style.left = old.left;
+        avatar.style.top = old.top;
+        avatar.style.zIndex = old.zIndex;
+      };
 
-//       // функция для отмены переноса
-//       avatar.rollback = () => {
-//         old.parent.insertBefore(avatar, old.nextSibling);
-//         avatar.style.position = old.position;
-//         avatar.style.left = old.left;
-//         avatar.style.top = old.top;
-//         avatar.style.zIndex = old.zIndex;
-//       };
+      return avatar;
+    }
 
-//       return avatar;
-//     }
+    function getCoords(elem) { // кроме IE8-
+      const box = elem.getBoundingClientRect();
+      return {
+        top: box.top + window.pageYOffset,
+        left: box.left + window.pageXOffset,
+      };
+    }
 
-//     function getCoords(elem) { // кроме IE8-
-//       const box = elem.getBoundingClientRect();
-//       return {
-//         top: box.top + window.pageYOffset,
-//         left: box.left + window.pageXOffset,
-//       };
-//     }
+    function startDrag() {
+      const { avatar } = dragObject;
 
-//     function startDrag() {
-//       const { avatar } = dragObject;
+      // инициировать начало переноса
+      document.body.appendChild(avatar);
+      avatar.style.zIndex = 9999;
+      avatar.style.position = 'absolute';
+    }
 
-//       // инициировать начало переноса
-//       document.body.appendChild(avatar);
-//       avatar.style.zIndex = 9999;
-//       avatar.style.position = 'absolute';
-//     }
+    function onMouseMove(e) {
+      if (!dragObject.elem) return ''; // элемент не зажат
 
-//     function onMouseMove(e) {
-//       if (!dragObject.elem) return true; // элемент не зажат
+      if (!dragObject.avatar) { // если перенос не начат...
+        const moveX = e.pageX - dragObject.downX;
+        const moveY = e.pageY - dragObject.downY;
 
-//       if (!dragObject.avatar) { // если перенос не начат...
-//         const moveX = e.pageX - dragObject.downX;
-//         const moveY = e.pageY - dragObject.downY;
+        // если мышь передвинулась в нажатом состоянии недостаточно далеко
+        if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
+          return '';
+        }
 
-//         // если мышь передвинулась в нажатом состоянии недостаточно далеко
-//         if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
-//           return true;
-//         }
+        // начинаем перенос
+        dragObject.avatar = createAvatar(e); // создать аватар
+        if (!dragObject.avatar) { // отмена переноса, нельзя "захватить" за эту часть элемента
+          dragObject = {};
+          return '';
+        }
 
-//         // начинаем перенос
-//         dragObject.avatar = createAvatar(e); // создать аватар
-//         if (!dragObject.avatar) { // отмена переноса, нельзя "захватить" за эту часть элемента
-//           dragObject = {};
-//           return true;
-//         }
+        // аватар создан успешно
+        // создать вспомогательные свойства shiftX/shiftY
+        const coords = getCoords(dragObject.avatar);
+        dragObject.shiftX = dragObject.downX - coords.left;
+        dragObject.shiftY = dragObject.downY - coords.top;
 
-//         // аватар создан успешно
-//         // создать вспомогательные свойства shiftX/shiftY
-//         const coords = getCoords(dragObject.avatar);
-//         dragObject.shiftX = dragObject.downX - coords.left;
-//         dragObject.shiftY = dragObject.downY - coords.top;
+        startDrag(e); // отобразить начало переноса
+      }
 
-//         startDrag(e); // отобразить начало переноса
-//       }
+      // отобразить перенос объекта при каждом движении мыши
+      dragObject.avatar.style.left = `${e.pageX - dragObject.shiftX}px`;
+      dragObject.avatar.style.top = `${e.pageY - dragObject.shiftY}px`;
 
-//       // отобразить перенос объекта при каждом движении мыши
-//       dragObject.avatar.style.left = `${e.pageX - dragObject.shiftX}px`;
-//       dragObject.avatar.style.top = `${e.pageY - dragObject.shiftY}px`;
+      return false;
+    }
 
-//       return false;
-//     }
+    function findDroppable(event) {
+      // спрячем переносимый элемент
+      dragObject.avatar.hidden = true;
 
-//     function findDroppable(event) {
-//       // спрячем переносимый элемент
-//       dragObject.avatar.hidden = true;
+      // получить самый вложенный элемент под курсором мыши
+      const elem = document.elementFromPoint(event.clientX, event.clientY);
 
-//       // получить самый вложенный элемент под курсором мыши
-//       const elem = document.elementFromPoint(event.clientX, event.clientY);
+      // показать переносимый элемент обратно
+      dragObject.avatar.hidden = false;
 
-//       // показать переносимый элемент обратно
-//       dragObject.avatar.hidden = false;
+      if (elem == null) {
+        // такое возможно, если курсор мыши "вылетел" за границу окна
+        return null;
+      }
 
-//       if (elem == null) {
-//         // такое возможно, если курсор мыши "вылетел" за границу окна
-//         return null;
-//       }
-
-//       return elem.closest('.droppable7');
-//     }
+      return elem.closest('.droppable7');
+    }
 
 
-//     function finishDrag(e) {
-//       const dropElem = findDroppable(e);
+    function finishDrag(e) {
+      const dropElem = findDroppable(e);
 
-//       if (!dropElem) {
-//         self.onDragCancel(dragObject);
-//       } else {
-//         self.onDragEnd(dragObject, dropElem);
-//       }
-//     }
+      if (!dropElem) {
+        self.onDragCancel(dragObject);
+      } else {
+        self.onDragEnd(dragObject, dropElem);
+      }
+    }
 
-//     function onMouseUp(e) {
-//       if (dragObject.avatar) { // если перенос идет
-//         finishDrag(e);
-//       }
-//       // перенос либо не начинался, либо завершился
-//       // в любом случае очистим "состояние переноса" dragObject
-//       dragObject = {};
-//     }
+    function onMouseUp(e) {
+      if (dragObject.avatar) { // если перенос идет
+        finishDrag(e);
+      }
+      // перенос либо не начинался, либо завершился
+      // в любом случае очистим "состояние переноса" dragObject
+      dragObject = {};
+    }
 
-//     document.onmousemove = onMouseMove;
-//     document.onmouseup = onMouseUp;
-//     document.onmousedown = onMouseDown;
+    document.onmousemove = onMouseMove;
+    document.onmouseup = onMouseUp;
+    document.onmousedown = onMouseDown;
 
-//     this.onDragEnd = function DragEnd(dObject, dropElem) {
-//       console.log(dObject, dropElem);
-//     };
-//     this.onDragCancel = function DragCancel(dObject) {
-//       console.log(dObject);
-//     };
-//   })();
+    self.onDragEnd = function DragEnd(dObject, dropElem) {
+      dragObject.elem.style.display = 'none';
+      dropElem.classList.add('computer-smile7');
+      setTimeout(() => {
+        dropElem.classList.remove('computer-smile7');
+      }, 200);
+    };
+    self.onDragCancel = function DragCancel() {
+      dragObject.avatar.rollback();
+    };
+  };
 
-//   DragManager.onDragCancel = (dragObject) => {
-//     dragObject.avatar.rollback();
-//   };
+  DragManager();
+})();
+console.log('\n---------------------------------------------Задача 8\n');
+(() => {
+  const elem = document.querySelector('#elem8');
 
-//   DragManager.onDragEnd = (dragObject, dropElem) => {
-//     const dObject = dragObject;
-//     dObject.elem.style.display = 'none';
-//     dropElem.classList.add('computer-smile7');
-//     setTimeout(() => {
-//       dropElem.classList.remove('computer-smile7');
-//     }, 200);
-//   };
+  Object.defineProperty(elem, 'count', {
+    enumerable: false,
+    value: 0,
+    writable: true,
+  });
+
+  function onWheel(e) {
+    const event = e || window.event;
+
+    // wheelDelta не дает возможность узнать количество пикселей
+    const delta = event.deltaY || event.detail || event.wheelDelta;
+
+    elem.count += delta;
+
+    let scale = 1 + (elem.count / 1000);
+
+    scale = `scale(${scale})`;
+
+    elem.style.transform = scale;
+    elem.style.WebkitTransform = scale;
+    elem.style.MsTransform = scale;
+
+    if (event.preventDefault) {
+      event.preventDefault();
+    } else {
+      (event.returnValue = false);
+    }
+  }
+
+  if (elem.addEventListener) {
+    if ('onwheel' in document) {
+      // IE9+, FF17+, Ch31+
+      elem.addEventListener('wheel', onWheel);
+    } else if ('onmousewheel' in document) {
+      // устаревший вариант события
+      elem.addEventListener('mousewheel', onWheel);
+    } else {
+      // Firefox < 17
+      elem.addEventListener('MozMousePixelScroll', onWheel);
+    }
+  } else { // IE8-
+    elem.attachEvent('onmousewheel', onWheel);
+  }
+})();
+console.log('\n---------------------------------------------Задача 9\n');
+(() => {
+  const elem = document.querySelector('#container9');
+
+  function onWheel(e) {
+    const event = e || window.event;
+
+    let node = event.target;
+    while (node !== event.currentTarget) {
+      if (node.tagName === 'TEXTAREA') break;
+      node = node.parentElement;
+    }
+
+    if (node === e.currentTarget) return;
+    if (node.scrollHeight === node.clientHeight) return;
+
+    const delta = event.deltaY || event.detail || event.wheelDelta;
+    const prevent = () => {
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        (event.returnValue = false);
+      }
+    };
+
+    if (
+      (delta < 0 && node.scrollTop === 0) ||
+      (delta > 0 && node.scrollTop + node.clientHeight === node.scrollHeight)
+    ) {
+      prevent();
+    }
+  }
+
+  if (elem.addEventListener) {
+    if ('onwheel' in document) {
+      // IE9+, FF17+, Ch31+
+      elem.addEventListener('wheel', onWheel);
+    } else if ('onmousewheel' in document) {
+      // устаревший вариант события
+      elem.addEventListener('mousewheel', onWheel);
+    } else {
+      // Firefox < 17
+      elem.addEventListener('MozMousePixelScroll', onWheel);
+    }
+  } else { // IE8-
+    elem.attachEvent('onmousewheel', onWheel);
+  }
+})();
+console.log('\n---------------------------------------------Задача 10\n');
+(() => {
+  const elem = document.querySelector('#container10');
+  const avatar = document.querySelector('#avatar10');
+
+  if (elem === null || avatar === null) return;
+
+  function getCoords(node) {
+    const box = node.getBoundingClientRect();
+
+    const { body } = document;
+    const docEl = document.documentElement;
+
+    const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    const clientTop = docEl.clientTop || body.clientTop || 0;
+    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    const top = (box.top + scrollTop) - clientTop;
+    const left = (box.left + scrollLeft) - clientLeft;
+
+    return {
+      top,
+      left,
+    };
+  }
+
+  let avatarClone = null;
+
+  Object.defineProperty(avatar, 'bottom', {
+    enumerable: false,
+    value: getCoords(avatar).top + avatar.offsetHeight,
+    writable: false,
+  });
+
+  window.addEventListener('scroll', () => {
+    if (
+      elem.getBoundingClientRect().top >= 0 ||
+      elem.getBoundingClientRect().bottom >= 0
+    ) {
+      if (window.pageYOffset > avatar.bottom) {
+        if (!avatar.clone) {
+          Object.defineProperty(avatar, 'clone', {
+            enumerable: false,
+            value: () => {
+              const clone = avatar.cloneNode(true);
+              clone.style.top = '0';
+              clone.style.left = '0';
+              clone.style.position = 'fixed';
+              elem.appendChild(clone);
+              return clone;
+            },
+            writable: true,
+          });
+          avatarClone = avatar.clone();
+        }
+      } else if (avatar.clone) {
+        elem.removeChild(avatarClone);
+        avatar.clone = null;
+      }
+    } else if (avatar.clone) {
+      elem.removeChild(avatarClone);
+      avatar.clone = null;
+    }
+  });
 })();
