@@ -710,3 +710,131 @@ console.log('\n---------------------------------------------Задача 10\n');
     }
   });
 })();
+console.log('\n---------------------------------------------Задача 11\n');
+(() => {
+  const div = document.createElement('div');
+
+  div.style.position = 'fixed';
+  div.style.right = '17px';
+  div.style.width = '20px';
+  div.style.height = '20px';
+  div.style.display = 'none';
+  div.style.alignItems = 'center';
+  div.style.justifyContent = 'center';
+  div.style.color = 'red';
+  div.style.fontSize = '17px';
+  div.style.cursor = 'pointer';
+  div.style.userSelect = 'none';
+
+
+  const up = div.cloneNode(true);
+  const down = div.cloneNode(true);
+
+  up.style.top = '20px';
+  up.innerText = '▲';
+  document.body.appendChild(up);
+
+  down.style.top = `${20 + up.offsetHeight}px`;
+  down.innerText = '▼';
+  document.body.appendChild(down);
+
+  Object.defineProperty(down, 'y', {
+    enumerable: false,
+    value: false,
+    writable: true,
+  });
+
+  up.addEventListener('click', () => {
+    down.y = window.pageYOffset;
+    window.scrollTo(0, 0);
+  });
+
+  down.addEventListener('click', () => {
+    window.scrollTo(0, down.y);
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset <= document.documentElement.clientHeight) {
+      up.style.display = 'none';
+      if (down.save !== false) {
+        down.style.display = 'flex';
+      }
+    } else {
+      up.style.display = 'flex';
+      down.style.display = 'none';
+    }
+  });
+})();
+console.log('\n---------------------------------------------Задача 12\n');
+(() => {
+  function getCoords(elem) {
+    const box = elem.getBoundingClientRect();
+
+    const { body } = document;
+    const docEl = document.documentElement;
+
+    const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    const clientTop = docEl.clientTop || body.clientTop || 0;
+    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    const top = (box.top + scrollTop) - clientTop;
+    const left = (box.left + scrollLeft) - clientLeft;
+
+    return {
+      top,
+      left,
+    };
+  }
+
+  function loadPictures(images, offsetTop, offsetBottom) {
+    const img = images;
+    for (let i = 0; i < images.length; i++) {
+      if (!img[i].loaded) {
+        if (
+          (img[i].top >= offsetTop && img[i].top <= offsetBottom) ||
+          (img[i].bottom >= offsetTop && img[i].bottom <= offsetBottom)
+        ) {
+          img[i].setAttribute(
+            'src',
+            img[i].getAttribute('realsrc'),
+          );
+          console.log(i);
+          img[i].loaded = true;
+        }
+      }
+    }
+  }
+
+  const img = document.querySelectorAll('img[realsrc]');
+
+  for (let i = 0; i < img.length; i++) {
+    const coords = getCoords(img[i]);
+
+    Object.defineProperties(img[i], {
+      top: {
+        enumerable: false,
+        value: coords.top,
+        writable: true,
+      },
+      bottom: {
+        enumerable: false,
+        value: coords.top + img[i].offsetHeight,
+        writable: true,
+      },
+      loaded: {
+        enumerable: false,
+        value: false,
+        writable: true,
+      },
+    });
+  }
+
+  const availableHeight = document.documentElement.clientHeight;
+  loadPictures(img, window.pageYOffset, window.pageYOffset + availableHeight);
+
+  window.addEventListener('scroll', () => {
+    loadPictures(img, window.pageYOffset, window.pageYOffset + availableHeight);
+  });
+})();
