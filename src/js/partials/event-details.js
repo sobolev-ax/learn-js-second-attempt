@@ -800,7 +800,6 @@ console.log('\n---------------------------------------------Задача 12\n');
             'src',
             img[i].getAttribute('realsrc'),
           );
-          console.log(i);
           img[i].loaded = true;
         }
       }
@@ -837,4 +836,76 @@ console.log('\n---------------------------------------------Задача 12\n');
   window.addEventListener('scroll', () => {
     loadPictures(img, window.pageYOffset, window.pageYOffset + availableHeight);
   });
+})();
+console.log('\n---------------------------------------------Задача 13\n');
+(() => {
+  function getChar(event) {
+    if (event.which == null) {
+      if (event.keyCode < 32) return null;
+      return String.fromCharCode(event.keyCode); // IE
+    }
+
+    if (event.which !== 0 && event.charCode !== 0) {
+      if (event.which < 32) return null;
+      return String.fromCharCode(event.which); // остальные
+    }
+
+    return null; // специальная клавиша
+  }
+
+  const input = document.querySelector('#input13');
+
+  input.onkeypress = (e) => {
+    if (e.ctrlKey || e.altKey || e.metaKey) return 1;
+
+    const char = getChar(e);
+
+    if (!char) return 1; // спец. символ - не обрабатываем
+
+    if (Number.isNaN(+char)) {
+      return false;
+    }
+    return 1;
+  };
+})();
+console.log('\n---------------------------------------------Задача 14\n');
+(() => {
+  function runOnKeys(func, ...code) {
+    const saveFunc = func;
+    const saveCode = code;
+    const flags = code.slice();
+
+    document.body.addEventListener('keyup', (e) => {
+      const index = saveCode.indexOf(e.keyCode);
+      console.log(index);
+      if (index !== -1) {
+        flags[index] = false;
+      }
+    });
+
+    document.body.addEventListener('keydown', (e) => {
+      const index = saveCode.indexOf(e.keyCode);
+      if (index !== -1) {
+        flags[index] = true;
+        console.log(flags);
+
+        let all = true;
+        for (let i = 0; i < flags.length; i++) {
+          if (flags[index] !== true) {
+            all = false;
+            break;
+          }
+          if (all) saveFunc();
+        }
+      }
+    });
+  }
+
+  runOnKeys(
+    () => {
+      alert('Привет!');
+    },
+    'Q'.charCodeAt(0),
+    'W'.charCodeAt(0),
+  );
 })();
