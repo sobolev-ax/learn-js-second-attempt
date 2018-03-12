@@ -914,3 +914,28 @@ console.log('\n---------------------------------------------Задача 14\n');
     'W'.charCodeAt(0),
   );
 })();
+console.log('\n---------------------------------------------Задача 15\n');
+(() => {
+  const alt = document.querySelectorAll('#container15 .img-replace15');
+
+  if (alt === null) return;
+
+  const img = document.createElement('img');
+
+  img.setAttribute('alt', 'alt');
+
+  for (let i = 0; i < alt.length; i++) {
+    const src = alt[i].getAttribute('data-src');
+    const elem = img.cloneNode();
+
+    elem.onload = () => {
+      alt[i].parentElement.insertBefore(elem, alt[i]);
+      alt[i].parentElement.removeChild(alt[i]);
+    };
+    elem.onerror = () => {
+      console.log('onerror');
+    };
+
+    elem.setAttribute('src', src);
+  }
+})();
