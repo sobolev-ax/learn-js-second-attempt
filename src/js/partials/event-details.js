@@ -877,7 +877,6 @@ console.log('\n---------------------------------------------Задача 14\n');
 
     document.body.addEventListener('keyup', (e) => {
       const index = saveCode.indexOf(e.keyCode);
-      console.log(index);
       if (index !== -1) {
         flags[index] = false;
       }
@@ -885,19 +884,25 @@ console.log('\n---------------------------------------------Задача 14\n');
 
     document.body.addEventListener('keydown', (e) => {
       const index = saveCode.indexOf(e.keyCode);
+      let all = true;
       if (index !== -1) {
         flags[index] = true;
-        console.log(flags);
-
-        let all = true;
-        for (let i = 0; i < flags.length; i++) {
-          if (flags[index] !== true) {
-            all = false;
-            break;
-          }
-          if (all) saveFunc();
+      }
+      for (let i = 0; i < flags.length; i++) {
+        if (flags[i] !== true) {
+          all = false;
+          break;
         }
       }
+      if (all) {
+        for (let i = 0; i < flags.length; i++) {
+          flags[i] = false;
+        }
+        all = false;
+        saveFunc();
+        return '';
+      }
+      return '';
     });
   }
 
