@@ -756,7 +756,7 @@ console.log('\n---------------------------------------------Задача 11\n');
   window.addEventListener('scroll', () => {
     if (window.pageYOffset <= document.documentElement.clientHeight) {
       up.style.display = 'none';
-      if (down.save !== false) {
+      if (down.y !== false) {
         down.style.display = 'flex';
       }
     } else {

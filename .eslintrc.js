@@ -21,6 +21,7 @@ module.exports = {
         "screenX": true,
         "screenY": true,
         "confirm": true,
+        "Option": true,
     },
     "rules": {
         "no-alert": 0,

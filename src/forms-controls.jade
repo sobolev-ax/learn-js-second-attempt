@@ -1,0 +1,100 @@
+include template/header
+style.
+    body {padding: 15px;}
+.index-wrapper
+    ul
+        li
+            a(href="index.html" title="Современный учебник Javascript") назад
+    h1 Формы, элементы управления
+    p
+        | Особые свойства, методы и события для работы с формами 
+        | form и элементами ввода: input, select и другими.
+    ul
+        li.
+            Навигация и свойства элементов формы
+        li.
+            Фокусировка: focus/blur
+        li.
+            Изменение: change, input, cut, copy, paste
+        li.
+            Формы: отправка, событие и метод submit
+    #container4
+        p
+            h7 Задача 4
+        style.
+            #view4,
+            #area4 {
+                height: 150px;
+                width: 400px;
+                font-family: arial;
+                font-size: 14px;
+            }
+            #view4 {
+                /* padding + border = 3px */
+                padding: 2px;
+                border: 1px solid black;
+            }
+            #area4 {
+                display: none;
+                /* replace padding with border (still 3px not to shift the contents) */
+                border: 3px groove blue;
+                padding: 0px;
+            }
+            #area4:focus {
+                outline: none;
+                /* remove focus border in Safari */
+            }
+        ul
+            li Ctrl-E to start editing.
+            li While editing: Ctrl-S to save, Esc to cancel.
+        textarea#area4
+        #view4 Text
+    #container3
+        p
+            h7 Задача 3
+        style.
+            #mouse3 {
+                display: inline-block;
+                cursor: pointer;
+                margin: 0;
+            }
+            #mouse3:focus {
+               outline: 1px dashed black;
+            }
+        p Кликните на мышонка и передвигайте его, нажимая клавиши со стрелками.
+        pre#mouse3
+            |  _   _
+            |(q\_/p)
+            |  /. .\
+            |=\_t_/=   __
+            | /   \   (
+            |((   ))   )
+            |/\) (/\  /
+            |\  Y  /-'
+            | nn^nn
+    #container2
+        p
+            h7 Задача 2
+        style.
+            /* стиль для input с плейсхолдером */
+            .placeholder2 {
+                color: blue;
+                font-family: Georgia;
+            }
+            /* стиль для подсказки над элементом (вместо плейсхолдера при фокусировке) */
+            .placeholder-tooltip2 {
+                color: blue;
+                font-family: Georgia;
+                position: fixed;
+            }
+        p Красивый placeholder:
+        input(type='email', data-placeholder='E-mail')
+    #container1
+        p
+            h7 Задача 1
+        form(action="#" name="form1")
+            select
+                option(value='Rock') Рок
+                option(value='Blues', selected='') Блюз
+script(defer src="./js/forms-controls.js")
+include template/footer
