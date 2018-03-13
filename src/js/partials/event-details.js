@@ -939,3 +939,110 @@ console.log('\n---------------------------------------------Задача 15\n');
     elem.setAttribute('src', src);
   }
 })();
+console.log('\n---------------------------------------------Задача 16\n');
+(() => {
+  function preloadImages(sources, callback) {
+    const arr = [];
+    for (let i = 0; i < sources.length; i++) {
+      const prom = new Promise((resolve) => {
+        const img = document.createElement('img');
+        img.onload = () => resolve();
+        img.onerror = img.onload;
+
+        img.src = sources[i];
+      });
+      arr.push(prom);
+    }
+
+    Promise.all(arr).then(() => {
+      callback();
+    });
+  }
+
+  // ---------- Проверка ----------
+
+  /* файлы для загрузки */
+  const sources = [
+    'https://js.cx/images-load/1.jpg',
+    'https://js.cx/images-load/2.jpg',
+    'https://js.cx/images-load/3.jpg',
+  ];
+  for (let i = 0; i < sources.length; i++) {
+    sources[i] += `?${Math.random()}`; // добавляем параметр, чтобы без кеша (для теста)
+  }
+
+  /** если картинка загружена, то можно будет сразу получить её ширину
+   * создадим все картинки и проверим, есть ли у них ширина
+   */
+  function testLoaded() {
+    let widthSum = 0;
+    for (let i = 0; i < sources.length; i++) {
+      const img = document.createElement('img');
+      img.src = sources[i];
+      widthSum += img.width;
+    }
+    // каждое изображение 100x100, общая ширина должна быть 300px
+    console.log(widthSum);
+  }
+
+  // до загрузки - выведет 0
+  testLoaded();
+
+  // после загрузки - выведет 300
+  preloadImages(sources, testLoaded);
+})();
+console.log('\n---------------------------------------------Задача 17\n');
+(() => {
+  function addScript(src, callback) {
+    const load = new Promise((resolve) => {
+      const tag = document.createElement('script');
+      tag.onload = () => resolve();
+      tag.onerror = tag.onload;
+
+      tag.setAttribute('src', src);
+      document.body.appendChild(tag);
+    });
+
+    load.then(() => {
+      callback();
+    });
+  }
+
+  addScript('./js/event-details-17.js', () => {
+    console.log('script added');
+  });
+})();
+console.log('\n---------------------------------------------Задача 18\n');
+(() => {
+  function addScripts(src, callback) {
+    const arr = [];
+    for (let i = 0; i < src.length; i++) {
+      const load = new Promise((resolve) => {
+        const tag = document.createElement('script');
+        tag.onload = () => resolve();
+        tag.onerror = tag.onload;
+
+        tag.setAttribute('src', src[i]);
+        document.body.appendChild(tag);
+      });
+
+      arr.push(load);
+    }
+
+    Promise.all(arr).then(() => {
+      console.log('????');
+      callback();
+    });
+  }
+
+  addScripts(
+    [
+      './js/event-details-a.js',
+      './js/event-details-b.js',
+      './js/event-details-c.js',
+    ],
+    () => {
+      a17();
+    },
+  );
+})();
