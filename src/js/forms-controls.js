@@ -75,7 +75,7 @@ console.log('\n---------------------------------------------Задача 3\n');
     const width = node.offsetWidth;
     const n = node;
 
-    n.style.position = 'absolute';
+    n.style.position = 'fixed';
 
     n.style.top = `${coords.top}px`;
     n.style.left = `${coords.left}px`;
@@ -84,10 +84,10 @@ console.log('\n---------------------------------------------Задача 3\n');
         n.style.top = `${coords.top - height}px`;
         break;
       case 39: // right
-        n.style.left = `${coords.right}px`;
+        n.style.left = `${coords.left + width}px`;
         break;
       case 40: // down
-        n.style.top = `${coords.bottom}px`;
+        n.style.top = `${coords.top + height}px`;
         break;
       case 37: // left
         n.style.left = `${coords.left - width}px`;
@@ -117,5 +117,95 @@ console.log('\n---------------------------------------------Задача 3\n');
 })();
 console.log('\n---------------------------------------------Задача 4\n');
 (() => {
+  const div = document.querySelector('#view4');
+  const textarea = document.querySelector('#area4');
+  const container = document.querySelector('#container4');
+  container.setAttribute('tabindex', '0');
 
+  function combine(...keys) {
+    const myKeys = {};
+
+    for (let i = 0; i < keys.length; i++) {
+      myKeys[keys[i]] = false;
+    }
+    function isCombine(type) {
+      if (type === 'keyup') return false;
+      for (let i = 0; i < keys.length; i++) {
+        if (!myKeys[keys[i]]) return false;
+      }
+      return true;
+    }
+
+
+    return function getSet(e) {
+      const { keyCode } = e;
+      const { type } = e;
+
+      if (!Object.hasOwnProperty.call(myKeys, keyCode)) return false;
+      switch (type) {
+        case 'keydown':
+        case 'keypress':
+          myKeys[keyCode] = true;
+          break;
+        case 'keyup':
+          myKeys[keyCode] = false;
+          break;
+        default:
+          break;
+      }
+      return isCombine(type);
+    };
+  }
+
+  // 17 - ctrl
+  // 83 - S
+  // 69 - E
+  // 27 - esc
+
+  const combineCtrlE = combine(17, 69);
+  const combineCtrlS = combine(17, 83);
+  const combineEsc = combine(27);
+
+  function toEdit(e) {
+    if (combineCtrlE(e)) {
+      e.preventDefault();
+      container.removeEventListener('keydown', toEdit);
+      container.removeEventListener('keyup', toEdit);
+
+      textarea.value = div.innerText;
+
+      div.style.display = 'none';
+      textarea.style.display = 'block';
+      textarea.focus();
+    }
+  }
+
+  function onEdit(e) {
+    if (combineCtrlS(e)) {
+      e.preventDefault();
+      div.innerText = textarea.value;
+    }
+    if (combineEsc(e)) {
+      e.preventDefault();
+    }
+
+    if (combineCtrlS(e) || combineEsc(e)) {
+      div.style.display = 'block';
+      textarea.blur();
+      textarea.style.display = 'none';
+
+      document.body.removeEventListener('keydown', onEdit);
+      document.body.removeEventListener('keyup', onEdit);
+      document.body.addEventListener('keydown', toEdit);
+      document.body.addEventListener('keyup', toEdit);
+    }
+  }
+
+  textarea.addEventListener('focus', () => {
+    document.body.addEventListener('keydown', onEdit);
+    document.body.addEventListener('keyup', onEdit);
+  });
+
+  container.addEventListener('keydown', toEdit);
+  container.addEventListener('keyup', toEdit);
 })();
