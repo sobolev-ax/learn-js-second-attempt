@@ -209,3 +209,122 @@ console.log('\n---------------------------------------------Задача 4\n');
   container.addEventListener('keydown', toEdit);
   container.addEventListener('keyup', toEdit);
 })();
+console.log('\n---------------------------------------------Задача 5\n');
+(() => {
+  const table = document.querySelector('#bagua-table5');
+  const listeners = {};
+  let btnOK = null;
+  let btnCANCEL = null;
+  let area = null;
+
+  function toEdit(e) {
+    let node = e.target;
+    while (node !== e.currentTarget) {
+      if (node.tagName === 'TD') break;
+      else node = node.parentElement;
+    }
+    if (node === e.currentTarget) return;
+
+    area = document.createElement('textarea');
+
+    area.style.position = 'absolute';
+    area.style.top = '0px';
+    area.style.right = '0px';
+    area.style.bottom = '0px';
+    area.style.left = '0px';
+    area.style.width = `${node.clientWidth}px`;
+    area.style.height = `${node.clientHeight}px`;
+    area.style.resize = 'none';
+    area.style.padding = '0px';
+    area.style.margin = '0px';
+    area.style.border = 'none';
+    area.style.outline = '1px solid red';
+
+    node.style.position = 'relative';
+
+    area.value = node.innerHTML;
+    node.appendChild(area);
+
+
+    btnOK = document.createElement('button');
+    btnCANCEL = document.createElement('button');
+    btnOK.style.position = 'absolute';
+    btnCANCEL.style.position = 'absolute';
+
+    btnOK.innerText = 'OK';
+    btnCANCEL.innerText = 'CANCEL';
+
+    node.appendChild(btnOK);
+    node.appendChild(btnCANCEL);
+
+    btnOK.style.bottom = `-${btnOK.offsetHeight}px`;
+    btnCANCEL.style.bottom = `-${btnCANCEL.offsetHeight}px`;
+    btnOK.style.left = `${0}px`;
+    btnCANCEL.style.left = `${btnOK.offsetWidth + 2}px`;
+
+    listeners.removeToEdit();
+    listeners.addInEdit(node);
+  }
+
+  function inEdit(e) {
+    if (e.target === btnOK || e.target === btnCANCEL) {
+      const text = area.value;
+
+      e.currentTarget.removeChild(area);
+      e.currentTarget.style.position = '';
+
+      btnCANCEL.parentElement.removeChild(btnCANCEL);
+      btnOK.parentElement.removeChild(btnOK);
+
+      listeners.removeInEdit(e.currentTarget);
+      setTimeout(() => {
+        listeners.addToEdit();
+      }, 500);
+
+      if (e.target === btnOK) {
+        e.currentTarget.innerHTML = text;
+      }
+    }
+  }
+
+  listeners.addInEdit = (node) => {
+    node.addEventListener('click', inEdit);
+  };
+  listeners.removeInEdit = (node) => {
+    node.removeEventListener('click', inEdit);
+  };
+  listeners.addToEdit = () => {
+    table.addEventListener('click', toEdit);
+  };
+  listeners.removeToEdit = () => {
+    table.removeEventListener('click', toEdit);
+  };
+
+  listeners.addToEdit();
+})();
+console.log('\n---------------------------------------------Задача 6\n');
+(() => {
+  const holder = document.querySelector('#placeholder6');
+  const input = document.querySelector('#input6');
+
+  holder.addEventListener('click', (e) => {
+    input.focus();
+    e.currentTarget.parentElement.removeChild(e.currentTarget);
+  });
+})();
+console.log('\n---------------------------------------------Задача 7\n');
+(() => {
+  const caps = document.querySelector('#capsIndicator7');
+
+  document.addEventListener('keydown', (event) => {
+    const flag = event.getModifierState && event.getModifierState('CapsLock');
+    // console.log(flag); // true when you press the keyboard CapsLock key
+
+    if (flag) {
+      caps.style.display = 'block';
+    } else {
+      caps.style.display = 'none';
+    }
+  });
+})();
+

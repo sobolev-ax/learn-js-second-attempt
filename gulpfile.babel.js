@@ -60,7 +60,7 @@ const config = {
     baseDir: './build',
     directory: true,
   },
-  reloadDebounce: 700,
+  reloadDebounce: 1000,
   /* tunnel: true, */
   host: 'localhost',
   port: 9000,
