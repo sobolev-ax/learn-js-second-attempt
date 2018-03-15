@@ -327,4 +327,71 @@ console.log('\n---------------------------------------------Задача 7\n');
     }
   });
 })();
+console.log('\n---------------------------------------------Задача 8\n');
+(() => {
+  const form = document.forms.calculator;
+  const sum = form.elements.money;
+  const period = form.months;
+  const { capitalization } = form;
+  const before = document.querySelector('#money-before');
+  const after = document.querySelector('#money-after');
+  const beforeGraph = document.querySelector('#height-before');
+  const afterGraph = document.querySelector('#height-after');
 
+  function draw() {
+    const oldMoney = +before.innerText;
+    const curMoney = +after.innerText;
+    const part = oldMoney / beforeGraph.offsetHeight;
+
+    afterGraph.style.height = `${curMoney / part}px`;
+  }
+
+  function update() {
+    const money = +sum.value;
+    const months = +period.value;
+    const capital = capitalization.checked;
+    let profit = 0;
+
+    if (!capital) {
+      profit = money + (months * money * 0.01);
+    } else {
+      profit = money;
+      for (let i = 0; i < months; i++) {
+        profit *= 1 + 0.01;
+      }
+    }
+
+    profit = Math.round(profit);
+
+    before.innerText = money;
+    after.innerText = profit;
+
+    draw();
+  }
+
+  function setSum(e) {
+    const num = +e.data;
+    if (e.data !== null && Number.isNaN(num)) {
+      const str = this.value;
+      const i = str.indexOf(e.data);
+
+      this.value = str.slice(0, i) + str.slice(i + 1);
+    }
+
+    update();
+  }
+
+  function setPeriod() {
+    update();
+  }
+
+  function setCapitalization() {
+    update();
+  }
+
+  sum.addEventListener('input', setSum);
+  period.addEventListener('input', setPeriod);
+  capitalization.addEventListener('change', setCapitalization);
+
+  update();
+})();

@@ -22,6 +22,7 @@ module.exports = {
         "screenY": true,
         "confirm": true,
         "Option": true,
+        "Math": true,
     },
     "rules": {
         "no-alert": 0,
