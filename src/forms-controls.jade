@@ -18,6 +18,77 @@ style.
             Изменение: change, input, cut, copy, paste
         li.
             Формы: отправка, событие и метод submit
+    #container10
+        p
+            h7 Задача 10
+        form#form10
+            table
+                tr
+                    td От кого
+                    td
+                        input(name='from', type='text')
+                tr
+                    td Ваш пароль
+                    td
+                        input(name='password', type='password')
+                tr
+                    td Повторите пароль
+                    td
+                        input(name='password2', type='password')
+                tr
+                    td Куда
+                    td
+                        select(name='to')
+                            option
+                            option(value='1') Отдел снабжения
+                            option(value='2') Отдел разработки
+                            option(value='3') Директору
+            |     Сообщение:
+            label
+                textarea(name='message', style='display:block;width:400px;height:100px')
+            input(type='button', onclick='validate(this.form)', value='Проверить')
+    #container9
+        p
+            h7 Задача 9
+        style.
+            .overflow {
+                position: fixed;
+                background: rgba(120,120,120,.4);
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                z-index: 9999;
+            }
+            .prompt-form {
+                display: inline-block;
+                padding: 5px 5px 5px 70px;
+                width: 200px;
+                border: 1px solid black;
+                background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
+                vertical-align: middle;
+            }
+            .prompt-form-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+            .prompt-form-container:before {
+                display: inline-block;
+                height: 100%;
+                content: '';
+                vertical-align: middle;
+            }
+            .prompt-form input[name="text"] {
+                display: block;
+                margin: 5px;
+                width: 180px;
+            }
+        p h6 Нажмите на кнопку ниже
+        input(type="button" value="Нажмите для показа формы ввода" id="show-button9")
     #container8
         p
             h7 Задача 8

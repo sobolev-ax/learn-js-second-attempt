@@ -395,3 +395,119 @@ console.log('\n---------------------------------------------Задача 8\n');
 
   update();
 })();
+console.log('\n---------------------------------------------Задача 9\n');
+(() => {
+  function showPrompt(text, callback) {
+    const overflow = document.createElement('div');
+    const container = document.createElement('div');
+    const form = document.createElement('form');
+    const message = document.createElement('div');
+    const iText = document.createElement('input');
+    const iOk = document.createElement('input');
+    const iCancel = document.createElement('input');
+
+    overflow.classList.add('overflow');
+    container.classList.add('prompt-form-container');
+    form.classList.add('prompt-form');
+    message.classList.add('prompt-message');
+
+    iText.setAttribute('name', 'text');
+    iText.setAttribute('type', 'text');
+    iText.setAttribute('tabindex', '1');
+    iOk.setAttribute('type', 'submit');
+    iOk.setAttribute('value', 'Ок');
+    iOk.setAttribute('tabindex', '2');
+    iCancel.setAttribute('type', 'button');
+    iCancel.setAttribute('name', 'cancel');
+    iCancel.setAttribute('value', 'Отмена');
+    iCancel.setAttribute('tabindex', '3');
+
+    overflow.appendChild(container);
+    container.appendChild(form);
+    form.appendChild(message);
+    form.appendChild(iText);
+    form.appendChild(iOk);
+    form.appendChild(iCancel);
+
+    message.innerHTML = text;
+
+    iCancel.onkeydown = (e) => {
+      if (e.keyCode === 9 && !e.shiftKey) {
+        iText.focus();
+        e.preventDefault();
+      }
+    };
+
+    iText.onkeydown = (e) => {
+      if (e.keyCode === 9 && e.shiftKey) {
+        iCancel.focus();
+        e.preventDefault();
+      }
+    };
+
+    const promise = new Promise((resolve) => {
+      form.onsubmit = () => {
+        resolve(iText.value);
+        return false;
+      };
+      iCancel.onclick = () => {
+        resolve(iText.value);
+      };
+    });
+
+    promise.then((value) => {
+      callback(value);
+      document.body.removeChild(overflow);
+    });
+
+    document.body.appendChild(overflow);
+    iText.focus();
+  }
+
+  const elem = document.querySelector('#show-button9');
+
+  elem.addEventListener('click', () => {
+    showPrompt(
+      'Введите что-нибудь<br>... умное :)',
+      (value) => {
+        alert(value);
+      },
+    );
+  });
+})();
+console.log('\n---------------------------------------------Задача 10\n');
+(() => {
+  function red(elem) {
+    const node = elem;
+    node.style.outline = '1px solid red';
+  }
+  function purple(elem) {
+    const node = elem;
+    node.style.outline = '1px solid purple';
+  }
+  function clear(elem) {
+    const node = elem;
+    node.style.outline = '';
+  }
+  function validate(form) {
+    const el = form.elements;
+    const pswd = [];
+
+    for (let i = 0; i < el.length; i++) {
+      clear(el[i]);
+
+      if (el[i].getAttribute('type') === 'password') pswd.push(el[i]);
+      if (el[i].value === '') red(el[i]);
+    }
+
+    if (pswd.length >= 2 && pswd[0].value !== '') {
+      if (pswd[0].value !== pswd[1].value) {
+        for (let i = 0; i < pswd.length; i++) {
+          purple(pswd[i]);
+        }
+      }
+    }
+  }
+
+  window.validate = validate;
+})();
