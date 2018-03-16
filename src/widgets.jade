@@ -22,8 +22,103 @@ style.
             Коллбэки и события на компонентах
         li.
             Что изучать дальше
-    #container10
+    #container3
+        p
+            h7 Задача 3
+        style.
+            .selected3 {
+                background: #0f0;
+            }
+
+            .ul3 li {
+                cursor: pointer;
+            }
+        p
+            input(type='button', id='btn3-1', value='1 список')
+            input(type='button', id='btn3-2', value='2 список')
+        | Клик на элементе выделяет только его. <br />
+        | Ctrl(Cmd)+Клик добавляет/убирает элемент из выделенных. <br>
+        | Shift+Клик добавляет промежуток от последнего кликнутого к выделению. <br>
+        ul.ul3#ul3-1
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+        | Клик на элементе выделяет только его. <br />
+        | Ctrl(Cmd)+Клик добавляет/убирает элемент из выделенных. <br>
+        | Shift+Клик добавляет промежуток от последнего кликнутого к выделению. <br>
+        ul.ul3#ul3-2
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+    #container2
+        p
+            h7 Задача 2
+        style.
+            .slider2 {
+                border-radius: 5px;
+                background: #E0E0E0;
+                background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+                background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+                background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+                width: 310px;
+                height: 15px;
+                margin: 5px;
+                position: relative;
+                left: 300px;
+            }
+
+            .thumb2 {
+                width: 10px;
+                height: 25px;
+                border-radius: 3px;
+                position: relative;
+                top: -5px;
+                background: blue;
+                cursor: pointer;
+            }
+        #slider2.slider2
+            .thumb2
+    #container1
+        style.
+            .hour1 {
+                color: green
+            }
+            .min1 {
+                color: blue
+            }
+            .sec1 {
+                color: red
+            }
         p
             h7 Задача 1
+        p Создайте компонент «Часы» (Clock).
+        #clock1.clock1
+            span.hour1 00
+            | :
+            span.min1 00
+            | :
+            span.sec1 00
+        input(type='button', onclick='pageClock.start()', value='Старт')
+        input(type='button', onclick='pageClock.stop()', value='Стоп')
+        input(
+            type="button",
+            onclick="alert()",
+            value="alert для проверки корректного возобновления"
+        )
+
 script(defer src="./js/widgets.js")
 include template/footer
