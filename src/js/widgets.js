@@ -361,4 +361,29 @@ console.log('\n---------------------------------------------Задача 6\n');
   voter1.setVote(1);
   voter2.setVote(100);
 })();
+console.log('\n---------------------------------------------Задача 7\n');
+(() => {
+  const users = [{
+    name: 'Вася',
+    age: 10,
+  }, {
+    name: 'Петя',
+    age: 15,
+  }, {
+    name: 'Женя',
+    age: 20,
+  }, {
+    name: 'Маша',
+    age: 25,
+  }, {
+    name: 'Даша',
+    age: 30,
+  },
+  ];
 
+  const tmpl = _.template(document.querySelector('#grid-template8').innerHTML);
+
+  document.querySelector('#grid-holder8').innerHTML = tmpl({
+    users,
+  });
+})();

@@ -22,6 +22,27 @@ style.
             Коллбэки и события на компонентах
         li.
             Что изучать дальше
+    #container8
+        p
+            h7 Задача 8
+        #grid-holder8
+        script(type="text/template" id="grid-template8").
+            <table>
+                <thead>
+                    <tr>
+                        <td>Имя</td>
+                        <td>Возраст</td>
+                    <tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < users.length; i++) { %>
+                        <tr>
+                            <td><%=users[i].name %></td>
+                            <td><%=users[i].age %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
     #container7
         p
             h7 Задача 7 (семантическая вёрстка)
