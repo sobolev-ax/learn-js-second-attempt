@@ -22,6 +22,123 @@ style.
             Коллбэки и события на компонентах
         li.
             Что изучать дальше
+    #container7
+        p
+            h7 Задача 7 (семантическая вёрстка)
+        style.
+            .menu7 {
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu7__item {
+                list-style: none;
+                display: inline-block;
+                padding: 6px;
+                margin: 0 2px;
+                border: 1px solid gray;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 90%;
+                background: #FFF5EE;
+            }
+
+            .menu7__vertical-splitter {
+                list-style: none;
+                display: inline-block;
+            }
+
+            .menu7__vertical-splitter:before {
+                content: "|";
+            }
+
+            .menu7__item a {
+                color: black;
+                text-decoration: none;
+            }
+
+            .menu7__item a:hover {
+                text-decoration: underline;
+            }
+        ul.menu7
+            li.menu7__item
+                a(href='#') Главная
+            li.menu7__vertical-splitter
+            li.menu7__item
+                a(href='#') Товары
+            li.menu7__item
+                a(href='#') Фотографии
+            li.menu7__item
+                a(href='#') Контакты
+    #container6
+        p
+            h7 Задача 6 (Добавить двойной голос в голосовалку)
+        style.
+            .voter6 {
+                font-family: Consolas, "Lucida Console", monospace;
+                font-size: 18px;
+            }
+
+            .up6,
+            .down6 {
+                cursor: pointer;
+                color: blue;
+                font-weight: bold;
+            }
+        #voter6-1.voter6
+            span.down6 —
+            span.vote6 0
+            span.up6 +
+        #voter6-2.voter6
+            span.down6 —
+            span.vote6 0
+            span.up6 +
+    #container5
+        p
+            h7 Задача 5 (в прототипном)
+        style.
+            .voter5 {
+                font-family: Consolas, "Lucida Console", monospace;
+                font-size: 18px;
+            }
+
+            .up5,
+            .down5 {
+                cursor: pointer;
+                color: blue;
+                font-weight: bold;
+            }
+        #voter5-1.voter5
+            span.down5 —
+            span.vote5 0
+            span.up5 +
+        #voter5-2.voter5
+            span.down5 —
+            span.vote5 0
+            span.up5 +
+    #container4
+        p
+            h7 Задача 4
+        style.
+            .voter4 {
+                font-family: Consolas, "Lucida Console", monospace;
+                font-size: 18px;
+            }
+
+            .up4,
+            .down4 {
+                cursor: pointer;
+                color: blue;
+                font-weight: bold;
+            }
+        #voter4-1.voter4
+            span.down4 —
+            span.vote4 0
+            span.up4 +
+        #voter4-2.voter4
+            span.down4 —
+            span.vote4 0
+            span.up4 +
     #container3
         p
             h7 Задача 3
@@ -119,6 +236,6 @@ style.
             onclick="alert()",
             value="alert для проверки корректного возобновления"
         )
-
+script(defer src="./js/lodash.core.js")
 script(defer src="./js/widgets.js")
 include template/footer

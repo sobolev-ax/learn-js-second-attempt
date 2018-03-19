@@ -179,8 +179,7 @@ console.log('\n---------------------------------------------Задача 3\n');
       const selected = [];
 
       for (let i = 0; i < count; i++) {
-        if (!elements[i].classList.contains(active)) continue;
-        selected.push(elements[i]);
+        if (elements[i].classList.contains(active)) selected.push(elements[i]);
       }
       console.dir(selected);
       return selected;
@@ -219,3 +218,147 @@ console.log('\n---------------------------------------------Задача 3\n');
   window.listSelect1 = listSelect1;
   window.listSelect2 = listSelect2;
 })();
+console.log('\n---------------------------------------------Задача 4\n');
+(() => {
+  function Voter(options) {
+    const { elem } = options;
+    const increase = elem.querySelector('.up4');
+    const decrease = elem.querySelector('.down4');
+    const result = elem.querySelector('.vote4');
+
+    increase.setAttribute('tabindex', 0);
+    decrease.setAttribute('tabindex', 0);
+
+    function getResult() {
+      return +result.innerText;
+    }
+    function setResult(value) {
+      result.innerText = value;
+    }
+
+    function toIncrease() {
+      const newValue = getResult() + 1;
+      setResult(newValue);
+    }
+    function toDecrease() {
+      const newValue = getResult() - 1;
+      setResult(newValue);
+    }
+
+    elem.onselectstart = () => false;
+    elem.onmousedown = () => false;
+
+    increase.addEventListener('click', toIncrease);
+    decrease.addEventListener('click', toDecrease);
+
+    this.setVote = setResult;
+  }
+
+  const voter1 = new Voter({
+    elem: document.getElementById('voter4-1'),
+  });
+  const voter2 = new Voter({
+    elem: document.getElementById('voter4-2'),
+  });
+
+  voter1.setVote(1);
+  voter2.setVote(6);
+})();
+console.log('\n---------------------------------------------Задача 5\n');
+(() => {
+  function Voter(options) {
+    this.elem = options.elem;
+
+    this.increase = this.elem.querySelector('.up5');
+    this.decrease = this.elem.querySelector('.down5');
+    this.voteElem = this.elem.querySelector('.vote5');
+
+    this.increase.setAttribute('tabindex', 0);
+    this.decrease.setAttribute('tabindex', 0);
+
+    this.elem.onselectstart = () => false;
+    this.elem.onmousedown = () => false;
+
+    this.increase.addEventListener('click', Voter.prototype.increase.bind(this));
+    this.decrease.addEventListener('click', Voter.prototype.decrease.bind(this));
+  }
+
+  Voter.prototype.setVote = function set(vote) {
+    this.voteElem.innerHTML = +vote;
+  };
+
+  Voter.prototype.increase = function up() {
+    this.voteElem.innerHTML = +this.voteElem.innerHTML + 1;
+  };
+  Voter.prototype.decrease = function down() {
+    this.voteElem.innerHTML = +this.voteElem.innerHTML - 1;
+  };
+
+  const voter1 = new Voter({
+    elem: document.getElementById('voter5-1'),
+  });
+  const voter2 = new Voter({
+    elem: document.getElementById('voter5-2'),
+  });
+
+  voter1.setVote(10);
+  voter2.setVote(30);
+})();
+console.log('\n---------------------------------------------Задача 6\n');
+(() => {
+  function Voter(options) {
+    this.elem = options.elem;
+
+    this.increase = this.elem.querySelector('.up6');
+    this.decrease = this.elem.querySelector('.down6');
+    this.voteElem = this.elem.querySelector('.vote6');
+
+    this.increase.setAttribute('tabindex', 0);
+    this.decrease.setAttribute('tabindex', 0);
+
+    this.elem.onselectstart = () => false;
+    this.elem.onmousedown = () => false;
+
+    this.increase.addEventListener('click', Voter.prototype.increase.bind(this));
+    this.decrease.addEventListener('click', Voter.prototype.decrease.bind(this));
+  }
+
+  Voter.prototype.setVote = function set(vote) {
+    this.voteElem.innerHTML = +vote;
+  };
+
+  Voter.prototype.increase = function up() {
+    this.voteElem.innerHTML = +this.voteElem.innerHTML + 1;
+  };
+  Voter.prototype.decrease = function down() {
+    this.voteElem.innerHTML = +this.voteElem.innerHTML - 1;
+  };
+
+  function StepVoter(options) {
+    Voter.call(this, options);
+    this.step = options.step || 1;
+  }
+
+  Voter.prototype.increase = function up() {
+    this.voteElem.innerHTML = +this.voteElem.innerText + this.step;
+  };
+  Voter.prototype.decrease = function down() {
+    this.voteElem.innerHTML = +this.voteElem.innerText - this.step;
+  };
+
+  StepVoter.prototype = Object.create(Voter.prototype);
+  StepVoter.prototype.constructor = StepVoter;
+
+  const voter1 = new StepVoter({
+    elem: document.getElementById('voter6-1'),
+    step: 1,
+  });
+  const voter2 = new StepVoter({
+    elem: document.getElementById('voter6-2'),
+    step: 100,
+  });
+
+  voter1.setVote(1);
+  voter2.setVote(100);
+})();
+
