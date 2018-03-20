@@ -22,6 +22,208 @@ style.
             Коллбэки и события на компонентах
         li.
             Что изучать дальше
+    #container13
+        p
+            h7 Задача 13
+        style.
+            .slider13 {
+                border-radius: 5px;
+                background: #E0E0E0;
+                background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+                background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+                background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+                width: 310px;
+                height: 15px;
+                margin: 5px;
+                position: relative;
+                left: 300px;
+            }
+
+            .thumb13 {
+                width: 10px;
+                height: 25px;
+                border-radius: 3px;
+                position: relative;
+                top: -5px;
+                background: blue;
+                cursor: pointer;
+            }
+        #slider13.slider13
+            .thumb13
+        #slide
+        #change
+        input(
+            type='button',
+            id='btn13',
+            value='mySlider13.setValue(50)'
+            onclick="mySlider13.setValue(50)"
+        )
+    #container12
+        p
+            h7 Задача 12
+        style.
+            .customselect {
+                width: 200px;
+                font-size: 14px;
+                display: inline-block;
+            }
+            .customselect .title {
+                height: 20px;
+                border: 2px groove #ADD8E6;
+                background: white;
+                width: 200px;
+                box-sizing: border-box;
+                padding: 2px;
+                line-height: 14px;
+                cursor: pointer;
+                text-align: left;
+            }
+            .customselect li {
+                padding: 2px;
+                cursor: pointer;
+            }
+            .customselect li:nth-child(even) {
+                background-color: #f0f8ff;
+            }
+            .customselect li:hover {
+                background-color: #7fffd4;
+            }
+            .customselect ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: none;
+                position: absolute;
+                z-index: 1000;
+                background: white;
+                width: 200px;
+                border-bottom: 1px solid #add8e6;
+                border-left: 1px solid #add8e6;
+                border-right: 1px solid #add8e6;
+                box-sizing: border-box;
+            }
+            .customselect.open ul {
+                display: block;
+            }
+        div
+            | Последний результат: 
+            span#result ...
+        #animal-select.customselect
+            button.title Выберите
+            ul
+                // значение хранится в свойстве data-value
+                li(data-value='bird') Птицы
+                li(data-value='fish') Рыбы
+                li(data-value='animal') Звери
+                li(data-value='dino') Динозавры
+                li(data-value='simplest') Одноклеточные
+        #food-select.customselect
+            button.title Выберите
+            ul
+                li(data-value='carnivore') Плотоядные
+                li(data-value='herbivore') Травоядные
+                li(data-value='omnivore') Всеядные
+    #container11
+        p
+            h7 Задача 11
+        style.
+            .selected11 {
+                background: #0f0;
+            }
+
+            .ul11 li {
+                cursor: pointer;
+            }
+        p
+            input(type='button', id='btn11-1', value='1 список')
+            input(type='button', id='btn11-2', value='2 список')
+        | Клик на элементе выделяет только его. <br />
+        | Ctrl(Cmd)+Клик добавляет/убирает элемент из выделенных. <br>
+        | Shift+Клик добавляет промежуток от последнего кликнутого к выделению. <br>
+        ul.ul11#ul11-1
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+        | Клик на элементе выделяет только его. <br />
+        | Ctrl(Cmd)+Клик добавляет/убирает элемент из выделенных. <br>
+        | Shift+Клик добавляет промежуток от последнего кликнутого к выделению. <br>
+        ul.ul11#ul11-2
+            li Кристофер Робин
+            li Винни-Пух
+            li Ослик Иа
+            li Мудрая Сова
+            li Кролик. Просто кролик.
+    #container10
+        p
+            h7 Задача 10 (Голосовалка "на событиях")
+        style.
+            .voter10 {
+                font-family: Consolas, "Lucida Console", monospace;
+                font-size: 18px;
+            }
+            .up10,
+            .down10 {
+                cursor: pointer;
+                color: blue;
+                font-weight: bold;
+            }
+        #voter10-1.voter10
+            span.down10 —
+            span.vote10 0
+            span.up10 +
+        #voter10-2.voter10
+            span.down10 —
+            span.vote10 0
+            span.up10 +
+    #container9
+        p
+            h7 Задача 9
+        style.
+            .menu9 ul {
+                display: none;
+                margin: 0;
+            }
+            .menu9 .title {
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .menu9 .title:before {
+                content: '▶';
+                padding-right: 6px;
+                color: green;
+            }
+            .menu9.open ul {
+                display: block;
+            }
+            .menu9.open .title:before {
+                content: '▼';
+            }
+        script(type="text/template" id="menu-template9").
+            <div class="menu9">
+                <span class="title"><%-title%></span>
+            </div>
+        script(type="text/template" id="menu-list-template9").
+            <ul>
+                <% for (var i = 0; i < items.length; i++) { %>
+                    <li>
+                        <a href="#<%=encodeURIComponent(items[i].href)%>" title="<%=items[i].title%>">
+                            <%=items[i].title%>
+                        </a>
+                    </li>
+                <% }; %>
+            </ul>
     #container8
         p
             h7 Задача 8

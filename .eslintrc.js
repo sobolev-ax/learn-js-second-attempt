@@ -23,6 +23,8 @@ module.exports = {
         "confirm": true,
         "Option": true,
         "Math": true,
+        "_": true,
+        "CustomEvent": true,
     },
     "rules": {
         "no-alert": 0,

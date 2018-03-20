@@ -17,6 +17,7 @@ const gutil = require('gulp-util');
 const upmodul = require('gulp-update-modul');
 const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
+const runSequence = require('run-sequence');
 
 const restart = browserSync.reload;
 
@@ -60,7 +61,7 @@ const config = {
     baseDir: './build',
     directory: true,
   },
-  reloadDebounce: 1000,
+  reloadDebounce: 500,
   /* tunnel: true, */
   host: 'localhost',
   port: 9000,
@@ -69,21 +70,11 @@ gulp.task('webserver', () => {
   browserSync(config);
 });
 
-/* gulp.task('webserver', function webserver() {
-  browserSync(config);
-}); */
-/* gulp.task('html:build', function () {
-  gulp.src(path.src.html) //Выберем файлы по нужному пути
-    .pipe(rigger()) //Прогоним через rigger
-    .pipe(gulp.dest(path.build.html)) //Выплюнем их в папку build
-    .pipe(restart({stream: true})); //И перезагрузим наш сервер для обновлений
-}); */
-
 gulp.task('jade:build', () => {
   gulp.src(path.src.jade)
     .pipe(jade({ pretty: true }).on('error', gutil.log).on('error', gutil.beep))
     .pipe(gulp.dest(path.build.jade))
-    .pipe(restart({ stream: true })); /* И перезагрузим наш сервер для обновлений */
+    .pipe(restart({ stream: true }));
 });
 
 
@@ -106,13 +97,13 @@ gulp.task('js:build', () => {
 
 
 gulp.task('style:build', () => {
-  gulp.src(path.src.style) /* Выберем наш main.scss */
-    .pipe(sourcemaps.init()) /* То же самое что и с js */
-    .pipe(sass().on('error', gutil.log).on('error', gutil.beep)) /* Скомпилируем */
-    .pipe(prefixer()) /* Добавим вендорные префиксы */
-    .pipe(cssmin()) /* Сожмем */
+  gulp.src(path.src.style)
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', gutil.log).on('error', gutil.beep))
+    .pipe(prefixer())
+    .pipe(cssmin())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.build.css)) /* И в build */
+    .pipe(gulp.dest(path.build.css))
     .pipe(restart({ stream: true }));
 });
 gulp.task('image:build', () => {
